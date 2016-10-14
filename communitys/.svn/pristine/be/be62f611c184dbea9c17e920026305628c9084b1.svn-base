@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.ClassEnterDao">
+	<resultMap type="entity.ClassEnter" id="ClassEnterMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="classId" column="class_id"/>
+         <result property="studentId" column="student_id"/>
+            
+     </resultMap>
+    
+    <insert id="addClassEnter" parameterType="ClassEnter">
+    	insert into t_class_enter(id,class_id,student_id)
+    	values(#{id},#{classId},#{studentId})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_class_enter where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="ClassEnterMap">
+ 		select * from t_class_enter where id =#{id}
+	</select>  
+	
+	
+	<select id="selectAll" resultMap="ClassEnterMap">
+		select * from t_class_enter
+	</select>
+</mapper>

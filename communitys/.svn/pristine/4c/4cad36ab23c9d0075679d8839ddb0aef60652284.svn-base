@@ -1,0 +1,270 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<c:import url="common/link.html"></c:import>
+	<%-- <jsp: include page ="frontpages/pages/common/link.html"> --%>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/index.css">
+</head>
+<body>
+	<div class="header">	
+		<div class="front-header">
+			<div class="headerwrap clearfix">
+				<i class="blue"></i><i class="orange"></i><i class="red"></i><i class="green"></i>
+			</div>
+			<div class="title-login">
+				<h1 class="title">东北师范大学学生社团联合会</h1>
+				<div class="login">
+					<a href="JavaScript:;">登录</a>
+					<a href="JavaScript:;" class="register">注册</a>
+				</div>
+			</div>
+			<div class="nav">
+				<ul class="clearfix">
+					<li><a href="javascript:;">社联概况</a></li>
+					<li><a href="javascript:;">社团风采</a></li>
+					<li><a href="javascript:;">基本业务</a></li>
+					<li><a href="javascript:;">精品课程</a></li>
+					<li><a href="javascript:;">社会项目</a></li>
+					<li><a href="javascript:;">资源共享</a></li>
+					<li><a href="javascript:;">资料下载</a></li>
+				</ul>
+			</div>
+			<div class="front-banner">
+				<!-- 图片 -->
+				<ul class="front-banner-img">
+					<li><img src="frontpages/recourse/img/index/banner/001.png"></li>
+					<li><img src="frontpages/recourse/img/index/banner/002.png"></li>
+					<li><img src="frontpages/recourse/img/index/banner/001.png"></li>
+					<li><img src="frontpages/recourse/img/index/banner/001.png"></li>
+				</ul>
+				<!-- 文字 -->
+				<ul class="front-banner-words">
+					<li>
+						<p class="quintessence">社彩缤纷，百团争鸣。</p>
+						<p class="explain">——记东北师范大学大学2015-2016学年学生社团统一纳新活动</p>
+					</li>
+				</ul>
+				<!-- 小图标 -->
+				<div class="number">
+					<!-- 添加图标 -->
+				</div>
+				<!-- <div class="arrows">
+					<i class="prev-arrows"></i>
+					<i class="next-arrows"></i>
+				</div> -->
+			</div>	
+			<div class="news-banner">
+				<!-- 滚动新闻 -->
+				<ul class="clearfix">
+					<li>
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+					<li>
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+					<li>
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+					<li>
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 背景 -->
+		<div class="bg-header">		
+			<div class="filter"></div>
+			<div class="cover"></div>
+			<div class="bg-banner"></div>
+		</div>
+	</div>
+	<div class="page">
+		<div class="style-and-track clearfix">
+			<div class="style">
+				<h2 class="caption style-caption">社团<span>风采</span><i class="com">Community</i><i class="pre">presence</i></h2>
+				<div class="flash">
+					<ul class="flash-special">
+						<li>
+							<a href="javascript:;" class="special-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+							<a href="javascript:;" class="tit">“国际山水诗之旅暨首届诗意山水展”</a>
+						</li>
+					</ul>
+					<ul class="flash-list clearfix">
+						<li>
+							<a href="javascript:;" class="list-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+						</li>
+						<li>
+							<a href="javascript:;" class="list-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+						</li>
+						<li>
+							<a href="javascript:;" class="list-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="news-list">
+					<ul>
+						<li>
+							<a href="javascript:;">东北师范大学大学春学期学生社团负责人大会</a>
+							<span>5月27日晚音乐厅顺利举办了以交流、合作、共赢为主题的</span>
+						</li>
+						<li>
+							<a href="javascript:;">东北师范大学大学春学期学生社团负责人大会</a>
+							<span>5月27日晚音乐厅顺利举办了以交流、合作、共赢为主题的</span>
+						</li>
+						<li>
+							<a href="javascript:;">东北师范大学大学春学期学生社团负责人大会</a>
+							<span>5月27日晚音乐厅顺利举办了以交流、合作、共赢为主题的</span>
+						</li>
+						<li>
+							<a href="javascript:;">东北师范大学大学春学期学生社团负责人大会</a>
+							<span>5月27日晚音乐厅顺利举办了以交流、合作、共赢为主题的</span>
+						</li>
+						<li>
+							<a href="javascript:;">东北师范大学大学春学期学生社团负责人大会</a>
+							<span>5月27日晚音乐厅顺利举办了以交流、合作、共赢为主题的</span>
+						</li>
+						<li>
+							<a href="javascript:;">东北师范大学大学春学期学生社团负责人大会</a>
+							<span>5月27日晚音乐厅顺利举办了以交流、合作、共赢为主题的</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="track">
+				<h2 class="caption track-caption">社团<span>动态</span></h2>
+				<a href="javascript:;" class="more">more>></a>
+				<div class="headerwrap clearfix">
+					<i class="blue"></i><i class="orange"></i><i class="green"></i><i class="red"></i>
+				</div>
+				<ul>
+					<li><a href="javascript:;">山水诗之旅——记“国际山水诗之旅暨首届（中国•温州）诗意山水与</a></li>
+					<li><a href="javascript:;">山水诗之旅——记“国际山水诗之旅暨首届（中国•温州）诗意山水与</a></li>
+					<li><a href="javascript:;">山水诗之旅——记“国际山水诗之旅暨首届（中国•温州）诗意山水与</a></li>
+					<li><a href="javascript:;">山水诗之旅——记“国际山水诗之旅暨首届（中国•温州）诗意山水与</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="show">
+			<h2 class="caption show-caption">社团<span>展示</span><i class="com">Community</i><i class="pre">presence</i></h2>
+			<ul class="show-list clearfix">
+				<li>
+					<div><img src="frontpages/recourse/img/index/shows/001.png"></div>
+				</li>
+				<li>
+					<div><img src="frontpages/recourse/img/index/shows/002.png"></div>
+				</li>
+				<li>
+					<div><img src="frontpages/recourse/img/index/shows/003.png"></div>
+				</li>
+				<li>
+					<div><img src="frontpages/recourse/img/index/shows/004.png"></div>
+				</li>
+				<li>
+					<div><img src="frontpages/recourse/img/index/shows/005.png"></div>
+				</li>
+				<li>
+					<div><img src="frontpages/recourse/img/index/shows/006.png"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="top-ten">
+			<h2 class="caption top-caption"><span>十佳</span>社团<i class="com">Community</i><i class="pre">presence</i></h2>
+			<ul class="clearfix">
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/001.png"></a>
+					<a href="javascript:;" class="top-ten-tit">GIS新希望协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/002.png"></a>
+					<a href="javascript:;" class="top-ten-tit">IDEA爱电影协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/003.png"></a>
+					<a href="javascript:;" class="top-ten-tit">科研协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/004.png"></a>
+					<a href="javascript:;" class="top-ten-tit">免费师范生协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/005.png"></a>
+					<a href="javascript:;" class="top-ten-tit">口才与演讲协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/006.png"></a>
+					<a href="javascript:;" class="top-ten-tit">锅庄舞协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/007.png"></a>
+					<a href="javascript:;" class="top-ten-tit">千格刀笔油画协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/008.png"></a>
+					<a href="javascript:;" class="top-ten-tit">数学建模协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/009.png"></a>
+					<a href="javascript:;" class="top-ten-tit">模拟联合国协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/010.png"></a>
+					<a href="javascript:;" class="top-ten-tit">夏青朗诵社</a>
+				</li>
+			</ul>
+		</div>
+		<div class="groups-and-basic clearfix">
+			<div class="groups">
+				<h2 class="caption group-caption">社团<span>类别</span></h2>
+				<ol class="group-list clearfix">
+					<li class="scientific"><a href="javascript:;">科研实践</a></li>
+					<li class="public-service"><a href="javascript:;">公益服务</a></li>
+					<li class="sports"><a href="javascript:;">文娱体育</a></li>
+					<li class="theory"><a href="javascript:;">思想理论</a></li>
+				</ol>
+			</div>
+			<div class="basic">
+				<h2 class="caption basic-caption">基本业务</h2>
+				<ul class="clearfix">
+					<li>
+						<a href="javascript:;" class="basic-img basic-img1"></a>
+						<a href="javascript:;" class="basic-tit">活动申请</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img basic-img2"></a>
+						<a href="javascript:;" class="basic-tit">社团宝典</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img basic-img3"></a>
+						<a href="javascript:;" class="basic-tit">场地借用</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img basic-img4"></a>
+						<a href="javascript:;" class="basic-tit">社团注册</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img basic-img5"></a>
+						<a href="javascript:;" class="basic-tit">物品借用</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<c:import url="common/footer.html"></c:import>
+	<c:import url="common/script.html"></c:import>
+	<script type="text/javascript" src="frontpages/recourse/js/index.js"></script>
+</body>
+</html>

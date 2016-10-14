@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/style/style.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page clearfix">
+		<div class="sidebar">
+			<p><a href="style.jsp">社团风采</a></p>
+			<p><a href="track.jsp">社团动态</a></p>
+			<p class="select-select"><a href="show.jsp">社团展示</a></p>
+		</div>
+		<div class="main-content">
+			<div class="select-option">
+				<div class="option-show">
+					已选择：
+					<span>校区：净月</span>
+				</div>
+				<div class="option-list">
+					<dl>
+						<dt>
+							校区：
+							<a href="#">本部</a>
+							<a href="#">净月</a>
+						</dt>
+						<dt>
+							等级：
+							<a href="#">A</a>
+							<a href="#">B</a>
+							<a href="#">C</a>
+							<a href="#">D</a>
+						</dt>
+						<dt>
+							类型：
+							<a href="#">科研实践</a>
+							<a href="#">公益服务</a>
+							<a href="#">文娱体育</a>
+							<a href="#">思想概论</a>
+						</dt>
+					</dl>
+				</div>
+			</div>
+			<div class="img-list">
+				<ul class="clearfix">
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>	
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<div class="img-box">
+								<img src="/page/recourse/img/course/001.png">
+							</div>
+							<p class="img-cap">马术协会</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

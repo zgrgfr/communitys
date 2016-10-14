@@ -1,0 +1,96 @@
+package entity;
+
+/**
+ * 场地申请的实体类
+ * @author shanjizhong
+ *
+ */
+public class PlaceApply {
+	// 主键
+	private int id;
+	
+	// 校区
+	private String campus;
+	
+	// 日期（天）
+	public String dayTime;
+	
+	// 时间（如8：00-9：00）
+	private String hourTime;
+	
+	// 地点
+	private String place;
+	
+	// 申请人ID
+	private int applyId;
+	
+	//用途
+	private String uses;
+	
+	//审核状态
+	private String type;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCampus() {
+		return campus;
+	}
+
+	public void setCampus(String campus) {
+		this.campus = campus;
+	}
+
+	public String getDayTime() {
+		return dayTime;
+	}
+
+	public void setDayTime(String dayTime) {
+		this.dayTime = dayTime;
+	}
+
+	public String getHourTime() {
+		return hourTime;
+	}
+
+	public void setHourTime(String hourTime) {
+		this.hourTime = hourTime;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public int getApplyId() {
+		return applyId;
+	}
+
+	public void setApplyId(int applyId) {
+		this.applyId = applyId;
+	}
+
+	public String getUses() {
+		return uses;
+	}
+
+	public void setUses(String uses) {
+		this.uses = uses;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}	
+}

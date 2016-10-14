@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.CommunityShowDao">
+	<resultMap type="entity.CommunityShow" id="CommunityShowMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="campus" column="campus"/>
+         <result property="grade" column="grade"/>
+         <result property="communityType" column="community_type"/>
+         <result property="logo" column="logo"/>
+         <result property="communityId" column="community_id"/>
+         <result property="type" column="type"/>
+         
+     </resultMap>
+    
+    <insert id="addCommunityShow" parameterType="CommunityShow">
+    	insert into t_community_show(campus,grade,community_type,logo,community_id,type)
+    	values(#{campus},#{grade},#{communityType},#{logo},#{communityId},#{type})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_community_show where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="CommunityShowMap">
+ 		select * from t_community_show where id = #{id}
+	</select> 
+	
+	<select id="queryByType" parameterType="String" resultMap="CommunityShowMap">
+ 		select * from t_community_show where type = #{type}
+	</select> 
+	
+	<update id="updateTypeById">
+		update t_community_show set type = #{type} where id = #{id}
+	</update>
+	
+	<update id="updateById" parameterType="CommunityShow">
+		update t_community_show set campus = #{campus}, grade = #{grade}, community_type = #{communityType}, logo = #{logo}, community_id = #{communityId},type = #{type} where id = #{id}
+	</update>
+	
+	<select id="queryByCommunityId" parameterType="int" resultMap="CommunityShowMap">
+		select * from t_community_show where community_id = #{communityId}
+	</select>
+</mapper>

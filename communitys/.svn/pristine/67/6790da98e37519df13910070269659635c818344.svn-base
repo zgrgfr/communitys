@@ -1,0 +1,184 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="../common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/services/services.css">
+</head>
+<body style="position: relative;">
+	<c:import url="../common/header.jsp"></c:import>
+	<div class="page clearfix">
+		<div class="sidebar">
+			<a href="frontpages/pages/services/apply.jsp"><p>活动申请</p></a>
+			<a href="/communitys/CommunityBookController?method=listCommunityBook2"><p>社团宝典</p></a>
+			<a href="frontpages/pages/services/place.jsp"><p class="select-select">场地借用</p></a>
+			<a href="frontpages/pages/services/register.jsp"><p>社团注册</p></a>
+			<a href="frontpages/pages/services/borrow.jsp"><p>物品借用</p></a>
+		</div>
+		<div class="main-content">
+			<div class="selection-site">
+				<h3>场地选择</h3>
+				<li>
+					<a href="javascript:;" class="site-selected">净月</a>
+					<a href="javascript:;">本部</a>
+				</li>
+			</div>
+			<div class="recourse-box">
+				<div class="recourse-header clearfix">
+					<div class="room">
+						<h3>申请资源</h3>
+						<div class="room-select">
+							<select>
+								<option>会议室102</option>
+								<option>会议室102</option>
+								<option>会议室102</option>
+							</select>
+						</div>
+					</div>
+					<div class="week-select">
+						<a href="javascript:;" class="week-pre"></a>
+						<div class="week-date">6月15日 - 6月21日</div>
+						<a href="javascript:;" class="week-nex"></a>
+					</div>
+					<div class="user-info">
+						你当前的身份：游客
+						<a href="frontpages/pages/login.jsp" class="user-login">登录</a>
+						申请记录
+					</div>
+				</div>
+				<div class="recourse-cont clearfix">
+					<ul class="recourse-time">
+						<li>8：00</li>
+						<li>9：00</li>
+						<li>10：00</li>
+						<li>11：00</li>
+						<li>12：00</li>
+						<li>13：00</li>
+						<li>14：00</li>
+						<li>15：00</li>
+						<li>16：00</li>
+						<li>17：00</li>
+						<li>18：00</li>
+						<li>19：00</li>
+						<li>20：00</li>
+						<li>21：00</li>
+					</ul>
+					<div class="record">
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期日</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期一</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期二</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期三</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期四</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期五</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期六</div>
+								<div class="td-date">09月18日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="apply none">
+		<div class="apply-form">
+			<form action="" method="post">
+				<dl>
+					<dt class="close">X</dt>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">姓名</dt>
+					<dd>
+						<input type="text" name=""/>
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">密码</dt>
+					<dd>
+						<input type="text" name="" class="" />
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">身份证号</dt>
+					<dd>
+						<input type="text" name="" class="" />
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">手机号</dt>
+					<dd>
+						<input type="text" name="" class="" />
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<input type="submit" value="提交" name="loginBtn" class="loginBtn" id="registerButton"/>
+				</dl>
+			</form>
+		</div>
+		<div class="cover"></div>
+	</div>
+	<c:import url="../common/footer.html"></c:import>
+	<c:import url="../common/script.html"></c:import>
+	<script type="text/javascript" src="frontpages/recourse/js/services/services.js"></script>
+</body>
+</html>

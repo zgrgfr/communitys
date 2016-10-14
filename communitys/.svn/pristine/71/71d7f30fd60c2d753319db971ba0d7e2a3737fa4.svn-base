@@ -1,0 +1,138 @@
+package controller;
+import java.net.HttpRetryException;
+
+import service.AccountService;
+import service.CommunityAdminService;
+import service.CommunityService;
+import entity.Account;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import entity.Community;
+
+/**
+ * 登陆Controller
+ * @author 郭丰瑞
+ *
+ */
+@WebServlet(name="LoginController",urlPatterns={"/LoginController"})
+public class LoginController extends BaseServlet{
+	AccountService accSerrvice = new AccountService();
+	CommunityAdminService coaService = new CommunityAdminService();
+	CommunityService comService = new CommunityService();
+	/**
+	 * 后台登陆
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String backpageLogin(HttpServletRequest req, HttpServletResponse resp){
+		HttpSession session = req.getSession();
+		try {
+			String account = req.getParameter("account");
+			String password = req.getParameter("password");
+			if("admin".equals(account)&&"root".equals(password)){
+				Account acc = new Account();
+				acc.setAccount("admin");
+				acc.setPassword("root");
+				acc.setRole("超级管理员");
+				acc.setPlaceRole("已授权");
+				session.setAttribute("account", acc);
+				System.out.println("超级管理员登陆");
+				return "r:/backpages/index1.html";
+			}else{
+				Account acc = accSerrvice.queryByAccountAndPassword(account,password);
+				if(acc != null){
+					session.setAttribute("account", acc);
+					String role = acc.getRole();
+					switch(role){
+						case "社联管理员":
+							System.out.println("社联管理员登陆");
+							return "r:/backpages/index2.html";
+						
+						case "社团管理员":
+							int CommunityId = coaService.queryCommunityIdByAccountId(acc.getId());
+							Community community = comService.queryById(CommunityId);
+							if("审核已审批".equals(community.getType())){
+								session.setAttribute("community", community);
+								System.out.println("社团管理员,"+ acc.getName() +"登陆");
+								return "r:/backpages/index3.html";
+							}else{
+								req.setAttribute("msg", "该社团暂时未通过审核!");
+								return "f:/backpages/login.jsp";
+							}
+						case "场地管理员":
+							System.out.println("场地管理员登陆");
+							return "r:/backpages/index4.html";
+						
+						default :
+							System.out.println("后台登陆，账号密码错误");
+							req.setAttribute("msg", "账号密码错误!");
+							return "f:/backpages/login.jsp";
+					}
+				}else{
+					System.out.println("后台登陆，账号密码错误");
+					req.setAttribute("msg", "账号密码错误!");
+					return "f:/backpages/login.jsp";
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 前台登陆
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String frontpageLogin(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			// 接收账号密码
+			String account = req.getParameter("account");
+			String password = req.getParameter("password");
+			HttpSession session = req.getSession();
+			Account acc = accSerrvice.queryByAccountAndPassword(account, password);
+			if(acc != null){
+				session.setAttribute("accountFront", acc);
+				return "f:frontpages/pages/index.jsp";
+			}else{
+				req.setAttribute("msg", "账号或密码出错!");
+				return "f:/frontpages/pages/login.jsp";
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "";
+	}
+	/**
+	 * 前台登陆的注销
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String frontpageLogOut(HttpServletRequest req, HttpServletResponse resp){
+		HttpSession session = req.getSession();
+		session.removeAttribute("accountFront");
+		return "f:/frontpages/pages/index.jsp";
+	}
+	
+	/**
+	 * 后台登陆的注销
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String backpagesLogOut(HttpServletRequest req, HttpServletResponse resp){
+		HttpSession session = req.getSession();
+		session.removeAttribute("account");
+		return "f:/backpages/login.jsp";
+	}
+}

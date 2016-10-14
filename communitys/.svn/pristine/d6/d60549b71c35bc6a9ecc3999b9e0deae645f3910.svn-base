@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/course/course.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page clearfix">
+		<div class="sidebar">
+			<p>全部课程</p>
+			<p class="select-select">文学艺术</p>
+			<p>哲学历史</p>
+			<p>经管法学</p>
+		</div>
+		<div class="main-content">
+			<div class="select">
+				<span class="position">文学艺术</span>
+				<div class="select-btn">
+					<a href="javascript:;" class="select-select">全部</a>
+					<a href="javascript:;">正在进行</a>
+					<a href="javascript:;">即将开始</a>
+					<a href="javascript:;">已结束</a>
+				</div>
+				<div class="select-sort">
+					<span>排序：</span>
+					<select>
+						<option>默认</option>
+						<option>按热门</option>
+						<option>按最新</option>
+					</select>
+				</div>
+			</div>
+			<div class="content-list">
+				<ul>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<div class="con-list-img"><img src="/page/recourse/img/course/001.png"></div>
+							<div class="con-list-content">
+								<div>
+									<h6 class="list-cap">书法</h6>
+									<span class="list-time">进行至第十七周，共20周</span>
+								</div>
+								<p class="list-info">
+									<span><i>3333</i>人参加</span>
+									<span>哈尔滨工业大学</span>
+									<span>张秋雨</span>
+								</p>
+								<p class="list-describe">
+									“书香清雨，墨写人生”。东北师范大学作为教育部直属的师范学校之一，“勤奋创新，为人师表”是我们的校训，写一手好字也是我们作为
+								</p>
+							</div>
+						</a>	
+					</li>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<div class="con-list-img"><img src="/page/recourse/img/course/001.png"></div>
+							<div class="con-list-content">
+								<div>
+									<h6 class="list-cap">书法</h6>
+									<span class="list-time">进行至第十七周，共20周</span>
+								</div>
+								<p class="list-info">
+									<span><i>3333</i>人参加</span>
+									<span>哈尔滨工业大学</span>
+									<span>张秋雨</span>
+								</p>
+								<p class="list-describe">
+									“书香清雨，墨写人生”。东北师范大学作为教育部直属的师范学校之一，“勤奋创新，为人师表”是我们的校训，写一手好字也是我们作为
+								</p>
+							</div>
+						</a>	
+					</li>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<div class="con-list-img"><img src="/page/recourse/img/course/001.png"></div>
+							<div class="con-list-content">
+								<div>
+									<h6 class="list-cap">书法</h6>
+									<span class="list-time">进行至第十七周，共20周</span>
+								</div>
+								<p class="list-info">
+									<span><i>3333</i>人参加</span>
+									<span>哈尔滨工业大学</span>
+									<span>张秋雨</span>
+								</p>
+								<p class="list-describe">
+									“书香清雨，墨写人生”。东北师范大学作为教育部直属的师范学校之一，“勤奋创新，为人师表”是我们的校训，写一手好字也是我们作为
+								</p>
+							</div>
+						</a>	
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

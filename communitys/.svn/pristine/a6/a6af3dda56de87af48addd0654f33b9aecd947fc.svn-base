@@ -1,0 +1,28 @@
+package controller;
+import service.CommunityService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import entity.Community;
+
+@WebServlet(name="CommunityController",urlPatterns={"/CommunityController"})
+public class CommunityController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	CommunityService comService = new CommunityService();
+	
+	public String communityRegister(HttpServletRequest req, HttpServletResponse resp){
+		Community community = CommonUtils.toBean(req.getParameterMap(), Community.class);
+		try {
+			comService.addCommunity(community);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 转到等待审核的页面
+		return "";
+	}
+}

@@ -1,0 +1,90 @@
+$(function(){
+	$("form :input").blur(function(){
+
+		if($(this).attr('name')=="name"){
+			if(this.value == "" || (this.value !="" && !/^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$/.test(this.value))){
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("中文名字");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+		
+		if($(this).attr('name')=="password"){
+			if(this.value == "" || this.value.length <6 ){ 
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("密码不能少于6位");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+		
+		
+		if($(this).attr('name')=="phone"){
+			if(this.value == "" || (this.value !="" && !/^1([38]\d|4[57]|5[0-35-9]|7[06-8]|8[89])\d{8}$/.test(this.value))){
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("请输入有效手机号");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+		// 不为空
+		if($(this).attr('name')=="address"){
+			if(this.value == "" ){
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("请输入正确地址");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+		
+
+		if($(this).attr('name')=="account"){
+			if(this.value == "" ){
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("请输入账号");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+
+		if($(this).attr('name')=="academy"){
+			if(this.value == "" ){
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("请输入学院名称");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+
+		if($(this).attr('name')=="idNumber"){
+			if(this.value == "" ){
+				$(this).parent().find("p.item-ts span").removeClass("ok");
+				$(this).parent().find("p.item-ts span").addClass("error").text("请输入学号");
+			}else{
+				$(this).parent().find("p.item-ts span").removeClass("error");
+				$(this).parent().find("p.item-ts span").addClass("ok").text("输入正确");
+			};
+		};
+	}).keyup(function(){
+        $(this).triggerHandler("blur");
+    }).focus(function(){
+         $(this).triggerHandler("blur");
+    });
+	
+	//最后提交时验证，否则，阻止表单提交
+	$("#registerButton").click(function(){
+        $("form :input").trigger('blur');
+        var numError = $('form .error').length;
+        if(numError){
+            return false;
+        } 
+        alert("注册成功");
+	});
+});

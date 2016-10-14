@@ -1,0 +1,78 @@
+package dao;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import entity.Account;
+
+
+public interface AccountDao {
+	/**
+	 * 添加一条用户
+	 * @param account
+	 * @throws Exception
+	 */
+	public void addAccount(Account account) throws Exception;
+
+	/**
+	 * 根据id删除一条用户
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据Id查找到用户
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Account queryById(@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据Type查找到相应的用户
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Account> queryByType(@Param("type") String type) throws Exception;
+	
+	/**
+	 * 根据Id修改相应的审核状态
+	 * @param id
+	 * @param type
+	 * @throws Exception
+	 */
+	public void updateTypeById(@Param("id") int id,@Param("type")String type) throws Exception;
+	
+	/**
+	 * 根据Id修改身份状态
+	 * @param id
+	 * @param role
+	 * @throws Exception
+	 */
+	public void updateRoleById(@Param("id") int id,@Param("role")String role) throws Exception;
+	
+	/**
+	 *根据账号密码查找这个账户的信息 
+	 * @param account
+	 * @param password
+	 * @throws Exception
+	 */
+	public Account queryByAccountAndPassword(@Param("account") String account,@Param("password") String password) throws Exception;
+	
+	/**
+	 * 查找所有的账户信息
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Account> selectAll() throws Exception;
+	
+	/**
+	 * 根据Id修改场地申请权限
+	 * @param id
+	 * @param placeRole
+	 * @throws Exception
+	 */
+	public void updatePlaceRoleById(@Param("id") int id,@Param("placeRole")String placeRole) throws Exception;
+}

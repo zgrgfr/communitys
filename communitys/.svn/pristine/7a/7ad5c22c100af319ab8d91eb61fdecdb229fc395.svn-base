@@ -1,0 +1,333 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50519
+Source Host           : localhost:3306
+Source Database       : db_community
+
+Target Server Type    : MYSQL
+Target Server Version : 50519
+File Encoding         : 65001
+
+Date: 2016-09-12 20:29:43
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `t_account`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_account`;
+CREATE TABLE `t_account` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `account` varchar(20) DEFAULT NULL COMMENT '账号',
+  `password` varchar(20) DEFAULT NULL COMMENT '密码',
+  `name` varchar(20) DEFAULT NULL COMMENT '学生姓名',
+  `academy` varchar(20) DEFAULT NULL COMMENT '学院的名称',
+  `id_number` varchar(20) DEFAULT NULL COMMENT '学号',
+  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
+  `role` enum('一般学生','社团管理员','社联管理员','场地管理员') DEFAULT NULL,
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  `place_role` enum('未授权','已授权') DEFAULT '未授权' COMMENT '场地申请权限',
+  `status` tinyint(4) DEFAULT NULL COMMENT '0-已删除，1-未删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_account
+-- ----------------------------
+INSERT INTO `t_account` VALUES ('6', 'shelian', 'root', '社联管理员', '软件学院', '2014012152', '110', '社联管理员', '审核通过', '已授权', '1');
+INSERT INTO `t_account` VALUES ('7', 'lanqiu', 'root', '篮球社管理员', '软件学院', '2014012153', '110', '社团管理员', '审核通过', '已授权', '1');
+INSERT INTO `t_account` VALUES ('8', 'yumaoqiu', 'root', '羽毛球社管理员', '软件学院', '2014012154', '110', '社团管理员', '审核通过', '已授权', '1');
+INSERT INTO `t_account` VALUES ('9', 'wuxiaoyang', 'root', '吴晓阳', '软件学院', '2014012155', '110', '社团管理员', '审核通过', '未授权', '1');
+
+-- ----------------------------
+-- Table structure for `t_activity_apply`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_activity_apply`;
+CREATE TABLE `t_activity_apply` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(20) DEFAULT NULL COMMENT '活动名称',
+  `holder` varchar(10) DEFAULT NULL COMMENT '活动发起者',
+  `content` text COMMENT '活动内容',
+  `time` varchar(20) DEFAULT NULL COMMENT '活动时间',
+  `time_start` varchar(20) DEFAULT NULL COMMENT '活动开始时间',
+  `account_id` int(50) NOT NULL COMMENT '账号Id',
+  `type` enum('未审核','审核未审批','审核已审批','审核不通过') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_activity_apply
+-- ----------------------------
+INSERT INTO `t_activity_apply` VALUES ('18', '羽毛球', '羽毛球协会', null, '2016-9-19', '17:30', '8', '审核未审批');
+INSERT INTO `t_activity_apply` VALUES ('32', 'lanqiu33', 'da ', null, 'dsa', '17:00', '7', '未审核');
+INSERT INTO `t_activity_apply` VALUES ('33', '篮球迎新杯比赛', 'sadsa', '的萨达', '2016-9-8', '17:00', '7', '未审核');
+
+-- ----------------------------
+-- Table structure for `t_article_lend`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_article_lend`;
+CREATE TABLE `t_article_lend` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `article_name` varchar(50) NOT NULL COMMENT '物品名称',
+  `community_name` varchar(50) DEFAULT NULL COMMENT '社团名称',
+  `header` varchar(50) DEFAULT NULL COMMENT '负责人姓名',
+  `phone` varchar(50) DEFAULT NULL COMMENT '负责人电话',
+  `article_use` text COMMENT '物品使用内容',
+  `lend_time` varchar(50) DEFAULT NULL COMMENT '物品借用日期',
+  `account_id` int(50) DEFAULT NULL COMMENT '借用人的账号Id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='物品借用（社团向学校申请）';
+
+-- ----------------------------
+-- Records of t_article_lend
+-- ----------------------------
+INSERT INTO `t_article_lend` VALUES ('7', '倒萨倒萨', '大声地', '大苏打', '的撒大苏打', null, '2016-9-5', '7', '未审核');
+INSERT INTO `t_article_lend` VALUES ('8', '', '', '', '15290491288', null, '2016-9-5', '8', '未审核');
+
+-- ----------------------------
+-- Table structure for `t_class`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_class`;
+CREATE TABLE `t_class` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT '精品课程的名称',
+  `school` varchar(20) DEFAULT NULL COMMENT '学校',
+  `author` varchar(20) DEFAULT NULL COMMENT '作者',
+  `class_type` varchar(20) DEFAULT NULL COMMENT '课程的类别',
+  `introduce` text COMMENT '简介',
+  `content` text COMMENT '内容',
+  `start_time` varchar(20) NOT NULL COMMENT '进行时间',
+  `end_time` varchar(20) NOT NULL,
+  `community_id` int(50) DEFAULT NULL COMMENT '社团id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='精品课程';
+
+-- ----------------------------
+-- Records of t_class
+-- ----------------------------
+INSERT INTO `t_class` VALUES ('35', '篮球迎新杯比赛', '东北师大', '篮球社管理员', '文学艺术', '哈哈哈', '哈哈哈哈', '2016-09-10 17:30', '2016-09-13 17:30', '30', '审核通过');
+INSERT INTO `t_class` VALUES ('36', '篮球精英杯比赛', '东北师大', '哈哈哈', '哲学历史', '哈哈哈', '哈哈哈', '2016-09-12 20:55', '2016-09-13 20:55', '30', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_class_enter`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_class_enter`;
+CREATE TABLE `t_class_enter` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `class_id` int(50) DEFAULT NULL COMMENT '课程的id',
+  `student_id` int(50) DEFAULT NULL COMMENT '学生的id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_class_enter
+-- ----------------------------
+INSERT INTO `t_class_enter` VALUES ('2', '35', '9');
+INSERT INTO `t_class_enter` VALUES ('7', '36', '9');
+
+-- ----------------------------
+-- Table structure for `t_community`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community`;
+CREATE TABLE `t_community` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL COMMENT '社团名称',
+  `name_head` varchar(50) DEFAULT NULL COMMENT '负责人姓名',
+  `student_idnumber` varchar(50) DEFAULT NULL COMMENT '负责人学号',
+  `phone` varchar(50) DEFAULT NULL COMMENT '负责人手机号',
+  `content` text COMMENT '社团运营内容',
+  `apply_id` int(50) DEFAULT NULL,
+  `type` enum('未审核','审核未审批','审核已审批','审核不通过') NOT NULL DEFAULT '未审核' COMMENT '社团注册的状态',
+  `status` tinyint(4) DEFAULT NULL COMMENT '0-已删除，1-未删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='社团注册，社团的简介';
+
+-- ----------------------------
+-- Records of t_community
+-- ----------------------------
+INSERT INTO `t_community` VALUES ('30', '篮球社', '篮球社头头', '2014012111', '111', '篮球社是个好社团', '7', '审核已审批', '1');
+INSERT INTO `t_community` VALUES ('31', '羽毛球社', '羽毛球社头头', '2014012112', '112', '羽毛球社是个好地方', '8', '审核已审批', '1');
+INSERT INTO `t_community` VALUES ('32', '大啊大大', '大师', '但是', '大', null, '7', '未审核', '0');
+INSERT INTO `t_community` VALUES ('33', '晓阳社', '吴晓阳', '2015011011', '110110110110', '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\r\n                                        \r\n                                    ', '9', '审核已审批', '1');
+
+-- ----------------------------
+-- Table structure for `t_community_admin`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_admin`;
+CREATE TABLE `t_community_admin` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `community_id` int(50) NOT NULL COMMENT '社团id，0-社联管理员，其他-社团管理员',
+  `account_id` int(50) NOT NULL COMMENT '账号id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='社团-账户链接表';
+
+-- ----------------------------
+-- Records of t_community_admin
+-- ----------------------------
+INSERT INTO `t_community_admin` VALUES ('1', '30', '7');
+INSERT INTO `t_community_admin` VALUES ('2', '31', '8');
+INSERT INTO `t_community_admin` VALUES ('8', '33', '9');
+
+-- ----------------------------
+-- Table structure for `t_community_book`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_book`;
+CREATE TABLE `t_community_book` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `path` varchar(50) DEFAULT NULL COMMENT '社团宝典的路径',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='社团宝典（社联管理员添加）';
+
+-- ----------------------------
+-- Records of t_community_book
+-- ----------------------------
+INSERT INTO `t_community_book` VALUES ('2', '20160911102055669428.pdf');
+
+-- ----------------------------
+-- Table structure for `t_community_presence`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_presence`;
+CREATE TABLE `t_community_presence` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `title` varchar(50) NOT NULL COMMENT '社团风采的标题',
+  `author` varchar(10) DEFAULT NULL COMMENT '作者',
+  `time` varchar(20) NOT NULL COMMENT '时间',
+  `content` text NOT NULL COMMENT '内容',
+  `article_type` enum('社团风采','社团动态') DEFAULT NULL,
+  `community_id` int(50) DEFAULT NULL COMMENT '社团的id',
+  `type` enum('未审核','审核通过','审核不通过') NOT NULL COMMENT '审核状态0-未审核1-审核通过2-审核不通过',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='社团风采，社团动态';
+
+-- ----------------------------
+-- Records of t_community_presence
+-- ----------------------------
+INSERT INTO `t_community_presence` VALUES ('10', '社团风采', '羽毛球', '2016-09-11 15:00', '\r\n                                        社团风采<br>\r\n                                    ', '社团风采', '0', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('11', '篮球社', '篮球44', '', '\r\n                                        篮球篮球<br>\r\n                                    ', '社团动态', '30', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('13', 'lanqiu', 'csa', '2016-09-11 10:50', 'dsada', '社团风采', '30', '审核不通过');
+INSERT INTO `t_community_presence` VALUES ('14', '111', '111', '2016-09-12 11:50', 'dsadsadsadsa', '社团风采', '30', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('16', '4', '4', '2016-11-12 11:55', '4', '社团风采', '30', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('17', '2', '5', '2016-11-12 11:55', '5', '社团风采', '30', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('18', '的萨达', '的萨达', '2016-09-12 12:00', '的萨达<img alt=\"\" src=\"data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACTANwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/ooooAKKUDJp3yr7n9KAGhSegpduOrCgsT1NdR8PPDln4r8aWGk6hcNDbTFy5RgrPtUttUnucYoA5jC+p/KjaD3P5V9Y6b8HfBOnXhlXR3uW248u5mMqr0Occc1e1L4ZeCryUT3XhyzjAJYshMIJOBztI4qOfW1h2Pj/AGZ6MD+lIVI6jFd38V/D2g+HPFSW3h+dWt5IBJJAs3m+Q+SNu7nqADg881wu4j6ehqxDaKdhT04PoaQjBxQA5SVUke1HnP60L9w/hV2HRr64tBdRW7PEemCNzDIBIXqRkgZAxmgCl5z+tKJHPcVp/wDCN6n5/lG3AO3O7zU2dduN2cZ3cYznNdl8HfBcPiXxwU1FVNrpq+fPbyJnzGDbQhH15OfTFAHnm6Tbu7dM00yuO9fZ1tokNxpdzp8lhp1vbYlVLZbIAQs2QGHZsg5OMZr5P8Y+ENQ8Ga2dM1BomcrvjeNsh0JwGx1GcHg+lTGakNowPOf1o85/WtI+HdTV1VrcLkEkmRQqYxkMc4UjI4OOopsmg6jDBLNLasixFg4ZgGG04J25yQCQCQMVQih5j+opxaVTg8H3Fe6/BrwPZyeEr7xJdWVrqNxOxhtoLiDzFjCNhmwepPt/d613vj/wVceMPBklpa/YP7SEiSQzfZvLLquQEJ6r1x6dsVDmk7DsfJfmv60nnP61cbSbsarLp3lg3MTsjqrqQpXO7LZxgYPOcVKfD2pKkrG2OIs5+dfmwu47efmG0g/LngirEZ/mv605WlY4Xk+gqzd6TeaesbXMJQOcD5gcEdVOOjcjg8819UeEvBFt4Q0LR4bW2sn1Da0k+pSWm9w7DIA7gYO3r0HvUylyq40rnyZ5j+opTycnGcCvffjf8P7q7jj8R6dHYxwWdtsu4o0ER+8TvB6N1xjr0614ER04PQU07iIqcqlvpTR1rtvh94EuPGGqAuGj0u3cG5nx97ofLX/aIz9OtMaTk7I4wg7RgYU9/Wm7TX1V8UvD8l98NHsNB0FbgRtGYY4o1U28anJZB1JwMEDrmvN/h18IX1DZq3iaCSK0BzDYsCry+791X26n2HVxXNsROSgrs8/8M+CNf8VzEaVYs8KnD3Eh2RJ9WPf2GTXrGi/AS0gCS6xrE0soIPl2a7FU/wC82SfyFev29vBaW8dvbwxwwRjakcahVUegA6U250ZNSCNMJgi90crx3+taVIezhzJXZyqtKpLlWiJ/C+mQaNpEemWiuILfcYzLIXdskklievJqzrcH2vw/fWskRle6t3haND97cpBA/OrMcaLFHGvKqoC5PanBFGeOT3rhdVtHeo2PAtT+BNveWwudK1A2U7ruNtcIWjU+gYfMPxzXlfibwRr/AIUmxqliyQscJcR/PE/0YfyODX2E9u6s22M7AxAxzgVUuLeC7t5Le5hjmglXa8cihlYehB613QpqUFZnBKvOE2pLQ+J8EUoIbg/ga9d+JPwk/siObWvDyO9gvzT2mSWgH95e5T26j3HTyMIWYKoJJOAB3rNpp2Z1Qmpq6ADCt+FaVtr11aWscUIiWSIFYp9mZI1J3FQemM+3cjoafqnhzWdEgifVtKvbJJxmJp4SgfvgZ71k4T1P5UijZ/4SW4zs+y2f2c8m38n92W3bt2M5zn3xjjGOK6D4c/EK48H+LZNRuWaWzvci+RQMv1IYe4Y/qRXDYT1P5Uo2jufyoA+sJfjn4JGktdR3sslwI1YWhhZXLH+HJG3juc4+tfMfiHXrrxF4hu9XupJDLcSl1DPu8tc/KoPoowB9Ky/l9T+VGFPc/lRYDYfxNdSlhJBamOQs08flfLMxxlmwevAPGMdupps/iS8uIpVdYC7q0YlEQDpGx5RewX8OASAeaytg9SPqKTbH/fP/AHzQB7J8JPi3aeFtMbRNeaU2Kyg2ssaZ8kMSX3Aclc89zzXX+PvjboLeF57bw3ey3GoXUbRpLGrRfZ+cbssAc+gH6V82/J/eb/vn/wCvRhD/ABn/AL5oAntL+SzujOgVyVZWWQbldSMEH61fPia8II2W4IyIWEWDbgqFITnjgDrn1681k7AehJ+lNwvqfyoA0bzWri9VFZIYsSeaxhTbvk/vt7/TA68cmvofwd8d9Cn0a2h8S3EttqMcI86fySySsDjjaOCRgkYx1r5nwnqfypcr/eP5UAewfGT4n2XimKLRtCmlawjkLzzAlVuCMbRtxnaDzk/lXkB7fQUh2nufyoLL70ACDGT+Ar6v+Gfg+fw54NsbS+WOO5nY3Fwq5ypf7oJ6ZAwK+UTlSB3HNejah8Z/FmqaNY6bFJHbXUMiM13bgiWdl+7kdPTOBzSauVGTi7o+q9kUkZLRsQRsAI7Vh35hhuJmyEjU8nOAKSyvNRi022ju3X7S0SmdlH/LQj5gPQZzVO4nAuFtpbd2ilGPMxuUn0P+NTUfJudGFgpLn3Ro2U8aShpiXjI4PXHvWtPeRRgp98kdFrmltWitmgsikZAJXdkgGtXTrS4nt0e6Cxt3CHIP0q6bvpUObFcsZctG1+o+TVLe2iQzybWd9irjqe1KNVtReC2ZmWUrvA29R746VZn06xmh8qeJGTIPzHuOad9gspJmmWJPMZQhdTzgdqxdL3nbYlSlbXcS1uYSNmSGJP3u9Jd2qPzGMSHsO9VruzkgRni+Ydt3Y+9GjTXbqyXwiM3UPH/d9K6H7luQwT57xqIRLeOYtAs8ZuFAMkRIO0H1FeTzfAyCTxq+qWWqxadZJKtzDbLDvIdWyQMkAJkDHU847V7AdJhOsJqSO6S7CjqOjjtn6VPlVjJfYFRcHd2NZqc5XUjaNOEPhOG+KegT+JvBt5psCKLxWW6h3DILJnIHfLDI/GvkaVCjlSCCOoI5FfdF5EZZYSMK4xuycADNfF3iq1ls/FWsW0yMkkV7KrKxyR85796vSysTFz5mpbdDFoop6rnqOvQetI0EC8ZPApd+Pu8e/epUtbmaCWdIJXhhx5jqhKpngZPQfjU1vpks3LkRLjOX9PX2HueKAKJOTS4zWp4c0u11jxHY6be3psoLmURNcCMybCeB8o65OB+NW/Eekr4R8aXmmRz/AGpdPuQvmMgG/GDyvIoAwMU6KGSd9kSM7eijJrb8RJlkfaoZJZoCVULuCsGUnA/uuPyqDTz5OmyyqBu+ckHkHaBgH1HzE49hQBmSQyQvtkRkYdmGDTd2fvDPv3rWnl+26N5koHmxk4YDHAKg/nv/ADHvWPQA4jjIORTaUEjpSkAjI/EUANooooAVjlia6j4c6emqfEHRLWRdyG6WRh6hMv8A+y1yxrvvg1t/4WZp27r5c2Pr5bU47kzdos+nnXeOSc5zmrTaViLf52BsycjPNV61bmUfZJSMlVXlh0Fa10rq5z4SrUjF8rMWzs7ltTBM6m2cfNHt5BHcGtHWtS/srTjMq7nyFVR/n0qDQ7uG8dpYSxTlQxXGfp7VLqufOQFcqV6YzzmsnBSXLB6MtTlyuc9+pUaViqPMTucd/WmtdJbFGMuwswVcHkknHA70uPOOxlyAeBUM0KrfxSNyyIeOMYyD/PFbycoxsjm5Yt31ub1vcLNEQ+Aw4I9azTPb2WsQ20rYaTcU+mKrzxXF5Pa/Z5PLRXDSjdjcuRxV3UUQ3iyBRv2Y3Y5xnpWK5pTcFodEmlBTlq0aX2hCDgk+nHX6Vzl9qssmrC1ktSLZ+I5ADknHQ+2a6K2/49Ys/wB0Vjv99scDJ/nQqTm9Haw6tXkSfc8CvPiJq3w6+IPim0WP+0YLmcMsdzM/ycbkIPXADYx6Y6V5Zq2qXOt6ve6neMGubqRppCBgbic8D0rrfjHt/wCFm6nt/uQ5+vlrXCJ/F9DSkrNmsHeKYKOcnoK7j4UeIjoPj2w/0e2ljvpY7SRpk3eWrOPmX0NcQ3C7fxNTafcmy1G2ul6wypIP+AsD/SkUe8WXgPXNB8O/EeO8tlis7uN57L94rF/KdnVtoJwMY6144ZoZLczSoXhOZNu45yTyMeoJ6nsRwa9FvvGugWnxj1rVkvnudG1CweB3hVm+Z4gCADj+IV5XaXv2WORMM3OUIbHOCDn2P9BQBseE9LlbxboDDLM1/bl4wpygLjBP5GtH4iaXqd38QvEdzFp93JAL2UmRYGKhQeucYxgVm+F5/E83iK2ufDcFxLqMDFohbw7whIIJIII6E8t+de3WHhv4x6zaumseJbWwgmQo8RijkfaRgghVx096BXseMy2pvrSMzxXAjkWGdZECBSfLCsNzEAcqD3qhM9ppskaI4khmTLxiVZWjYZUglcAgjt7+or2iP9nC18pRLr1wzgYysSgfrmsvUv2cr9ELadrUUhA4SePbn8QT/KqsTzo8evL6Brb7PaqwTABJGMAHOByc5PJJ9BwMVm11uu/DfxT4duUhvdKmdZHCJLAPMRiTgDI6En1xXU3XwA8WwaN9tjeynuQu5rKOQ+YPYEjaT7ZqSk0zytI3dgqKWYnAAGSa0z4a16OHz20XUVixnebV9uPrivoj4IfD6PRtGOuatYNHq1w7LEtxHhoIwccA9Cxyc+mK9h2/X86BnwIyEc44/lTK+jvj/wCEtJTw/F4hggit9QW5SF2jUL56sD1A6kYznrjNfONADmXDYrpvh7qB0vx7o1zuVf8ASBHlunzgpz7fNWTotta32t6fbX0/kWs1xHFNL/cQsAT+Rr6Rn+CXhVte0+7tkuLS3t8mW2SQsJiuCp3Hke+OvtUymo7ha+h32hxXkwaS/hWNo3wmw5D+prXVslopAASO3Q1SgUxxx43gN/EQQ2fcVabdJCrqB5imppz5tG7kuHIvdRSWE6fOmFPkrhQQAAB6VduYPtMQKkbhyD61R1eC8vLQR2s7QMpzIQuc+wqLTrqeythHczG425y+3B/KtYublotuplLkirN7jSGjfDAqw9aj8jzpi4VmkZdnHpnNSR3Uh1eeeck2jRKscXXDA8nHvmhbuRNZM+8rZeSE8oD+LPXH6Vo6k2tYHOoU09Jk8ekLGzXLyHz9uFYk7Yxj0HX1yapSXF1c6rGkcKNaSYAmV+QMdcVdurwzKUAxH3B70mmadHptr5aSO465Y8AHnA9q563NT20udUHGr7u6RdDyRoAMMAMAYwTWJdXS217DaSZaeY/KE5wPU+grYI3Ydug6Vma7aXZs57rTrNH1HyHSAsQCWIO3J7DNZ06lRP3WXVpQktT5K+IeorqnxA1y7jOUN00akHqEwg/9Brm4+c12lv8ACzxffaNfaudPZVtXcSRTPtmkK/f2r3xz9e2a4zG1D7jNdDd9RpWViM8kn1oxXVfD/wAFz+OfFEWlxzeRCqGa4mxkpGMZwO5JIAr3jV/gD4VuNEe30v7Taagqfu7l5jIGb/bU8Y+mKQz598I+D9X8Z6yunaVCrMBullkOEiX1Y/yHU17dpf7OGlQ+U+pa1dXLAgukMaxo3tk5OK6b4P8AhKXwZ4Zlt9Tijh1W6uWaZRIGO0fKgyD0xk/jXo/mLuI3LuHJGeRRsJa7Gbo2i6d4csEsdNsobW2XtEuMn1buT7mtWqd3cPGqFE3KXAbPTHT+dTiMYyvyt7UXvqO1kS0lUL3U/sYi/dby+cjdjGKpnX5O1p/49/8AWpXNIUZzV0jYljDgcAkEEZpVcE4IKn0NYR1ybzC32cdMbSx/wpG1yd8D7OmR05OaLl/VanY6DIpCwAyf1rwv4teOfGegJbtpt1FbabdqY/NihHmJIOq7jnGQcggA9a8RHi/xItjLZDXdR+zS58yI3LlWz179+9MwaadmdP8AFfxzfeKvFN5afbFk0qxuHS0SIYRsHG8/3icdfyrgGB3cdKbnmpkxsGaAI0Izg9DX0J8KvHCapo9vptxeY1ayXy0V2JaSIdCCeuM4I9hxXzxUscroyyRuVkU5DKcEH1HvVRdnczq0/aRtex9rarrlro2mtqF40tvG7Rxs7oWSNmOBux90ZPJPtmmXlxqHkxG0lwyzB3UEYYHqM+lfP2qfG7U9V8FzaJPpkBvLiA2896ZCQ6kYJ2YwGI75xVv4a/Fv+y4odF8RyM1kuEt7zktCOyv3K+h6j3FZUqcbNSHVc7Jx6H0daXasPLc4b1PemajbJ5DSKMEY3Y7isyCeG6gjnt5Y5YZF3JJGwZWHqCKsCeTyzGTuQjGG5rrdK2sDj9tzR5JmbILn+0Iip/0cRsHGerdqIhcm8ufMH7g7fKzj05rVsbSK4hMjMWIONqnGPrSXtolvsMbgBjja55/CknHm3e9zJ4ery3aW39MtafBEYEkwWYcc9iKS5ljhkKqAdxG4L2qsbmQoI1xGgGNq1VuLiG1t5Li4ljihjG55JGCqo9STSlQ5/iNliOVcsEaH9o2i3VvE8oR5HIRG4J44q8SF8xi7Fev0+lfNnxA+L63l0tj4djje3hLb7uVOZCRj5BwQvfPUkDp39W0vxRZaL8M7HWNW14X3l2au87SKXmkIyEUDq2Tt5GeMnvXJyODaW3Q7Yycopy0ZH8VfGEvg/wAJyTWwQ3187W8AZ+Y8g7nx3wP1Ir5MLZ3fTiup8eeO9S8c6sLq7AhtocrbWqnIhU4zzj5icDJ+lcovOR6irimlqUzpvAXjS68DeJYtVgiE8ZUxTwE48yM9QD2IIBB9q+wPDPiGx8UaBaaxp5f7PcqSFcYZSDgqcdwRXwvXa+BPibrfgR3jszHcWErbpLSbO3d/eUjlT/OqEfXccJTUZTtIjYBhgcE9PzpI7SVLwSYQR4YcHsenFZPgnxP/AMJl4VtNZWNYPOyHjUltjKcEZPXmuixIP4wfqKb1Jh7q0GPbrJE0bklW/CnGReg+Y+gpShb77ZHoOBTWnhiUlnUKoyTUpJKyHdmRq2Irm2dzj5WBI+tUjcxsDhtud3HPcVNrN7b3Ih8qTcVJzgHHNZnBGe3rTcWjuw06c4LXVFtbhPNdm4BYYI7ADrTkuYwwO89ieDVLFFGp1KEHuZnjXw3/AMJT8OtSs0UNcxSedAf9sAED8en418myKVYqQQQcEHtX29pa50u63D5ST178V8W61g63f46faZP/AEI0/snlVdK0kihUi/dqOp1wFH0pEkFKDg5FJRQA7G77vXuKTmkzTtwb7w59RQB0Xhnxzr3hN/8AiV3rLATlraUb4m+qnp9Rg1718NfiV/wnd9Pp1xYrZ3cMHnFopNyyAEA4U8g8g9TXzHtPbn6VNZ3t1p10lzZ3EtvcIcpLE5R1+hHIqlKSVkRKnCTu0fcYuUtdqP5hIX5dowCM9waRnju0KoJNoOTldxB68elfIdj8T/GVhKXTXrqbJyVuSJQeMfxZ49qr3fxD8X3lyLiTxDqCSBdo8mYxDGc4wuBU6W8xJT5tbWPbPH/xbj8Ia3c6LZacLu9gVd0ssu2NSyg42jknnkZFeI+JvHGveLJM6pfO0IOUtoxsiX6KOp9zk1gTTTXUzzTSPLK53O7kszH1JPWmbf7xxVObe4404x1SE5Jp2doxnJ/lSFv7ox796bUlhSqcMDSUUAKwwSKSnHlc9xwabQB9O/s76ot14MvNOJG+zuicf7LjI/UGvYq+Sfgt4uTwx43SK5cJZaiot5SeitnKN+fH419aKwZQQQQe9MS00ElBaJgOpFU5o3lVoQZF3qR0ACjtUt7f2+nwedcyiOPcFyQTyag88XE0M0Fyht24LKMhvbNZuSva+pXLdalD+wlyrC7XYeAdoyT+daEEfkxJbkkhFAwUyGHfpUqRIEji+yoqIQVGBhT6j0pI9322RjPujxgKV6H2NXKpKXxMyp0KdNtwViCPTrUy7Wtk+7nFStptioybdMfjUsbq9ySrBht6g5qZ1DKRnHvUxRtzy7lU2q/Zmt4UMSNnnHSvC4P2dbq6S+m1DXkiuXmcwCKDcpGThnyQRn0HT1Ne8w3KTM6Kyl0OGAOcVWvdb0vTopZb3UbSBIgS7SzKu365NV5EKzfMfD2qabPpWr3enXO3zrWZoZCpyMqcHBqoxyxweK9T8d/EPQ7nxTcX/hnw9phckh9Ru7bzGmfuyxt8o+pBJ9q5b/hYOpHl9M0CRj1ZtHt8n6/LQGpyu3gEkDNGB/eFTW9tLeXMFtAheaZxHGg/iYnAH5mu6u/gp45tLWOY6SJmdipignV3THc84we2CaBnn+B/eFGB/eFLJG0TsjqyupIZWGCCOxplADsD++Kdn/bB+oqOtnw34X1bxZqLWGj232i5SMysm8LhRgE5PHUgUAZWR6p+VGR6p+Vdb4k+F/ivwtbz3WoaaWs4Ape5gcPGM8D368dK488UAOJz/GKTA/vim0UAOwP7wowP7wrrvCvw08S+MbQ3mk2sbWiyNGZpZgihgM49e47d6yvEHhLXPC0kMetadNZmYExF8EPg4OCCf8kUAY2B/eFGB/eFNooAeoGfvA57UjDB9uxoT74+tAPY9KAEU7WByQRX0j8JPixFqdtDoWtTbb+MBYpW/wCW4H/s3qO/UelfNxGOeo9adHI0bB0YqwOQQcEGmnYmUbn3lNHbahaNHIFlhkHI7GoNP023s9ONvArBGyTuJOT6/wAq+YPDfxt8RaLGsN4kWowqMEyEpIR7sOD9SM19OeHtUOteHtP1NkWM3cCTBFfdtDDOM9zUSpw5ubqEZTtaRciVXXByGHDLuOM1DqVgl/ZNbPI8SHBJjODx2+lTSlQpnVgCoOccggdq5XxJ8QdD8OaYl3qbTRh32IqxlizYzjj29aTSfustKVuZdDe0ywt9NQQW6FUK7juOSSa5f4g/EjS/BtgytKJb+RT5NuhyxPYn0Ge/86898WfGa9vPCA1TQIDaebfPZeZMAzBVjV9wHQH5u+eleD3t/dajdSXd5PJPcSHLySNkmqpxjCNkRLmnuaWqeKtY1bVrjUri/nW4mG1vKcoAvZQAeg9KxyxkYsxJJ5JPWkAzk9vWgnsOn86ZSSSsgY5Pt2ptFFAHqHwY0bw5rfioR6zIzXsOJbK2Y4jmYcnPclcZx3/CvpiXSVk1KG8ULG6PvdwSWbjG30Ar5I8O6F4isrey8V6VLDAsMwEUvmgMG3bMYwepJHPWvX7j4hfEOa2isrbS9HivXjU+csxc5VgGYL93nI45wM1Dgm9R3Z598U9BsI/i7d2VkY4YrlFnkSD5iJChZlx2diOB6sPWucHhWBtx826G4D5TEM22U3Zm54H9Ofas/VrPWbvXNQluYJ7i6+1SieVFLgyBju5A55qoNM1R3C/YbvfJgY8pstnkfXp+lWIu6tokenWEc6SSk71TLoAs2U3boznlR0/EeuB7n8BtD8OHRJNXs5Gn1kgwXYkbmAHsoH8LAZz3/CvAn0PV1iLPp90FQZyYzgD/AD+VdN4D1/xX4M1I3ekadc3ENwF863MLFJV6joMg4PBHr3pNXA+pX8O2T2uoW95DCbC6h8uSAsShUZyzE9/ftivkHTtChvru7TzJXWKcQKLVRIcEkeYc4+QY6+/au6174u+L/GcU3h+006O1+0xyQywW6kyOO4y3TABB9cn8POE0XVftb2osrhbgR72iK4bbnHT6kUoxUVZBe5sJ4VhZIR9pl+Yp+9EYMc+4E7YTn5m4xz39O+TqGn2+nanBFKbhYHVJJEZQJYweoI6bgOR9R0qdPC3iGVvLGk3o2hmw0RXGM56/Q/p7U9PBviO5tI7xNKuXimGUfj5j6YJznvjrjJ6VQH1V4N8N+HrHwdbW2gKl1p04Fwszuf374A3MR34xjHGMY4rnPjDoNknwonN0YWurKRZLaWRtpUs4yqdzlSRjvj2ryjwx8VfE3w9s5dBmtIrqOAfuYrh/9ST83yleqkHPXvkGsLxv8Rtb8dNGmo+XFbQytJDbxLhUyAOT1YjB5PqahQSfN1HcpWXhqK8sLeU3MkbShXMxQeSMybNm7P3++P8A9dWI/CsEkiHN+N+weQYV86LczLvcZ4Qbc59+3U8pl8beduc47ZpfMk3FstkjBPOTViFdBHcsgdXCuRuXoeeo9qiNOUHeOD19KQ0AAOKd8p6HB96ZRQA7aynOOK73wN8QNR0NJtPutYu49LFvJ5UCsSqydQB3GeenHNcCGI6Gl8w98H6iplFSjysadnc6PQPFWo2GpadHPqt6unQ3izvD5zFAc8ttz15NS+NfF9/4m1SVJL15tOhmY20e0KoHTdjHUj1rl9/+yv5Ubz2wPwo5Vzcw+Z2sbDauj+D4dEEDeYl/JdmXd8uGjRNuPX5c/jWPhV6nJ9qQsT1Oakjt5plZo4ncL94qpIH1qiSMtn6UlWPsV1nH2abOM/cPT1oWxumbattMxxnAQ0AV6KsGyuVGWtpgPUoajkgkicpJG6MOoZcGgDr/AA7qF7/Y0tr9suPs8cbMkXmnYp8xDkDOAc1q6zqF7AA0V3cRncRlJCP+Wye/sKKKAMyDU7+KXUfLvrlM6kWO2Vhkl+T16mlvNV1F7WUNf3TDz36zMex96KKAJLjUr5o9Jja9uCksEvmKZWw/7xhyM88VQk1TUEgjC390oYIWAmYZ4I559h+QoooAqeH7q4TxdBMs8olMj5cOdxyDnmrtvf3iW1zcpdzrcDYBKJCGHMI65z0A/KiigC5b6nf3HgnXZ5r65klN7bkyPKxbJ3ZOSe+B+VY9zrerDev9qXuCrsR9ofkl+T1oooAyb+4nuL64mnmkllZyWd2LMe3JNVdzep/OiigA3N/eP50bm/vH86KKADc3qfzpKKKACiiigAooooAKKKKACr+m3M8AmWGeSNXX5gjkBsdM460UUAaBv7xJfku512ggYkIwPzpE1C9DAi8uAcYz5h6fnRRQBI93ckITcS5bBPznmsW7nlkunaSR3Y45Y5PSiigD/9k=\">', '社团风采', '30', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('19', 'jjj', 'jjj', '2016-09-12 13:50', 'jjjj', '社团风采', '30', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_community_show`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_show`;
+CREATE TABLE `t_community_show` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `campus` varchar(50) DEFAULT NULL COMMENT '校区',
+  `grade` varchar(5) DEFAULT NULL COMMENT '等级',
+  `community_type` varchar(20) DEFAULT NULL COMMENT '社团类型',
+  `logo` varchar(50) DEFAULT NULL COMMENT '社团logo',
+  `community_id` int(50) DEFAULT NULL COMMENT '社团id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='社团展示';
+
+-- ----------------------------
+-- Records of t_community_show
+-- ----------------------------
+INSERT INTO `t_community_show` VALUES ('21', '净月', 'A', '公益服务', '20160911094147501563.jpg', '31', '审核通过');
+INSERT INTO `t_community_show` VALUES ('22', '净月', 'B', '公益服务', '20160912135454093068.jpg', '30', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_datum_download`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_datum_download`;
+CREATE TABLE `t_datum_download` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) DEFAULT NULL COMMENT '标题',
+  `upload_name` varchar(20) DEFAULT NULL COMMENT '上传者姓名',
+  `path` varchar(50) DEFAULT NULL COMMENT '资料上传的路径',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='资料下载';
+
+-- ----------------------------
+-- Records of t_datum_download
+-- ----------------------------
+INSERT INTO `t_datum_download` VALUES ('3', '标题1', 'name', '20160911101405127276.doc');
+
+-- ----------------------------
+-- Table structure for `t_leagues_introduce`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_leagues_introduce`;
+CREATE TABLE `t_leagues_introduce` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `content` text NOT NULL COMMENT '社联概况的内容',
+  `show_type` enum('首页不显示','首页显示') DEFAULT NULL,
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='社联概况';
+
+-- ----------------------------
+-- Records of t_leagues_introduce
+-- ----------------------------
+INSERT INTO `t_leagues_introduce` VALUES ('5', '\r\n                                        	的萨达撒大大萨达萨达', '首页显示', '审核通过');
+INSERT INTO `t_leagues_introduce` VALUES ('6', 'ee', '首页显示', '未审核');
+
+-- ----------------------------
+-- Table structure for `t_place_apply`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_place_apply`;
+CREATE TABLE `t_place_apply` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `campus` varchar(20) NOT NULL COMMENT '校区',
+  `day_time` varchar(20) NOT NULL COMMENT '日期（天）',
+  `hour_time` varchar(20) NOT NULL COMMENT '时间（小时如8:00-9:00）',
+  `place` varchar(20) NOT NULL COMMENT '地点',
+  `account_id` int(20) NOT NULL COMMENT '申请人的id',
+  `uses` varchar(20) DEFAULT NULL COMMENT '用途',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='场地审核';
+
+-- ----------------------------
+-- Records of t_place_apply
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `t_resource_share`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_resource_share`;
+CREATE TABLE `t_resource_share` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) DEFAULT NULL COMMENT '标题',
+  `community_name` varchar(50) NOT NULL COMMENT '社团的名称',
+  `content` text COMMENT '共享内容',
+  `community_id` int(50) DEFAULT NULL COMMENT '社团Id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='物资共享';
+
+-- ----------------------------
+-- Records of t_resource_share
+-- ----------------------------
+INSERT INTO `t_resource_share` VALUES ('3', '羽毛球物资共享', '羽毛球协会', '共享羽毛球<br>', '31', '审核通过');
+INSERT INTO `t_resource_share` VALUES ('4', 'lanqiu大苏打实打实大苏打', '沉淀法dsf', '\r\n                                        \r\n                                        大飒飒大苏打fdsfsf', '30', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_social_programs`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_social_programs`;
+CREATE TABLE `t_social_programs` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT '项目名称',
+  `holder` varchar(20) DEFAULT NULL COMMENT '发起单位',
+  `activity_time` varchar(20) DEFAULT NULL COMMENT '活动时间',
+  `activity_content` text COMMENT '活动内容',
+  `support_content` text COMMENT '赞助内容',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='社会项目';
+
+-- ----------------------------
+-- Records of t_social_programs
+-- ----------------------------
+INSERT INTO `t_social_programs` VALUES ('2', '项目1', '人物1', '2016-10-17 10:10', '内容1', '赞助1', '审核通过');

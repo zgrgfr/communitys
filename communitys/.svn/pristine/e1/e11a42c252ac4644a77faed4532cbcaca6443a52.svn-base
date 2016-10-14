@@ -1,0 +1,121 @@
+package service;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
+
+import util.MybatisUtil;
+import dao.CommunityPresenceDao;
+import entity.CommunityPresence;
+
+/**
+ * 社团风采Service
+ * @author 我要睡觉了
+ *
+ */
+public class CommunityPresenceService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	CommunityPresenceDao communityPresenceDao = sqlSession.getMapper(CommunityPresenceDao.class);
+	
+	/**
+	 * 添加一篇社团风采报道
+	 * @param communityPresence
+	 * @throws Exception
+	 */
+	public void addCommunityPresence(@Param("communityPresence") CommunityPresence communityPresence) throws Exception {
+		communityPresenceDao.addCommunityPresence(communityPresence);
+	}
+	
+	/**
+	 * 删除一条社团风采或者社团动态
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(@Param("id") int id) throws Exception {
+		communityPresenceDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据id查找一条报道
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public CommunityPresence queryById(@Param("id") int id) throws Exception {
+		sqlSession.clearCache();
+		return communityPresenceDao.queryById(id);
+	}
+	
+	/**
+	 * 根据文章审核状态找到相应的文章
+	 * @param articleType
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityPresence> queryByType(@Param("type") String type,@Param("article") String articleType) throws Exception {
+		sqlSession.clearCache();
+		return communityPresenceDao.queryByType(type,articleType);
+	}
+	
+	/**
+	 * 根据文章类型找到相应的文章
+	 * @param articleType
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityPresence> queryByArticleType(@Param("articleType") String articleType) throws Exception {
+		sqlSession.clearCache();
+		return communityPresenceDao.queryByArticleType(articleType);
+	}
+	
+	/**
+	 * 根据id修改一篇文章的文章类型
+	 * @param id
+	 * @param articleType
+	 * @throws Exception
+	 */
+	public void updateArticleTypeById(@Param("id") int id, @Param("articleType") String articleType) throws Exception {
+		communityPresenceDao.updateArticleTypeById(id, articleType);
+	}
+	
+	/**
+	 * 根据id修改一篇文章的审核状况
+	 * @param id
+	 * @param articleType
+	 * @throws Exception
+	 */
+	public void updateTypeById(@Param("id") int id, @Param("type") String type) throws Exception {
+		communityPresenceDao.updateTypeById(id, type);
+	}
+	
+	/**
+	 * 根据id修改一篇文章
+	 * @param communityPresence
+	 * @throws Exception
+	 */
+	public void updateById(CommunityPresence communityPresence) throws Exception {
+		communityPresenceDao.updateById(communityPresence);
+	}
+
+	/**
+	 * 根据社团Id查找相应的社团风采和社团动态
+	 * @param communityId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityPresence> queryByCommunityId(@Param("communityId") int communityId) throws Exception {
+		sqlSession.clearCache();
+		return communityPresenceDao.queryByCommunityId(communityId);
+	}
+	
+	/**
+	 * 查找所有的社团风采和社团动态
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityPresence> selectAll() throws Exception{
+		sqlSession.clearCache();
+		return communityPresenceDao.selectAll();
+	}
+}

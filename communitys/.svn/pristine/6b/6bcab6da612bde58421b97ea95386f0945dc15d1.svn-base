@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/services/services.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page clearfix">
+		<div class="sidebar">
+			<p><a href="apply.jsp">活动申请</a></p>
+			<p><a href="book.jsp">社团宝典</a></p>
+			<p class="select-select"><a href="place.jsp">场地借用</a></p>
+			<p><a href="register.jsp">社团注册</a></p>
+			<p><a href="borrow.jsp">物品借用</a></p>
+		</div>
+		<div class="main-content">
+			<div class="content-list">
+				<ul>
+					<li>
+						<div class="con-list-img"><img src="/page/recourse/img/course/001.png"></div>
+						<div class="con-list-content">
+							<p>
+								<h6>书法</h6>
+								<span>进行至第十七周，共20周</span>
+							</p>
+							<p>
+								<span><i>3333</i>人参加</span>
+								<span>哈尔滨工业大学</span>
+								<span>张秋雨</span>
+							</p>
+							<p>
+								“书香清雨，墨写人生”。东北师范大学作为教育部直属的师范学校之一，“勤奋创新，为人师表”是我们的校训，写一手好字也是我们作为
+							</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

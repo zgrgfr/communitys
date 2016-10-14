@@ -1,0 +1,54 @@
+// 选择条件
+$(".option-list a").click(function(e){
+	var num = $(this).text();
+	var dt = $(this).parents("dt").attr("class");
+	var text = $(this).parents("dt").find("span").text();
+	// 添加信息
+	$(".option-show").append("<span><i>"+text +"</i>"+ num +"<em></em></span>");
+
+	// 隐藏已选信息
+	$(this).parents("dt").addClass("none");
+	// 定义传送数据
+	var data1= $(".option-show").children("span").text();
+	console.log(data1);
+	$.ajax({
+		type:"get",
+		url:"/communitys/CommunityShowController?method=test",
+		dataType:"", 
+		contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+		data: data1,
+		success: function(data){
+			
+		}
+	});
+});
+
+
+//清除条件
+$(".option-show span").live("click",function(){
+	$(this).addClass("none");  
+	var ttr = $(this).find("i").text();
+
+	if (ttr == "校区：") {
+		$("dt.school").removeClass("none");
+	};
+	if (ttr == "等级：") {
+		$("dt.grade").removeClass("none");
+	};
+	if (ttr == "类型：") {
+		$("dt.type").removeClass("none");
+	};
+
+	var data2 = $(".option-show").children("span").text();
+	console.log(data2);
+	$.ajax({
+		type:"get",
+		url:"/communitys/CommunityShowController?method=test",
+		dataType:"", 
+		contentType: "application/x-www-form-urlencoded; charset=utf-8", 
+		data: data2,
+		success: function(data){
+			
+		}
+	});
+});

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/course/course.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page">
+		内容显示
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

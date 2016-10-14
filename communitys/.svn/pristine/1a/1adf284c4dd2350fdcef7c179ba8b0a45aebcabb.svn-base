@@ -1,0 +1,25 @@
+package controller;
+import java.util.List;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import service.HomeCarouselService;
+import util.ParamUtil;
+import cn.itcast.commons.CommonUtils;
+import cn.itcast.servlet.BaseServlet;
+import entity.Account;
+
+/**
+ * 首页轮播
+ * @author guofr
+ * 
+ *
+ */
+@WebServlet(name="HomeCarouselController",urlPatterns={"/HomeCarouselController"})
+public class HomeCarouselController extends BaseServlet{
+	private static final long serialVersionUID = 1L;
+	private HomeCarouselService homeCarouselService = new HomeCarouselService();
+
+}

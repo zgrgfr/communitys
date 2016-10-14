@@ -1,0 +1,73 @@
+package dao;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import entity.Community;
+
+
+public interface CommunityDao {
+	/**
+	 * 添加一条社团的简介
+	 * @param community
+	 */
+	public void addCommunity(Community community) throws Exception;
+	
+	/**
+	 * 删除一条社团简介
+	 * @param id
+	 */
+	public void deleteById(int id) throws Exception;
+	
+	/**
+	 * 通过id查找相应的社团简介
+	 * @param id
+	 */
+	public Community queryById(int id) throws Exception;
+	
+	/**
+	 * 找到所有的社团简介
+	 * @return
+	 */
+	public List<Community> selectAll() throws Exception;
+	
+	/**
+	 * 根据社团注册的状态查找社团信息
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Community> queryByType(String type) throws Exception;
+	
+	/**
+	 * 根据id进行更新社团简介的信息
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateById(Community community) throws Exception;
+	
+	/**
+	 * 根据id 更新社团注册的状态
+	 * @param type
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateTypeById(@Param("type")String type, 
+			@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据id 修改社团是否为十佳社团
+	 * @param type
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateTopTenById(@Param("topTen")int topTen, 
+								 @Param("id") int id) throws Exception;
+	
+	/**
+	 * 查找所有的十佳社团
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Community> queryByTopTen(@Param("topTen")int topTen) throws Exception;
+	
+}

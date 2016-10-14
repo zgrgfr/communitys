@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 引用properties文件 -->
+	<properties resource="db.properties"/>
+	<!-- mybaits全局配置的内容 -->
+	<!-- 配置实体类，不用在mapper.xml文件中再写me.gacl.domain.User一大串了,简化了实体类的引用 -->
+    <typeAliases>
+    	<package name="entity"/>
+	</typeAliases>
+	
+	<!-- 
+		development 开发模式
+		work 工作模式
+	 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${name}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+   
+    <!-- 配置Mapper文件 -->
+    <mappers>
+    	<mapper resource="mapper/CommunityMapper.xml"/>
+    	<mapper resource="mapper/LeaguesIntroduceMapper.xml"/>
+    	<mapper resource="mapper/AccountMapper.xml"/>
+    	<mapper resource="mapper/ActivityApplyMapper.xml"/>
+    	<mapper resource="mapper/ArticleLendMapper.xml"/>
+    	<mapper resource="mapper/CommunityBookMapper.xml"/>
+    	<mapper resource="mapper/ClassMapper.xml"/>
+    	<mapper resource="mapper/ClassEnterMapper.xml"/>
+    	<mapper resource="mapper/CommunityPresenceMapper.xml"/>
+    	<mapper resource="mapper/DatumDownloadMapper.xml"/>
+    	<mapper resource="mapper/CommunityShowMapper.xml"/>
+    	<mapper resource="mapper/ResourceShareMapper.xml"/>
+    	<mapper resource="mapper/PlaceApplyMapper.xml"/>
+    	<mapper resource="mapper/SocialProgramsMapper.xml"/>
+    	<mapper resource="mapper/CommunityAdminMapper.xml"/>
+    	<mapper resource="mapper/CommunityCorporatorMapper.xml"/>
+    	<mapper resource="mapper/PlaceMapper.xml"/>
+    	<mapper resource="mapper/HomeCarouselMapper.xml"/>
+	</mappers>
+</configuration>

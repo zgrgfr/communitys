@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/services/services.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page clearfix">
+		<div class="sidebar">
+			<p><a href="apply.jsp">活动申请</a></p>
+			<p><a href="book.jsp">社团宝典</a></p>
+			<p><a href="place.jsp">场地借用</a></p>
+			<p><a href="register.jsp">社团注册</a></p>
+			<p class="select-select"><a href="borrow.jsp">物品借用</a></p>
+		</div>
+		<div class="main-content">
+			<form class="apply-from">
+				<p>
+					<label>物品名称</label>
+					<input type="text" class="text" name="">
+				</p>
+				<p>
+					<label>社团名称</label>
+					<input type="text" class="text" name="">
+				</p>
+				<p>
+					<label>负责人姓名</label>
+					<input type="text" class="text" name="">
+				</p>
+				<p>
+					<label>负责人联系方式</label>
+					<input type="text" class="text" name="">
+				</p>
+				<p>
+					<label>借用日期</label>
+					<input type="text" class="text" name="">
+				</p>
+				<p>
+					<label>物品使用内容</label>
+					<input type="text" class="text" name="">
+				</p>
+				
+				<p>
+					<input type="submit" class="btn" value="提交" />
+				</p>
+			</form>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

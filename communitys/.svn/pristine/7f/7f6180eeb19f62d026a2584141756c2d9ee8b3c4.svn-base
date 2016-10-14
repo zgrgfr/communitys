@@ -1,0 +1,219 @@
+package controller;
+import java.util.ArrayList;
+import java.util.List;
+
+import service.AccountService;
+import service.ActivityApplyService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+
+
+
+import entity.ActivityApply;
+import entity.Account;
+
+/**
+ * 物品借用
+ * @author guofr
+ * 
+ *
+ */
+@WebServlet(name="ActivityApplyController",urlPatterns={"/ActivityApplyController"})
+public class ActivityApplyController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	private ActivityApplyService acaService = new ActivityApplyService();
+	private AccountService accService = new AccountService();
+	 
+	
+	/**
+	 * 新增一条活动申请
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String newActivityApply(HttpServletRequest req, HttpServletResponse resp){
+		try{
+		if(req.getParameter("accountId") != null && !"".equals(req.getParameter("accountId"))){
+			// 社团管理员才有权限申请活动
+			if("社团管理员".equals(accService.queryById(Integer.parseInt(req.getParameter("accountId"))).getRole())){
+				ActivityApply activityApply = CommonUtils.toBean(req.getParameterMap(), ActivityApply.class);
+				acaService.addAccount(activityApply);
+				req.setAttribute("msg", "申请成功，等待审核");
+			}else{
+				req.setAttribute("msg", "没有权限进行活动申请！");
+			}
+		}else{
+			req.setAttribute("msg", "未登录，不能进行活动申请！");
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:frontpages/pages/services/apply.jsp";
+	}
+	
+	/**
+	 * 根据Id删除一条信息
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String deleteById(HttpServletRequest req, HttpServletResponse resp){
+		int id =Integer.parseInt(req.getParameter("id"));
+		try{
+			acaService.deleteById(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		HttpSession session = req.getSession();
+		if("社联管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listActivityApply(req, resp);
+		}else if("超级管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listActivityApply2(req, resp);
+		}else{
+			return this.listActivityApply3(req, resp);
+		}
+	}
+	
+	/**
+	 * 查找所有的活动申请
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listActivityApply(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			List<ActivityApply> activityApplyList = acaService.selectAll();
+			req.setAttribute("activityApplyList", activityApplyList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/activity/activity.jsp";
+	}
+	
+	/**
+	 * 查找所有的活动申请
+	 * 超级管理员
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listActivityApply2(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			List<ActivityApply> activityApplyList = new ArrayList<ActivityApply>();
+			List<ActivityApply> activityApplyList1 = acaService.queryByType("审核未审批");
+			List<ActivityApply> activityApplyList2 = acaService.queryByType("审核已审批");
+			List<ActivityApply> activityApplyList3 = acaService.queryByType("审核不通过");
+			activityApplyList.addAll(activityApplyList1);
+			activityApplyList.addAll(activityApplyList2);
+			activityApplyList.addAll(activityApplyList3);
+			req.setAttribute("activityApplyList", activityApplyList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/activity/activity.jsp";
+	}
+	
+	/**
+	 * 社团查看该社团的活动申请情况
+	 * 社团管理员
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listActivityApply3(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			HttpSession session = req.getSession();
+			Account account = (Account)session.getAttribute("account");
+			List<ActivityApply> activityApplyList = acaService.queryByAccountId(account.getId());
+			req.setAttribute("activityApplyList", activityApplyList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/activity/activity.jsp";
+	}
+	
+	/**
+	 * 审核通过或者不通过
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String passOrNotPass(HttpServletRequest req, HttpServletResponse resp){
+		String type = req.getParameter("type");
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			acaService.updateTypeById(type, id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		HttpSession session = req.getSession();
+		if("社联管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listActivityApply(req, resp);
+		}else{
+			return this.listActivityApply2(req, resp);
+		}
+	}
+	
+	/**
+	 * 去修改的页面
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String toUpdate(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			ActivityApply activityApply = acaService.queryById(id);
+			req.setAttribute("activityApply", activityApply);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/activity/change.jsp";
+	}
+	
+	/**
+	 * 查看详情
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String detailsView(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			ActivityApply activityApply = acaService.queryById(id);
+			req.setAttribute("activityApply", activityApply);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/activity/view.jsp";
+	}
+	
+	/**
+	 * 修改一条数据
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String updateActivityApply(HttpServletRequest req, HttpServletResponse resp){
+		ActivityApply activityApply = CommonUtils.toBean(req.getParameterMap(), ActivityApply.class);
+		try{
+			acaService.updateById(activityApply);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		HttpSession session = req.getSession();
+		if("社联管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listActivityApply(req, resp);
+		}else{
+			return this.listActivityApply2(req, resp);
+		}
+	}
+}

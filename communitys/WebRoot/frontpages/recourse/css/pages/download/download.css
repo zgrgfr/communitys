@@ -1,0 +1,46 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+	min-height: 999px;
+}
+.main-content{
+	width: 85%;
+	margin: 0 auto;
+}
+.content-list li{
+	height: 55px;
+	line-height: 38px;
+	color: #494949;
+}
+.pro-cot{
+	width: 80%;
+	margin: 0 auto;
+	color: #7e7e7e;
+	border-bottom: 1px solid #ccc;
+}
+.pro-unit{
+	margin-right: 22px;
+	font-size: 14px;
+}
+.pro-unit:hover{
+	color: #4fc6c5;
+}
+
+/*分页*/
+.nowbtn{
+    color: #fff !important ;
+    border-color: #428bca !important;
+    background-color: #428bca !important;
+}
+.databtn a{
+    background-color: #fff;
+   	border: 1px solid #ddd;
+   color: #428bca;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+}
+.databtn a:hover{
+    background-color: #eee;
+    color: #2a6496;
+}

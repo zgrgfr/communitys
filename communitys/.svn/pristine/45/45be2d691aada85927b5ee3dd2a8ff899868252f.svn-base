@@ -1,0 +1,284 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="../common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/services/services.css">
+	<link rel="stylesheet" type="text/css" href="frontpages/pages/services/datetime/css/lq.datetimepick.css">
+
+</head>
+<body style="position: relative;">
+	<c:import url="../common/header.jsp"></c:import>
+	<div class="page clearfix">
+		<div class="sidebar">
+			<a href="frontpages/pages/services/apply.jsp"><p>活动申请</p></a>
+			<a href="/communitys/CommunityBookController?method=listCommunityBook2"><p>社团宝典</p></a>
+			<a href="frontpages/pages/services/place.jsp"><p class="select-select">场地借用</p></a>
+			<a href="frontpages/pages/services/register.jsp"><p>社团注册</p></a>
+			<a href="frontpages/pages/services/borrow.jsp"><p>物品借用</p></a>
+		</div>
+		<div class="main-content">
+			<div class="selection-site">
+				<h3>场地选择</h3>
+				<li>
+					<span class="site-selected">本部</span>
+					<span>净月</span>
+				</li>
+			</div>
+			<div class="recourse-box">
+				<div class="recourse-header clearfix">
+					<div class="room">
+						<h3>申请资源</h3>
+						<div class="room-select">
+							<select id="roomList">
+								
+							</select>
+						</div>
+					</div>
+					<div class="week-select">
+						<a href="javascript:;" class="week-pre"></a>
+						<div class="week-date"></div>
+						<a href="javascript:;" class="week-nex"></a>
+						<span class="none" id="count">0</span>
+					</div>
+					<div class="user-info">
+						<c:choose>
+							<c:when test="${sessionScope.accountFront != null}">
+								你当前的身份：${sessionScope.accountFront.role}
+							</c:when>
+							<c:otherwise>
+								你当前的身份：未登录
+								<a href="frontpages/pages/login.jsp" class="user-login">登录</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+				<div class="recourse-cont clearfix">
+					<ul class="recourse-time">
+						<li>8：00</li>
+						<li>9：00</li>
+						<li>10：00</li>
+						<li>11：00</li>
+						<li>12：00</li>
+						<li>13：00</li>
+						<li>14：00</li>
+						<li>15：00</li>
+						<li>16：00</li>
+						<li>17：00</li>
+						<li>18：00</li>
+						<li>19：00</li>
+						<li>20：00</li>
+						<li>21：00</li>
+					</ul>
+					<div class="record">
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期一</div>
+								<div class="td-date">2016-9-26</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期二</div>
+								<div class="td-date">09月20日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期三</div>
+								<div class="td-date">09月21日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期四</div>
+								<div class="td-date">09月22日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期五</div>
+								<div class="td-date">09月23日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期六</div>
+								<div class="td-date">09月24日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+						<div class="td-day">
+							<div class="td-header">
+								<div>星期日</div>
+								<div class="td-date">09月25日</div>
+							</div>
+							<div class="td-body">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="apply none">
+		<div class="apply-form">
+			<form action="" method="post" id="form">
+				<input type="hidden" value="${sessionScope.accountFront}" id="login" />
+				<input type="hidden" name="accountId" value="${sessionScope.accountFront.id}">
+				<input type="hidden" name="type" value="未审核">
+				<dl>
+					<dt class="close">X</dt>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">申请人</dt>
+					<dd>
+						<input type="text" name="accuontName" value="${sessionScope.accountFront.name}" readonly="readonly" />
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">校区</dt>
+					<dd style="font-size: 14px;">
+						本 部<input type="radio" name="campus" value="本部" class="radio" style="margin-right: 122px;" checked="checked" />
+						净 月<input type="radio" name="campus" value="净月" class="radio" />
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">地点</dt>
+					<dd style="text-align: left;">
+						<select class="form-select " name="place">
+							
+						</select>
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">日期</dt>
+					<dd>
+						<input type="text" name="dayTime" id="date"/>
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">时间</dt>
+					<dd>
+						<input type="text" name="startTime" id="begintime" class="time" />
+						-   
+						<input type="text" name="endTime" id="endtime" class="time" />
+					</dd>
+				</dl>
+
+				<dl class="form-item">
+					<dt class="item-tit" style="vertical-align: top;">用途</dt>
+					<dd>
+						<textarea name="uses" class="textarea" maxlength="22" placeholder="最多填写22个字符" id="text"></textarea>
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<input type="button" value="提交" name="loginBtn" class="loginBtn" id="submit"/>
+				</dl>
+			</form>
+		</div>
+		<div class="cover"></div>
+	</div>
+	<div class="applyshow none">
+		<div class="apply-show">
+			<div>
+				<dl>
+					<dt class="showclose">X</dt>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">申请人：</dt>
+					<dd id="acCount">
+						
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">地点：</dt>
+					<dd id="siTe">
+						
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">日期：</dt>
+					<dd id="daTe">
+					
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">时间：</dt>
+					<dd id="timeAll">
+					
+					</dd>
+				</dl>
+				<dl class="form-item">
+					<dt class="item-tit">审核状态：</dt>
+					<dd id="applyShow">
+						
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="cover"></div>
+	</div>
+	<c:import url="../common/footer.html"></c:import>
+	<c:import url="../common/script.html"></c:import>
+	<script src='frontpages/pages/services/datetime/js/selectUi.js' type='text/javascript'></script>
+	<script src='frontpages/pages/services/datetime/js/lq.datetimepick.js' type='text/javascript'></script>
+	<script type="text/javascript">
+		$(function(){
+			// console.log($().jquery);
+			$("#date").click(function(e){
+				e.stopPropagation();
+				$(this).lqdatetimepicker({
+					css : 'datetime-day',
+					dateType : 'D',
+					selectback : function(){
+
+					}
+				});
+			});
+
+			$("#begintime").click(function(e){
+				e.stopPropagation();
+				$(this).lqdatetimepicker({
+					css : 'datetime-hour'
+				});
+			});
+			$("#endtime").click(function(e){
+				e.stopPropagation();
+				$(this).lqdatetimepicker({
+					css : 'datetime-hour'
+				});
+			});
+		});
+	</script>
+
+    <script type="text/javascript" src="frontpages/recourse/js/services/services.js"></script>
+    <script type="text/javascript" src="frontpages/recourse/js/services/servicesform.js"></script>
+</body>
+</html>

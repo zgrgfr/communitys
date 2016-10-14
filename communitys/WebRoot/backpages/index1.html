@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>东北师范大学校社联</title>
+    <meta name="description" content=""><!DOCTYPE html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+<body>
+    <section id="container">
+        <header id="header">
+            <!--logo start-->
+            <div class="brand">
+                <a href="javacsript:;" class="logo">
+                    <span>管理</span>系统
+                </a>
+            </div>
+            <!--logo end-->
+            <div class="toggle-navigation toggle-left">
+                超级管理员
+            </div>
+            <div class="toggle-navigation toggle-left">
+                <a href="/communitys/LoginController?method=backpagesLogOut">退出</a>
+            </div>
+        </header>
+        <!--sidebar left start-->
+        <aside class="sidebar">
+            <div id="leftside-navigation" class="nano">
+                <ul class="nano-content">
+                    <li class="sub-menu">
+                        <a href="/communitys/LeaguesIntroduceController?method=listLeaguesIntroduce" target="iframe"><i class="fa fa-file"></i><span>社联概况</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="/communitys/SocialProgramsController?method=listPrograms" target="iframe"><i class="fa fa-file"></i><span>社会项目</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="/communitys/CommunityController?method=listCommunityShowDto" target="iframe"><i class="fa fa-file"></i><span>社团管理</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="/communitys/ActivityApplyController?method=listActivityApply2" target="iframe"><i class="fa fa fa-file"></i><span>活动审批</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="/communitys/PlaceApplyController?method=listPlaceApplyDto" target="iframe"><i class="fa fa-file"></i><span>场地审核</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="/communitys/AccountController?method=listAccount" target="iframe"><i class="fa fa-file"></i><span>账号管理</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" target="iframe"><i class="fa fa-file"></i><span>首页轮播</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="/communitys/HomeCarouselController?method=listAllHomeCarousel" target="iframe">列表展示</a>
+                            </li>
+                            <li><a href="index_img/add.jsp" target="iframe">添加</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" target="iframe"><i class="fa fa-file"></i><span>社联通知</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="/communitys/CommunityPresenceController?method=listCommunityPresence3" target="iframe">列表展示</a>
+                            </li>
+                            <li><a href="shelian_info/add.jsp" target="iframe">添加</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" target="iframe"><i class="fa fa-file"></i><span>十佳社团</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                        <ul>
+                            <li><a href="/communitys/CommunityController?method=listAllTopTen" target="iframe">列表展示</a>
+                            </li>
+                            <li><a href="/communitys/backpages/top_ten/add.jsp" target="iframe">添加</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </aside>
+        <!--sidebar left end-->
+        <!--main content start-->
+        <section class="main-content-wrapper">
+            <section id="main-content">
+                <iframe src="/communitys/LeaguesIntroduceController?method=listLeaguesIntroduce" name="iframe" frameborder="0" scrolling="no" id="mainFrame" style="padding: 0px; width: 100%; height: 1000px;"></iframe>
+           </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!--Global JS-->
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/application.js"></script>
+ <script type="text/javascript">
+    startInit('mainFrame', 560);
+
+var browserVersion = window.navigator.userAgent.toUpperCase();
+var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
+var isIE9More = (! -[1, ] == false);
+function reinitIframe(iframeId, minHeight) {
+    try {
+        var iframe = document.getElementById(iframeId);
+        var bHeight = 0;
+        if (isChrome == false && isSafari == false)
+            bHeight = iframe.contentWindow.document.body.scrollHeight;
+
+        var dHeight = 0;
+        if (isFireFox == true)
+            dHeight = iframe.contentWindow.document.documentElement.offsetHeight + 2;
+        else if (isIE == false && isOpera == false)
+            dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+        else if (isIE == true && isIE9More) {//ie9+
+            var heightDeviation = bHeight - eval("window.IE9MoreRealHeight" + iframeId);
+            if (heightDeviation == 0) {
+                bHeight += 3;
+            } else if (heightDeviation != 3) {
+                eval("window.IE9MoreRealHeight" + iframeId + "=" + bHeight);
+                bHeight += 3;
+            }
+        }
+        else//ie[6-8]、OPERA
+            bHeight += 3;
+
+        var height = Math.max(bHeight, dHeight);
+        if (height < minHeight) height = minHeight;
+        iframe.style.height = height + "px";
+    } catch (ex) { }
+}
+function startInit(iframeId, minHeight) {
+    eval("window.IE9MoreRealHeight" + iframeId + "=0");
+    window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+}
+</script>
+</body>
+
+</html>

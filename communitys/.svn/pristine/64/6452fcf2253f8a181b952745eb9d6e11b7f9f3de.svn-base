@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.CommunityDao">
+	<resultMap type="entity.Community" id="CommunityMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="name" column="name"/>
+         <result property="nameHead" column="name_head"/>
+         <result property="studentIdNumber" column="student_idnumber"/>
+         <result property="phone" column="phone"/>
+         <result property="content" column="content"/>
+         <result property="applyId" column="apply_id"/>
+         <result property="type" column="type"/>
+         <result property="status" column="status"/>
+         
+     </resultMap>
+    
+    <insert id="addCommunity" parameterType="Community">
+    	insert into t_community(name,name_head,student_idnumber,phone,content,apply_id,type)values(#{name},#{nameHead},#{studentIdNumber},#{phone},#{content},#{applyId},#{type})
+    </insert>
+    <!-- 
+    	<delete id="deleteById" parameterType="int">
+ 			delete from t_community where id = #{id}
+ 		</delete>
+     -->
+ 	<update id="deleteById" parameterType="int">
+ 		update t_community set status = '0' where id = #{id}
+ 	</update>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="CommunityMap">
+ 		select * from t_community where id =#{id} and status = 1
+	</select>  
+	
+	<select id="selectAll" resultMap="CommunityMap">
+		select * from t_community where status = 1
+	</select>
+	
+	<select id="queryByType" parameterType="String" resultMap="CommunityMap">
+		select * from t_community where type = #{type} and status = 1
+	</select> 
+	
+	<!-- 根据Id修改的时候不能修改申请人，也不能修改否否删除的状态 -->
+	<update id="updateById" parameterType="Community">
+		update t_community set name = #{name},name_head = #{nameHead},student_idnumber = #{studentIdNumber},phone = #{phone},content = #{content},type = #{type} where id = #{id}
+	</update>
+	
+	<update id="updateTypeById">
+		update t_community set type = #{type} where id = #{id}
+	</update> 
+</mapper>

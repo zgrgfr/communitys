@@ -1,0 +1,383 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+}
+.sidebar{
+	float: left;
+	width: 20%;
+	max-width: 228px;
+	color: #333;
+	font-size: 16px;
+	background-color: #fff;
+	margin-right: 30px;
+}
+.sidebar p{
+	height:68px;
+	line-height: 68px;
+	text-indent: 40px;
+	border-bottom: 1px solid #eee;
+}
+.sidebar p:hover{
+	cursor: pointer;
+}
+.select-select{
+	background-color: #4fc6aa;
+	color: #fff;
+}
+.main-content{
+	width: 75%;
+	float: left;
+	min-height: 388px;
+}
+/*表单*/
+.apply-from{
+	/*text-align: center;*/
+}
+.apply-from p{
+	position: relative;
+	font-size: 14px;
+	color: rgb(93,95,99);
+	height: 58px;
+	line-height: 57px;
+	border-bottom: 1px solid rgb(239,242,247);
+
+}
+.apply-from label{
+	display: inline-block;
+	width: 25%;
+	text-align: right;
+	margin-right: 22px;
+}
+.text{
+	background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none !important;
+    color: #717171;
+    display: inline-block;
+    font-size: 13px;
+    outline: 0 none;
+    padding: 6px 11px;
+    position: absolute;
+    top: 12px;
+    width: 42%;
+}
+.btn{
+	border: medium none;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 8px 14px;
+    background-color: #1abc9c;
+    color: #fff;
+    position: absolute;
+    top: 12px;
+    right: 48px;
+}
+.editor-content{
+	position:relative;
+	left: 27%;
+	top: -18px;
+	width: 42%;
+}
+
+/*场地借用*/
+.selection-site{
+	width: 10%;
+	min-width: 76px;
+	float: left;
+	margin-right: 22px;
+}
+.selection-site h3{
+	border-bottom: 5px solid #393;
+	font-weight: normal;
+	font-size: 18px;
+	margin-bottom: 22px;
+	height: 32px;
+}
+.selection-site li{
+	list-style: none;
+}
+.selection-site span{
+	background-color: #fff;
+    color: #000;
+    display: inline-block;
+    font-size: 15px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+}
+.site-selected{ 
+	background-color: #64af62 !important;
+	color: #fff !important;
+}
+
+.recourse-box{
+	float: left;
+	width: 87%;
+}
+.recourse-header{
+	border-bottom: 5px solid #ccc;
+	margin-bottom: 22px;
+		height: 32px;
+	line-height: 27px;
+}
+.room{
+	float: left;
+	width: 30%;
+}
+.room h3{
+	border-bottom: 5px solid #393;
+	font-weight: normal;
+	font-size: 18px;
+	display: inline-block;
+	height: 32px;
+}
+.room-select{
+	font-size: 13px;
+	margin-left: 12px;
+	display: inline-block;
+
+}
+.week-select{
+	float: left;
+	width: 33%;
+	text-align: center;
+}
+.week-pre{
+	float: left;
+	width: 35px;
+    height: 35px;
+    background: url(../../../img/ico_pre.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.week-date{
+	float: left;
+	line-height: 35px;
+	padding: 0  12px;
+}
+.week-nex{
+	float: left;
+	width: 35px;
+    height: 35px;
+    background: url(../../../img/ico_nex.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.user-info{
+	float: right;
+	width: 37%;
+	text-align: right;
+}
+.user-login{
+	color: #4fc6aa;
+	padding: 0 12px;
+}
+.recourse-cont{
+	width: 100%;
+	height: 551px;
+}
+.recourse-time{
+	float: left;
+	width: 8%;
+	padding-top: 70px;
+}
+.recourse-time li{
+	height: 40px;
+}
+.record{
+	float: left;
+	width: 92%;
+}
+.td-day{
+	float: left;
+	width: 14%;
+}
+.td-header{
+	background-color: #64af62;
+    border-bottom: 8px solid #389b38;
+    color: #fff;
+    height: 47px;
+    padding-top: 23px;
+    text-align: center;
+}
+.td-body{
+	border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+}
+.td-body:hover{
+	background-color: #e0e0e0;
+}
+
+/*表单申请*/
+.apply,.applyshow{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.apply-form{
+	padding-top: 34px;
+	background-color: #f2f3f3;
+    height: 600px;
+    left: 50%;
+    margin-left: -325px;
+    position: absolute;
+    top: 140px;
+    width: 650px;
+    z-index: 999;
+}
+.cover{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+dt,dd{
+	display: inline-block;
+}
+.apply-form dd{
+	width: 322px;
+}
+.form-item{
+	height: 66px;
+	margin-top: 12px;
+	text-align: center;
+}
+.item-tit{
+	font-size: 15px;
+	position: relative;
+	left: 0;
+	width: 74px;
+	text-align: right;
+	letter-spacing: 3px;
+	color: #444;
+}
+.login-box .item-tit{
+	letter-spacing: 7px;
+}
+.form-item dd>input{
+	width: 322px;
+	padding: 5px;
+}
+.item-ts{
+	height: 18px;
+	line-height: 16px;
+	padding: 6px 0 4px;
+	color: #666;
+	font-size: 12px;
+}
+.tip{
+	height: 45px;
+	border-bottom: 1px dashed #999;
+	color: #555;
+	font-size: 14px;
+	text-align: right;
+	margin-bottom: 56px;
+}
+#registerChoice{
+	text-decoration: underline;
+	font-weight: 700;
+	cursor: pointer;
+}
+span#registerChoice{
+	color: #5cb85c;
+}
+a#login{
+	color: #3e94fe;
+}
+.loginBtn{
+	background: #2e6da4;
+	border: 1px solid #3984e5;
+	border-radius: 2px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	height: 37px;
+	line-height: 32px;
+	text-align: center;
+	padding: 0 23px;
+	letter-spacing: 7px;
+	margin-top: 18px;
+}
+.none{
+	display: none;
+}
+.close,.showclose{
+	border: 1px solid #333;
+    cursor: pointer;
+    height: 22px;
+    line-height: 22px;
+    position: absolute;
+    right: 21px;
+    text-align: center;
+    top: 15px;
+    width: 22px;
+}
+.close:hover{
+	background-color: #ee1b24;
+	color: #fff;
+}
+.showclose:hover{
+	background-color: #ee1b24;
+	color: #fff;
+}
+.radio{
+	width: 40px !important;
+}
+.form-select{
+	width: 322px;
+	padding: 5px;
+}
+.textarea{
+	width: 322px;
+	height: 65px;
+	padding: 5px;
+	resize: none;
+}
+.time{
+	width: 154px !important;
+}
+
+.occupied{
+	width: 100%;
+    color: #fff;
+    background-color: #9c9;
+    font-size: 12px;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.occupied:hover{
+    background-color: #6ab442;
+}
+.apply-show{
+	padding-left: 55px;
+	padding-top: 34px;
+	background-color: #f2f3f3;
+    height: 500px;
+    left: 50%;
+    margin-left: -250px;
+    position: absolute;
+    top: 140px;
+    width: 500px;
+    z-index: 999;
+}
+.apply-show .form-item{
+	text-align: left;
+}
+.apply-show .item-tit{
+	width: 110px;
+}

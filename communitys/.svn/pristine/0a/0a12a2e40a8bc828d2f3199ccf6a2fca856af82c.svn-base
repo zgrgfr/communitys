@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="../common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/style/style.css">
+</head>
+<body>
+	<c:import url="../common/header.html"></c:import>
+	<div class="page clearfix">
+		<div class="sidebar">
+			<a href="/communitys/CommunityPresenceController?method=listByTypeAndArticleType&articleType=社团风采"><p>社团风采</p></a>
+			<a href="/communitys/CommunityPresenceController?method=listByTypeAndArticleType&articleType=社团动态"><p class="select-select">社团动态</p></a>
+			<a href="frontpages/pages/style/show.jsp"><p>社团展示</p></a>
+		</div>
+		<div class="main-content">
+			<div class="content-list">
+				<ul class="style-list">
+				<c:forEach items="${communityPresenceList}" var="communityPresence">
+					<li class="clearfix">
+						<a href="frontpages/pages/content.jsp">
+							<h6 class="list-cap">${communityPresence.title}</h6>
+							<span class="list-time">${communityPresence.time}</span>
+						</a>	
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<c:import url="../common/footer.html"></c:import>
+	<c:import url="../common/script.html"></c:import>
+</body>
+</html>

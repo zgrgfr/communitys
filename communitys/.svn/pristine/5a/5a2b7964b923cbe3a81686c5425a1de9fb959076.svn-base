@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.ActivityApplyDao">
+	<resultMap type="entity.ActivityApply" id="ActivityApplyMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="name" column="name"/>
+         <result property="holder" column="holder"/>
+         <result property="content" column="content"/>
+         <result property="time" column="time"/>
+         <result property="time_start" column="time_start"/>
+         <result property="type" column="type"/>
+            
+     </resultMap>
+    
+    <insert id="addActivityApply" parameterType="ActivityApply">
+    	insert into t_activity_apply(id,name,holder,content,time,time_start,type)
+    	values(#{id},#{name},#{holder},#{content},#{time},#{time_start},#{type})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_activity_apply where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="ActivityApplyMap">
+ 		select * from t_activity_apply where id =#{id}
+	</select>  
+
+
+	<select id="queryByType" parameterType="String" resultMap="ActivityApplyMap">
+		select * from t_activity_apply where type = #{type}
+	</select> 
+	
+	
+	<update id="updateTypeById">
+		update t_activity_apply set type = #{type} where id = #{id}
+	</update> 
+</mapper>

@@ -1,0 +1,88 @@
+package dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import dto.CommunityShowDto;
+import entity.CommunityShow;
+
+public interface CommunityShowDao {
+	
+	/**
+	 * 增添一个社团展示
+	 * @param communityShow
+	 * @throws Exception
+	 */
+	public void addCommunityShow(CommunityShow communityShow) throws Exception;
+	
+	/**
+	 * 删除一个社团展示
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据id查找一条社团展示
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public CommunityShow queryById(@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据审核情况查找对应的社团展示
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityShow> queryByType(@Param("type") String type) throws Exception;
+	
+	/**
+	 * 根据id修改一个社团展示的审核情况
+	 * @param id
+	 * @param type
+	 * @throws Exception
+	 */
+	public void updateTypeById(@Param("id") int id, @Param("type") String type) throws Exception;
+	
+	/**
+	 * 根据id修改一条社团展示
+	 * @param communityShow
+	 * @throws Exception
+	 */
+	public void updateById(CommunityShow communityShow) throws Exception;
+	
+	/**
+	 * 根据社团Id查找相应的社团展示
+	 * 因为每个社团只能有一个社团展示，所以这里不用集合封装
+	 * @param communityId
+	 * @return
+	 * @throws Exception
+	 */
+	public CommunityShow queryByCommunityId(@Param("communityId") int communityId) throws Exception;
+
+	/**
+	 * 根据所有的条件查找相应的社团显示的实体
+	 * @param campus
+	 * @param grade
+	 * @param communityType
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityShow> listByAllCondition(@Param("campus")String campus, 
+													 @Param("grade")String grade, 
+													 @Param("communityType")String communityType,
+													 @Param("type")String type
+													 )throws Exception;
+	
+	/**
+	 * 根据id更改相应的等级
+	 * @param id
+	 * @param grade
+	 * @throws Exception
+	 */
+	public void updateGradeById(@Param("id") int id, @Param("grade") String grade) throws Exception;
+}

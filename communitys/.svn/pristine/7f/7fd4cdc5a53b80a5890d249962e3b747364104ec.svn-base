@@ -1,0 +1,32 @@
+package controller;
+import service.ResourceShareService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import entity.Class;
+import entity.ResourceShare;
+
+@WebServlet(name="ResourceShareController",urlPatterns={"/ResourceShareController"})
+public class ResourceShareController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	ResourceShareService resService = new ResourceShareService();
+	
+	
+	public String newResourceShare(HttpServletRequest req, HttpServletResponse resp){
+		ResourceShare res = CommonUtils.toBean(req.getParameterMap(),ResourceShare.class);
+		System.out.println(res);
+		try{
+			resService.addResourceShare(res);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	
+}

@@ -1,0 +1,188 @@
+body{
+	width: 100%;
+	font-family: '微软雅黑';
+	margin: 0 auto;
+	background-color: #f2f3f3;
+	min-width: 1333px;
+}
+.header{
+	background-color: #fff;
+}
+/*彩色边框*/
+.colorwrap{
+	width: 100%;
+	height: 5px;
+}
+.colorwrap i{
+	width: 25%;
+	height: 5px;
+	float: left;
+}
+.header-blue{
+	background-color: #69cff6;
+}
+.header-orange{
+	background-color: #fab57b;
+}
+.header-red{
+	background-color: #f5797e;
+}
+.header-green{
+	background-color: #6acb97;
+}
+.footer-blue{
+	background-color: #00aef0;
+}
+.footer-orange{
+	background-color: #f6821f;
+}
+.footer-red{
+	background-color: #ee1b24;
+}
+.footer-green{
+	background-color: #28ae69;
+}
+
+/*header*/
+.logo-and-login{
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	height: 131px;
+	background: url("../../img/common/title.png") no-repeat 0 0;
+}
+.login{
+	position: absolute;
+	top: 0;
+	right: 135px; 
+	font-size: 16px;
+	line-height: 131px;	
+}
+.login-success{
+	color: #4fc6aa;
+}
+.link{
+	position: absolute;
+	top: 41px;
+	right: 0; 
+}
+.code,.home{
+	display: inline-block;
+	width: 50px;
+	height: 49px;
+	background-image: url("../../img/common/logo.png");
+	background-repeat: no-repeat;
+}
+.code{
+	background-position: -20px -41px;
+}
+.home{
+	background-position: -18px 2px;
+}
+.nav{
+	width: 100%;
+	height: 77px;
+	line-height: 77px;
+	font-size: 18px;
+	color: #fff;
+	box-shadow: 0 5px 13px #222;
+}
+.nav ul li{
+	float: left;
+	height: 77px;
+}
+.front-color{
+	width: 10%;
+}
+li.nav-content{
+	width: 90%;
+}
+.nav-content ul{
+	width: 100%;
+}
+.nav1,.front-color{
+	background-color: #4f8fc6;
+}
+.nav2{
+	background-color: #7c4fc6;
+}
+.nav3{
+	background-color: #c64fae;
+}
+.nav4{
+	background-color: #b33737;
+}
+.nav5{
+	background-color: #c6b74f;
+}
+.nav6{
+	background-color: #6ab442;
+}
+.nav7,.last-color{
+	background-color: #4fc6c5;
+}
+.last-color{
+	padding-left: 4%;
+}
+.nav-content li{
+	width: 12%;
+	text-align: center;
+}
+.nav-content ul li:hover{
+	border-bottom: solid 4px rgba(0,0,0,0); 
+}
+/*版权部分*/
+.footer{	
+	margin-top: 78px;
+	position: absolute;
+	background-color: #292929;
+	width: 100%;
+	height: 368px;
+	color: #9d9d9d;
+	font-size: 16px;
+}
+.footer-content{
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 68px;
+}
+.nenu-copyright{
+	float: left;
+	width: 30%;
+	text-align: center;
+	margin-right: 10%;
+}
+.footer span,.footer a{
+	display: block;
+	line-height: 28px;
+}
+.footer a:hover{
+	color: #fff;
+}
+.nenu{
+	margin: 0 auto;
+	width: 244px;
+	height: 186px;
+	background: url("../../img/common/copyright.png") no-repeat 0 28px;
+}
+.copyright{
+	color: #408d7b;
+}
+.footer-link{
+	float: left;
+	width: 60%;
+}
+.footer-link p{
+	float: left;
+	width: 178px;
+}
+.footer-link-front{
+	height:180px;
+}
+.footer-link span{
+	color: #408d7b;
+}
+
+.none{
+	display: none;
+}

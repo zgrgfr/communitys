@@ -1,0 +1,220 @@
+package service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import util.DateUtil;
+import util.MybatisUtil;
+import dao.ClassDao;
+import dto.ClassDto;
+import entity.Class;
+import entity.ClassEnter;
+import service.ClassEnterService;
+
+/**
+ * 课程的Service
+ * @author shanjizhong
+ *
+ */
+public class ClassService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+	
+	 ClassEnterService classEnterService = new ClassEnterService();;
+	/**
+	 * 添加一个课程
+	 * @param class
+	 * @throws Exception
+	 */
+	public void addClass(Class Class) throws Exception{
+		classDao.addClass(Class);
+	}
+	
+	/**
+	 * 根据Id删除课程
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(int id) throws Exception{
+		classDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据Id查找课程
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Class queryById(int id) throws Exception{
+		return classDao.queryById(id);
+	}
+	
+	/**
+	 * 根据课程Id查找相应的ClassDto
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ClassDto queryClassDtoById(int id) throws Exception{
+		Class cla = this.queryById(id);
+		ClassDto classDto = new ClassDto();
+		List<ClassEnter> classEnterList = Collections.emptyList();
+		classEnterList = classEnterService.queryByclassId(cla.getId());
+		classDto.setCla(cla);
+		classDto.setClassEnter(classEnterList);
+		classDto.setNumber(classEnterList.size());
+		return classDto;
+	}
+	
+	/**
+	 * 根据全部的条件找到相应的课程Dto集合
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ClassDto> queryByAllCondition(String type,String classType,String classTime, String select) throws Exception{
+		// 清楚缓存
+		sqlSession.clearCache();
+		if("".equals(classType)){
+			classType = "全部课程";
+		}
+		List<Class> classList =  classDao.queryByTypeAndclassType(type,classType);
+ 		List<ClassDto> classDtoList = new ArrayList<ClassDto>();
+ 		if(classTime != null){
+			Iterator<Class> sListIterator = classList.iterator(); 
+			switch(classTime){
+			case "全部":
+				break;
+			
+			case "正在进行":
+			    while(sListIterator.hasNext()){  
+			    	Class cla = sListIterator.next();  
+			    	if(DateUtil.compareNowDate(cla.getEndTime()) < 0 || DateUtil.compareNowDate(cla.getStartTime()) >= 0){
+			    		sListIterator.remove();
+					}
+			    }  
+			
+			case "即将开始":
+			    while(sListIterator.hasNext()){  
+			    	Class cla = sListIterator.next();  
+			    	if(DateUtil.compareNowDate(cla.getStartTime()) <= 0){
+			    		sListIterator.remove();
+					}
+			    }
+			
+			case "已结束":
+				while(sListIterator.hasNext()){  
+			    	Class cla = sListIterator.next();  
+			    	if(DateUtil.compareNowDate(cla.getEndTime()) >= 0){
+			    		sListIterator.remove();
+					}
+			    }
+				
+			default :
+				break;
+			}
+		}
+		
+		for(Class cla : classList){
+			ClassDto classDto = new ClassDto();
+			List<ClassEnter> classEnterList = Collections.emptyList();
+			classEnterList = classEnterService.queryByclassId(cla.getId());
+			classDto.setCla(cla);
+			classDto.setClassEnter(classEnterList);
+			classDto.setNumber(classEnterList.size());
+			classDtoList.add(classDto);
+		}
+		if(select != null){
+			switch(select){
+			case "":
+				break;
+			
+			case "默认":
+				break;
+			
+			case "按最新":
+				this.sortById(classDtoList);
+			
+			case "按热门":
+				this.sortByPersonNumber(classDtoList);
+			
+			default :
+				break;
+			}
+			
+		}
+		
+		return classDtoList;
+	}
+
+	/**
+	 * 根据Id改变某个课程的审核状态
+	 * @param type
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateTypeById(String type, int id) throws Exception{
+		classDao.updateTypeById(id, type);
+	}
+	
+	/**
+	 * 根据ID修改课程
+	 * @param id
+	 * @param Class
+	 * @throws Exception
+	 */
+	public void updateById(int id,Class Class)throws Exception{
+		classDao.updateById(Class);
+	}
+	
+	/**
+	 * 根据社团Id找到上传的精品课程
+	 * @param communityId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Class> queryByCommunityId(int communityId) throws Exception{
+		return classDao.queryByCommunityId(communityId);
+	}
+	
+	/**
+	 * 查询所有的精品课程
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Class> selectAll() throws Exception{
+		return classDao.selectAll();
+	}
+	
+	/**
+	 * 根据课程的Id排序
+	 * 逆序，大的在前，小的在后
+	 * @param classDtoList
+	 */
+	public void sortById(List<ClassDto> classDtoList){
+		Collections.sort(classDtoList, new Comparator<ClassDto>() {
+            public int compare(ClassDto claDto1, ClassDto claDto2) {
+                return claDto2.getCla().getId() - (claDto1.getCla().getId());
+            }
+        });
+	}
+	
+	/**
+	 * 根据课程的上课人数排序
+	 * 逆序，大的在前，小的在后
+	 * @param classDtoList
+	 */
+	public void sortByPersonNumber(List<ClassDto> classDtoList){
+		Collections.sort(classDtoList, new Comparator<ClassDto>() {
+            public int compare(ClassDto claDto1, ClassDto claDto2) {
+                return claDto2.getNumber() - (claDto1.getNumber());
+            }
+        });
+	}
+	
+}

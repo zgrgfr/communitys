@@ -1,0 +1,45 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+	min-height: 666px;
+}
+.content-title{
+	text-align: center;
+	margin-bottom: 14px;
+	font-size: 16px;
+}
+.content{
+	width: 80%;
+	margin: 0 auto;
+	text-indent: 24px;
+	line-height: 26px;
+	font-size: 14px;
+}
+.info{
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	color: #888;
+	word-spacing: 88px;
+	height: 40px;
+	line-height: 30px;
+}
+
+.u-btn{
+	padding: 8px 26px;
+	background-color: #ff6c00;
+	color: #fff;
+	font-size: 22px;
+	border-radius: 4px;
+}
+
+.introduce,.main-con{
+	border: 2px solid #fff;
+	border-radius: 12px;
+	color: #272727;
+	margin-top: 28px;
+	padding: 16px;
+}
+.introduce p{
+	text-indent: 22px;
+}

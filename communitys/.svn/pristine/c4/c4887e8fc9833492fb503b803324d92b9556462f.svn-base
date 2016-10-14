@@ -1,0 +1,66 @@
+package service;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import util.MybatisUtil;
+import dao.ActivityApplyDao;
+import entity.ActivityApply;
+/**
+ * 账号的Service
+ * @author guofengrui
+ *
+ */
+public class ActivityApplyService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	ActivityApplyDao actDao = sqlSession.getMapper(ActivityApplyDao.class);
+	
+	/**
+	 * 添加一条活动申请
+	 * @param activityApply
+	 * @throws Exception
+	 */
+	public void addAccount(ActivityApply activityApply) throws Exception{
+		actDao.addActivityApply(activityApply);
+	}
+	
+	/**
+	 * 根据Id删除相应的活动申请
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(int id) throws Exception{
+		actDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据Id找到相应的活动申请
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ActivityApply queryById(int id) throws Exception{
+		return actDao.queryById(id);
+	}
+	
+	/**
+	 * 根据type找到相应的活动申请
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ActivityApply> queryByType(String type) throws Exception{
+		return actDao.queryByType(type);
+	}
+	
+	/**
+	 * 根据Id改变某个活动申请的审核状态
+	 * @param type
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateTypeById(String type, int id) throws Exception{
+		actDao.updateTypeById(id, type);
+	}
+}

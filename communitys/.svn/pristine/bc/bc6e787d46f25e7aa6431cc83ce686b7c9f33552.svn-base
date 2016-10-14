@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/style/style.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page clearfix">
+		<div class="sidebar">
+			<p><a href="style.jsp">社团风采</a></p>
+			<p class="select-select"><a href="track.jsp">社团动态</a></p>
+			<p><a href="show.jsp">社团展示</a></p>
+		</div>
+		<div class="main-content">
+			<div class="content-list">
+				<ul class="track-list">
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<h6 class="list-cap">社团动态标题标题</h6>
+							<span class="list-time">2016-01-12</span>
+						</a>	
+					</li>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<h6 class="list-cap">社团动态标题标题</h6>
+							<span class="list-time">2016-01-12</span>
+						</a>
+					</li>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<h6 class="list-cap">社团动态标题标题</h6>
+							<span class="list-time">2016-01-12</span>
+						</a>
+					</li>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<h6 class="list-cap">社团动态标题标题</h6>
+							<span class="list-time">2016-01-12</span>
+						</a>
+					</li>
+					<li class="clearfix">
+						<a href="/page/pages/content.jsp">
+							<h6 class="list-cap">社团动态标题标题</h6>
+							<span class="list-time">2016-01-12</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

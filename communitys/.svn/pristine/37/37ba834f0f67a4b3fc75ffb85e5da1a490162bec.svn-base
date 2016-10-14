@@ -1,0 +1,16 @@
+$(document).ready(function(){
+	// 当前页
+	var page = 1;
+	//图片个数 
+	var img_number = $(".front-banner-img li").length;
+	// 添加图标
+	for (var i = 0; i < img_number; i++) {
+		var $num_i = $("<i></i>");
+
+		$num_i.addClass("number-usual");
+
+		$(".number").append($num_i);
+	};
+
+	
+});

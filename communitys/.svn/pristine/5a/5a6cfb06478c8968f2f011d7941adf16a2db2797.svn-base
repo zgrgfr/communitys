@@ -1,0 +1,59 @@
+
+	<div class="footer">
+		<div class="colorwrap clearfix">
+			<i class="footer-blue"></i><i class="footer-orange"></i><i class="footer-green"></i><i class="footer-red"></i>
+		</div>
+		<div class="footer-content clesrfix">
+			<div class="nenu-copyright">
+				<span class="nenu"></span>
+				<span class="copyright">版权所有©东北师范大学学生社团联合会</span>
+				<a href="javascript:;">邮箱：webmaster@nenu.edu.cn</a>
+			</div>
+			<div class="footer-link">
+				<p class="footer-link-front">
+					<span>多彩社团</span>
+					<a href="javascript:;">活动预告</a>
+					<a href="javascript:;">发布社团活动</a>
+					<a href="javascript:;">社团介绍</a>
+					<a href="javascript:;">加入社团</a>
+				</p>
+				<p class="footer-link-front">
+					<span>多彩社联</span>
+					<a href="javascript:;">社联介绍</a>
+					<a href="javascript:;">社联精品活动</a>
+					<a href="javascript:;">加入社联</a>
+				</p>
+				<p class="footer-link-front">
+					<span>友情链接</span>
+					<a href="javascript:;">东北师范大学官网</a>
+					<a href="javascript:;">社联精品活动</a>
+					<a href="javascript:;">加入社联</a>
+				</p>
+				<p class="footer-link-front">
+					<span>新闻中心</span>
+					<a href="javascript:;">社联新闻</a>
+					<a href="javascript:;">社团新闻</a>
+				</p>
+				<p>
+					<span>在线办公</span>
+					<a href="javascript:;">社团在线办公</a>
+					<a href="javascript:;">社联在线办公</a>
+				</p>
+				<p>
+					<span>规章制度</span>
+					<a href="javascript:;">社联工作指南</a>
+					<a href="javascript:;">社联工作制度</a>
+				</p>
+				<p>
+					<span>文件资料</span>
+					<a href="javascript:;">信息查询</a>
+					<a href="javascript:;">文档下载</a>
+				</p>
+				<p>
+					<span>联系我们</span>
+					<a href="javascript:;">联系社团</a>
+					<a href="javascript:;">广告服务</a>
+				</p>
+			</div>
+		</div>
+	</div>

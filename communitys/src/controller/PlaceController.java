@@ -1,0 +1,70 @@
+package controller;
+import java.util.List;
+
+import service.PlaceApplyService;
+import service.PlaceService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+
+
+
+
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import dto.PlaceApplyDto;
+import entity.Place;
+import entity.PlaceApply;
+import entity.Account;
+
+/**
+ * 场地
+ * @author guofr
+ * 
+ *
+ */
+@WebServlet(name="PlaceController",urlPatterns={"/PlaceController"})
+public class PlaceController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	PlaceService plaService = new PlaceService();
+	
+	/**
+	 * 由传过来的校区来查找对应的可租用的地点
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listByCampus(HttpServletRequest req, HttpServletResponse resp){
+		JSONArray jsonArray = new JSONArray();
+		try{
+			String campus = req.getParameter("campus");
+			List<Place> placeList = plaService.queryByCampus(campus);
+			if(placeList.size() != 0){
+				for(Place place : placeList){
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("id", place.getId());
+					jsonObject.put("name", place.getLocation());
+					jsonArray.add(jsonObject);
+				}
+			}else{
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("id", 0);
+				jsonObject.put("name", "无相应地点");
+				jsonArray.add(jsonObject);
+			}
+			resp.getWriter().write(jsonArray.toString());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return jsonArray.toString();
+	}
+}

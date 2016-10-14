@@ -1,0 +1,146 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+	min-height: 880px;
+}
+.sidebar{
+	float: left;
+	width: 20%;
+	max-width: 228px;
+	color: #333;
+	font-size: 16px;
+	background-color: #fff;
+	margin-right: 30px;
+}
+.sidebar p{
+	height:68px;
+	line-height: 68px;
+	text-indent: 40px;
+	border-bottom: 1px solid #eee;
+}
+.sidebar p:hover{
+	cursor: pointer;
+}
+.main-content{
+	float: left;
+	width: 75%;
+}
+.select{
+	position: relative;
+	height: 55px;
+	color: #383838;
+	font-size: 12px;
+	width: 75%;
+	float: left;
+}
+.position{
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #333;
+	font-size: 16px;
+}
+.select-btn{
+	position: absolute;
+	right: 150px;
+	top: 0;
+}
+.select-btn a{
+	display: inline-block;
+	width: 60px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	background-color: #fff;
+}
+.select-btn a:hover{
+	color: #4fc6aa;
+}
+.page .select-select{
+	background-color: #4fc6aa;
+	color: #fff;
+}
+a.select-select:hover{
+	color: #fff;
+}
+.select-sort{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.content-list li{
+	background-color: #fff;
+	padding: 8px 13px;
+	margin-bottom: 18px;
+}
+.con-list-img,.con-list-content{
+	float: left;
+}
+.con-list-img{
+	width: 18%;
+	padding-right: 12px;
+	height: 120px;
+}
+.con-list-img img{
+	width: 100%;
+	height: 100%;
+}
+.con-list-content{
+	width: 80%;
+	position: relative;
+}
+.list-cap{
+	color: #494949;
+	font-size: 18px;
+	display: inline-block;
+}
+.list-cap:hover{
+	text-decoration: underline;
+}
+.list-time{
+	position: absolute;
+	right: 0;
+	top: 6px;
+	background-color: #e9f2f0;
+	color: #4fc6aa;
+	padding: 5px 8px;
+	border-radius: 11px;
+}
+.list-info{
+	color: #7e7e7e;
+	font-size: 12px;
+	height: 32px;
+	line-height: 32px;
+	word-spacing: 30px;
+	text-indent: 26px;
+}
+.list-describe{
+	color: #7e7e7e;
+	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 92%;
+	text-indent: 8px;
+	height: 25px;
+}
+
+/*分页*/
+.nowbtn{
+    color: #fff !important ;
+    border-color: #428bca !important;
+    background-color: #428bca !important;
+}
+.databtn a{
+    background-color: #fff;
+   	border: 1px solid #ddd;
+   color: #428bca;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+}
+.databtn a:hover{
+    background-color: #eee;
+    color: #2a6496;
+}

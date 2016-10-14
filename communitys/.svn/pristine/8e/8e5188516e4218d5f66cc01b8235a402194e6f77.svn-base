@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+    <meta charset="utf-8">
+    <title>东北师范大学校社联</title>
+    <link rel="stylesheet" href="backpages/introduction/assets/design/css/trumbowyg.css">
+    <link rel="stylesheet" href="backpages/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Fonts from Font Awsome -->
+    <link rel="stylesheet" href="backpages/assets/css/font-awesome.min.css">
+    <!-- CSS Animate -->
+    <link rel="stylesheet" href="backpages/assets/css/animate.css">
+    <!-- Custom styles for this theme -->
+    <link rel="stylesheet" href="backpages/assets/css/main.css">
+  
+	<style type="text/css">
+		body{
+			background-color:#fff;
+			
+		}
+	</style>
+</head>
+
+<body>
+<c:forEach items="${leaguesIntroduceList}" var="leaguesIntroduce">
+	<br><div>
+        	${leaguesIntroduce.content}<br>
+        	是否首页显示：${leaguesIntroduce.showType}<br>
+        	审核状态：${leaguesIntroduce.type}
+    </div>
+</c:forEach>
+    <p style="text-align: right;">
+        <a href="javascript:;" class="btn btn-default btn-sm">删除</a>
+        <a href="backpages/introduction/change.jsp" class="btn btn-primary btn-sm">修改</a>
+        <c:if test="${sessionScope.account.role eq '超级管理员'}">
+        	<a href="/communitys/LeaguesIntroduceController?method=showOrNotShow&id=${leaguesIntroduce.id}&type=审核通过" class="btn btn-info btn-sm">审核通过</a>
+        	<a href="/communitys/LeaguesIntroduceController?method=showOrNotShow&id=${leaguesIntroduce.id}&type=审核不通过" class="btn btn-danger btn-sm">审核不通过</a>
+        	<a href="/communitys/LeaguesIntroduceController?method=showOrNotShow&id=${leaguesIntroduce.id}&showType=首页显示" class="btn btn-info btn-sm">首页显示</a>
+        	<a href="/communitys/LeaguesIntroduceController?method=showOrNotShow&id=${leaguesIntroduce.id}&showType=首页不显示" class="btn btn-danger btn-sm">首页不显示</a>
+        </c:if>
+        
+    </p>
+
+</body>
+</html>
+

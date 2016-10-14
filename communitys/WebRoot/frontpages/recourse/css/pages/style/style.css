@@ -1,0 +1,150 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+	min-height: 999px;
+}
+.sidebar{
+	float: left;
+	width: 20%;
+	max-width: 228px;
+	color: #333;
+	font-size: 16px;
+	background-color: #fff;
+	margin-right: 30px;
+}
+.sidebar p{
+	height:68px;
+	line-height: 68px;
+	text-indent: 40px;
+	border-bottom: 1px solid #eee;
+}
+.main-content{
+	float: left;
+	width: 758px;
+}
+.page .select-select{
+	background-color: #4fc6aa;
+	color: #fff;
+}
+.content-list li{
+	position: relative;
+	border-bottom: 1px solid #eee;
+	height: 36px;
+	line-height: 36px;
+	color: #494949;
+	text-indent: 12px;
+}
+
+/*社团风采*/
+.style-list li:hover{
+	cursor: pointer;
+	background-color: #f5797e;
+	color: #fff;
+}
+.list-cap{
+	font-size: 16px;
+	display: inline-block;
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+.list-time{
+	position: absolute;
+	right: 4px;
+	top: 0;
+	color: #494949;
+}
+/*社团展示*/
+.select-option{
+	color: rgb(51,51,52);
+	font-size: 12px;
+}
+.option-show{
+	padding-left: 18px;
+	height: 42px;
+	line-height: 42px;
+	background-color: rgb(235,235,235);
+}
+.option-show span{
+	background-color: #fff;
+	border:1px solid rgb(204,204,204);
+	padding: 4px 8px;
+	margin-left: 8px;
+}
+.option-show em{
+	background-image: url('../../../img/style/close.gif');
+	background-repeat: no-repeat;
+	background-position: 4px 7px;
+	display: inline-block;
+	width: 12px;
+	height: 16px;
+}
+.option-list dt{
+	padding-left: 29px;
+	height: 43px;
+	line-height: 42px;
+	border-bottom: 1px dashed rgb(204,204,204);
+	word-spacing: 22px;
+}
+.option-list a:hover{
+	color: #f6821f;
+	cursor: pointer;
+}
+.img-list{
+	margin-top: 44px;
+}
+.img-list li{
+	width: 126px;
+	height: 160px;
+	float: left;
+	margin-left: 84px;
+	text-align: center;
+}
+.img-list li:nth-child(4n+1){
+	margin-left: 0;
+}
+.img-box{
+	width: 120px;
+	height: 98px;
+}
+.img-box img{
+	width: 100%;
+	height: 100%;
+}
+.img-cap{
+	height: 70px;
+	line-height: 70px;
+}
+.none{
+	display: none;
+}
+.option-show i{
+	font-style: normal;
+}
+
+.search{
+	cursor: pointer;
+	background-color: #4fc6aa !important;
+	color: #fff;
+}
+.showlist{
+	display: inline-block;
+}
+
+/*分页*/
+.nowbtn{
+    color: #fff !important ;
+    border-color: #428bca !important;
+    background-color: #428bca !important;
+}
+.databtn a{
+    background-color: #fff;
+   	border: 1px solid #ddd;
+   color: #428bca;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+}
+.databtn a:hover{
+    background-color: #eee;
+    color: #2a6496;
+}

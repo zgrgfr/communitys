@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/project/project.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page">
+		<div class="main-content">
+			<div class="content-list">
+				<ul>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<h5 class="pro-cap">标题标题标题标题</h5>
+							<p class="pro-cot">
+								<span class="pro-unit">举办单位</span>
+								<span class="pro-time">2013-02-12</span>
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<h5 class="pro-cap">标题标题标题标题</h5>
+							<p class="pro-cot">
+								<span class="pro-unit">举办单位</span>
+								<span class="pro-time">2013-02-12</span>
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<h5 class="pro-cap">标题标题标题标题</h5>
+							<p class="pro-cot">
+								<span class="pro-unit">举办单位</span>
+								<span class="pro-time">2013-02-12</span>
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="/page/pages/content.jsp">
+							<h5 class="pro-cap">标题标题标题标题</h5>
+							<p class="pro-cot">
+								<span class="pro-unit">举办单位</span>
+								<span class="pro-time">2013-02-12</span>
+							</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

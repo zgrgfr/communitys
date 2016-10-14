@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/share/share.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page">
+		<div class="main-content">
+			<div class="content-list">
+				<ul>
+					<li>
+						<a href="#">
+							<p class="share-cap">
+								<span class="share-tit">名称名称名称</span>
+								<span class="share-unit">社团名称</span>
+							</p>
+							<p class="share-con">
+								共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<p class="share-cap">
+								<span class="share-tit">名称</span>
+								<span class="share-unit">社团名称</span>
+							</p>
+							<p class="share-con">
+								共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<p class="share-cap">
+								<span class="share-tit">名称</span>
+								<span class="share-unit">社团名称</span>
+							</p>
+							<p class="share-con">
+								共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容
+							</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<p class="share-cap">
+								<span class="share-tit">名称</span>
+								<span class="share-unit">社团名称</span>
+							</p>
+							<p class="share-con">
+								共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容共享内容
+							</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

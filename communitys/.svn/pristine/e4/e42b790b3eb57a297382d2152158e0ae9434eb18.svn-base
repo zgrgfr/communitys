@@ -1,0 +1,68 @@
+package controller;
+import java.io.IOException;
+
+import service.CommunityService;
+import service.CommunityShowService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspFactory;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+
+import com.jspsmart.upload.File;
+import com.jspsmart.upload.SmartUpload;
+import com.jspsmart.upload.SmartUploadException;
+
+import entity.Community;
+import entity.CommunityShow;
+import util.IPTimeStamp;
+
+/**
+ * 社团展示的Controller 
+ * @author 郭丰瑞
+ *
+ */
+@WebServlet(name="CommunityShowController",urlPatterns={"/CommunityShowController"})
+@MultipartConfig
+public class CommunityShowController extends BaseServlet{
+	private static final long serialVersionUID = 1L;
+	CommunityShowService communityShowService = new CommunityShowService();
+	
+	public String newCommunityShow(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+		try{
+			System.out.println("sss");
+			IPTimeStamp its = new IPTimeStamp(req.getRemoteAddr());
+	    	SmartUpload smart = new SmartUpload();
+	    	
+	    	// 初始化上传
+	    	smart.initialize(this.getServletConfig(), req, resp);
+	    	// 准备上传  
+	    	smart.upload();    
+			File file = smart.getFiles().getFile(0);
+			
+	    	String logo = its.getIPTimeStampRand()+"."+smart.getFiles().getFile(0).getFileExt();
+	    	String filesRealName = getServletContext().getRealPath("/")+"image/"+logo;
+	    	String campus = smart.getRequest().getParameter("campus"); 
+			String grade = smart.getRequest().getParameter("grade");
+			String community_type = smart.getRequest().getParameter("community_type");
+			int community_id =(Integer)session.getAttribute("communityId");
+			String type = smart.getRequest().getParameter("type");
+			CommunityShow communityShow = new CommunityShow(campus,grade,community_type,logo,community_id,type);
+			System.out.println(communityShow.toString());
+			communityShowService.addCommunityShow(communityShow);
+			smart.getFiles().getFile(0).saveAs(filesRealName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:club_show/add.jsp";
+	}
+	
+}

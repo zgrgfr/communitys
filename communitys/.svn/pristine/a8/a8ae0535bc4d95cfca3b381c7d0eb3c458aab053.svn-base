@@ -1,0 +1,33 @@
+package controller;
+import java.util.List;
+
+import service.ClassService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import entity.Account;
+import entity.Class;
+import entity.Community;
+import entity.ResourceShare;
+
+/**
+ * 跳转到首页
+ * @author 郭丰瑞
+ *
+ */
+@WebServlet(name="WelcomeController",urlPatterns={"/WelcomeController"})
+public class WelcomeController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	ClassService claService = new ClassService();
+	
+	public String welcomeToFrontIndex(HttpServletRequest req, HttpServletResponse resp){
+		return "f:frontpages/pages/index.jsp";
+	}
+	
+}

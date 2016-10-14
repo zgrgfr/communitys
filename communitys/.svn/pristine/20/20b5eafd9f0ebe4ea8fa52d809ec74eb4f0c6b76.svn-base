@@ -1,0 +1,31 @@
+	<div class="header">	
+		<div class="colorwrap clearfix">
+			<i class="header-blue"></i><i class="header-orange"></i><i class="header-red"></i><i class="header-green"></i>
+		</div>
+		<div class="logo-and-login">
+			<div class="login">
+				<p class="login-success">你好，段同学</p>
+			</div>
+			<div class="link">
+				<a href="javascript:;" class="code"></a>
+				<a href="frontpages/pages/index.jsp" class="home"></a>
+			</div>
+		</div>
+		<div class="nav">
+			<ul class="clearfix">
+				<li class="front-color"></li>
+				<li class="nav-content">
+					<ul> 
+						<li class="nav1"><a href="frontpages/pages/introduction/introduction_index.jsp">社联概况</a></li>
+						<li class="nav2"><a href="/communitys/CommunityPresenceController?method=listByTypeAndArticleType&articleType=社团风采">社团风采</a></li>
+						<li class="nav3"><a href="/communitys/CommunityBookController?method=listCommunityBook2">基本业务</a></li>
+						<li class="nav4"><a href="/communitys/ClassController?method=listByTypeAndclassType&classType=全部课程">精品课程</a></li>
+						<li class="nav5"><a href="/communitys/SocialProgramsController?method=listByType">社会项目</a></li>
+						<li class="nav6"><a href="/communitys/ResourceShareController?method=listByType">资源共享</a></li>
+						<li class="nav7"><a href="/communitys/DatumDownloadController?method=listDatumDownload2">资料下载</a></li>
+						<li class="last-color"></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>

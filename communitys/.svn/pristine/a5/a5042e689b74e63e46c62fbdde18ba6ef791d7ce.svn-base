@@ -1,0 +1,26 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+	min-height: 999px;
+}
+.main-content{
+	width: 85%;
+	margin: 0 auto;
+}
+.content-list li{
+	height: 55px;
+	line-height: 38px;
+	color: #494949;
+}
+.pro-cot{
+	width: 80%;
+	color: #7e7e7e;
+	border-bottom: 1px solid #ccc;
+}
+.pro-unit{
+	margin-right: 22px;
+	font-size: 14px;
+}
+.pro-unit:hover{
+	color: #4fc6c5;
+}

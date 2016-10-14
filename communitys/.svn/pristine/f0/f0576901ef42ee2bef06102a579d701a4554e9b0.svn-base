@@ -1,0 +1,69 @@
+package controller;
+import service.AccountService;
+import service.CommunityAdminService;
+import service.CommunityService;
+import entity.Account;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import entity.Community;
+
+/**
+ * 登陆Controller
+ * @author 郭丰瑞
+ *
+ */
+@WebServlet(name="LoginController",urlPatterns={"/LoginController"})
+public class LoginController extends BaseServlet{
+	AccountService accSerrvice = new AccountService();
+	CommunityAdminService coaService = new CommunityAdminService();
+	CommunityService comService = new CommunityService();
+	public String backpageLogin(HttpServletRequest req, HttpServletResponse resp){
+		HttpSession session = req.getSession();
+		try {
+			String account = req.getParameter("account");
+			String password = req.getParameter("password");
+			if("admin".equals(account)&&"root".equals(password)){
+				System.out.println("超级管理员登陆");
+				return "r:/backpages/index1.html";
+			}else{
+				Account acc = accSerrvice.queryByAccountAndPassword(account,password);
+				if(acc != null){
+					session.setAttribute("account", acc);
+					String role = acc.getRole();
+					switch(role){
+						case "社联管理员":
+							System.out.println("社联管理员登陆");
+							return "r:/backpages/index2.html";
+						
+						case "社团管理员":
+							int CommunityId = coaService.queryCommunityIdByAccountId(acc.getId());
+							Community community = comService.queryById(CommunityId);
+							session.setAttribute("community", community);
+							System.out.println("社团管理员,"+ acc.getName() +"登陆");
+							return "r:/backpages/index3.html";
+						
+						case "场地管理员":
+							System.out.println("场地管理员登陆");
+							return "r:/backpages/index4.html";
+						
+						default :
+							System.out.println("后台登陆，账号密码错误");
+							return "r:/backpages/login.html";
+					}
+				}else{
+					System.out.println("后台登陆，账号密码错误");
+					return "r:/backpages/login.html";
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

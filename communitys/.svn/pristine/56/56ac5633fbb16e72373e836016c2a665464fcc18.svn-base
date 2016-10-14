@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.CommunityPresenceDao">
+	<resultMap type="entity.CommunityPresence" id="CommunityPresenceMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="title" column="title"/>
+         <result property="author" column="author"/>
+         <result property="time" column="time"/>
+         <result property="content" column="content"/>
+         <result property="articleType" column="article_type"/>
+         <result property="type" column="type"/>
+         
+     </resultMap>
+    
+    <insert id="addCommunityPresence">
+    	insert into t_community_presence(title,author,time,content,article_type,type)
+    	values(#{title},#{author},#{time},#{content},#{articleType},#{type})
+    </insert>
+    
+ 	<delete id="deleteById">
+ 		delete from t_community_presence where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" resultMap="CommunityPresenceMap">
+ 		select * from t_community_presence where id =#{id}
+	</select>  
+	
+	<select id="queryByType" resultMap="CommunityPresenceMap">
+		select * from t_community_presence where type =#{type}
+	</select>
+	
+	<select id="queryByArticleType" resultMap="CommunityPresenceMap">
+		select * from t_community_presence where article_type =#{articleType}
+	</select>
+	
+	<update id="updateTypeById">
+		update t_community_presence set type = #{type} where id = #{id}
+	</update>
+	
+	<update id="updateArticleTypeById">
+		update t_community_presence set article_type = #{articleType} where id = #{id}
+	</update>
+	
+	<update id="updateById">
+		update t_community_presence set title = #{title}, author = #{author}, time = #{time}, content = #{content}, article_type = #{artilceType}, type = #{type} where id = #{id}
+	</update>
+</mapper>

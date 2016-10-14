@@ -1,0 +1,325 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50621
+Source Host           : localhost:3306
+Source Database       : db_community
+
+Target Server Type    : MYSQL
+Target Server Version : 50621
+File Encoding         : 65001
+
+Date: 2016-09-07 21:43:34
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `t_account`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_account`;
+CREATE TABLE `t_account` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `account` varchar(20) DEFAULT NULL COMMENT '账号',
+  `password` varchar(20) DEFAULT NULL COMMENT '密码',
+  `name` varchar(20) DEFAULT NULL COMMENT '学生姓名',
+  `academy` varchar(20) DEFAULT NULL COMMENT '学院的名称',
+  `id_number` varchar(20) DEFAULT NULL COMMENT '学号',
+  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
+  `role` enum('一般学生','社团管理员','社联管理员','场地管理员') DEFAULT NULL,
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  `place_role` enum('未授权','已授权') DEFAULT '未授权' COMMENT '场地申请权限',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_account
+-- ----------------------------
+INSERT INTO `t_account` VALUES ('1', 'shelian', 'root', null, null, null, null, '社联管理员', null, '已授权');
+INSERT INTO `t_account` VALUES ('2', 'shetuan', 'root', '篮球社管理员', null, null, '111', '社团管理员', null, '已授权');
+INSERT INTO `t_account` VALUES ('3', 'changdi', 'root', null, null, null, null, '场地管理员', null, '已授权');
+
+-- ----------------------------
+-- Table structure for `t_activity_apply`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_activity_apply`;
+CREATE TABLE `t_activity_apply` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(20) DEFAULT NULL COMMENT '活动名称',
+  `holder` varchar(10) DEFAULT NULL COMMENT '活动发起者',
+  `content` text COMMENT '活动内容',
+  `time` varchar(20) DEFAULT NULL COMMENT '活动时间',
+  `time_start` varchar(20) DEFAULT NULL COMMENT '活动开始时间',
+  `account_id` int(50) NOT NULL COMMENT '账号Id',
+  `type` enum('未审核','审核未审批','审核已审批','审核不通过') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_activity_apply
+-- ----------------------------
+INSERT INTO `t_activity_apply` VALUES ('1', '22', '11', '11', '11', '11', '1', '审核不通过');
+INSERT INTO `t_activity_apply` VALUES ('3', '12321', '1', '1', '111', '1', '1', '未审核');
+INSERT INTO `t_activity_apply` VALUES ('4', '篮球赛', '体育部', null, '2016-9-13', '9:00', '1', '未审核');
+
+-- ----------------------------
+-- Table structure for `t_article_lend`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_article_lend`;
+CREATE TABLE `t_article_lend` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `article_name` varchar(50) NOT NULL COMMENT '物品名称',
+  `community_name` varchar(50) DEFAULT NULL COMMENT '社团名称',
+  `header` varchar(50) DEFAULT NULL COMMENT '负责人姓名',
+  `phone` varchar(50) DEFAULT NULL COMMENT '负责人电话',
+  `article_use` text COMMENT '物品使用内容',
+  `lend_time` varchar(50) DEFAULT NULL COMMENT '物品借用日期',
+  `account_id` int(50) DEFAULT NULL COMMENT '借用人的账号Id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='物品借用（社团向学校申请）';
+
+-- ----------------------------
+-- Records of t_article_lend
+-- ----------------------------
+INSERT INTO `t_article_lend` VALUES ('6', '1', '1', '1', '1035954631 150231231231', null, '1', '1', '未审核');
+
+-- ----------------------------
+-- Table structure for `t_class`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_class`;
+CREATE TABLE `t_class` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT '精品课程的名称',
+  `school` varchar(20) DEFAULT NULL COMMENT '学校',
+  `author` varchar(20) DEFAULT NULL COMMENT '作者',
+  `class_type` varchar(20) DEFAULT NULL COMMENT '课程的类别',
+  `introduce` text COMMENT '简介',
+  `content` text COMMENT '内容',
+  `time` varchar(20) DEFAULT NULL COMMENT '进行时间',
+  `community_id` int(50) DEFAULT NULL COMMENT '社团id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='精品课程';
+
+-- ----------------------------
+-- Records of t_class
+-- ----------------------------
+INSERT INTO `t_class` VALUES ('1', '足球', '东北师范大学', '郭丰瑞', '哲学历史', '这个课就是教你怎么踢足球', '教你如何踢足球', '周五', '6', '审核通过');
+INSERT INTO `t_class` VALUES ('3', '篮球', '东北师范大学', '单继重', '哲学历史', '这个课就是教你怎么打篮球', '教你如何打篮球', '周日', '1', '审核通过');
+INSERT INTO `t_class` VALUES ('9', '篮球', '东北师范大学', '单继重', '哲学历史', '这个课就是教你怎么打篮球', '教你如何打篮球', '周日', '1', '审核通过');
+INSERT INTO `t_class` VALUES ('10', '篮球', '东北师范大学', '单继重', '哲学历史', '这个课就是教你怎么打篮球', '教你如何打篮球', '周日', '1', '审核通过');
+INSERT INTO `t_class` VALUES ('11', '篮球', '东北师范大学', '单继重', '哲学历史', '这个课就是教你怎么打篮球', '教你如何打篮球', '周日', '1', '审核通过');
+INSERT INTO `t_class` VALUES ('12', '111', '111', '11', '哲学历史', '1', '1', '15：30-17：50', '0', '审核通过');
+INSERT INTO `t_class` VALUES ('16', '1111', '22222', '321321321312312', '文学艺术', '111', '111', '111', '5', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_class_enter`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_class_enter`;
+CREATE TABLE `t_class_enter` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `class_id` int(50) DEFAULT NULL COMMENT '课程的id',
+  `student_id` int(50) DEFAULT NULL COMMENT '学生的id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_class_enter
+-- ----------------------------
+INSERT INTO `t_class_enter` VALUES ('1', '1', '2');
+
+-- ----------------------------
+-- Table structure for `t_community`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community`;
+CREATE TABLE `t_community` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL COMMENT '社团名称',
+  `name_head` varchar(50) NOT NULL COMMENT '负责人姓名',
+  `student_idnumber` varchar(50) NOT NULL COMMENT '负责人学号',
+  `phone` varchar(50) NOT NULL COMMENT '负责人手机号',
+  `content` text NOT NULL COMMENT '社团运营内容',
+  `apply_id` int(50) DEFAULT NULL,
+  `type` enum('未审核','审核未审批','审核通过','审核不通过') NOT NULL DEFAULT '未审核' COMMENT '社团注册的状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='社团注册，社团的简介';
+
+-- ----------------------------
+-- Records of t_community
+-- ----------------------------
+INSERT INTO `t_community` VALUES ('5', '篮球社', '篮球社社长', '2014012152', '110', '篮球社是一个温暖的大家庭', null, '审核通过');
+INSERT INTO `t_community` VALUES ('23', '篮球社', '篮球社社长', '2014012152', '110', '篮球社是一个温暖的大家庭', null, '审核未审批');
+INSERT INTO `t_community` VALUES ('24', '1', '1', '1', '1', '1', null, '审核通过');
+INSERT INTO `t_community` VALUES ('25', '1', '1', '1', '11', '1', null, '未审核');
+INSERT INTO `t_community` VALUES ('26', '篮球社', '篮球社社长', '2014012152', '110', '篮球社是一个温暖的大家庭', null, '审核未审批');
+
+-- ----------------------------
+-- Table structure for `t_community_admin`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_admin`;
+CREATE TABLE `t_community_admin` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `community_id` int(50) NOT NULL COMMENT '社团id，0-社联管理员，其他-社团管理员',
+  `account_id` int(50) NOT NULL COMMENT '账号id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='社团-账户链接表';
+
+-- ----------------------------
+-- Records of t_community_admin
+-- ----------------------------
+INSERT INTO `t_community_admin` VALUES ('1', '5', '2');
+
+-- ----------------------------
+-- Table structure for `t_community_book`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_book`;
+CREATE TABLE `t_community_book` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `path` varchar(50) DEFAULT NULL COMMENT '社团宝典的路径',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='社团宝典（社联管理员添加）';
+
+-- ----------------------------
+-- Records of t_community_book
+-- ----------------------------
+INSERT INTO `t_community_book` VALUES ('1', '20160819181910607960.pdf');
+
+-- ----------------------------
+-- Table structure for `t_community_presence`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_presence`;
+CREATE TABLE `t_community_presence` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `title` varchar(50) NOT NULL COMMENT '社团风采的标题',
+  `author` varchar(10) DEFAULT NULL COMMENT '作者',
+  `time` varchar(20) NOT NULL COMMENT '时间',
+  `content` text NOT NULL COMMENT '内容',
+  `article_type` enum('社团风采','社团动态') DEFAULT NULL,
+  `community_id` int(50) NOT NULL COMMENT '社团的id',
+  `type` enum('未审核','审核通过','审核不通过') NOT NULL COMMENT '审核状态0-未审核1-审核通过2-审核不通过',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='社团风采，社团动态';
+
+-- ----------------------------
+-- Records of t_community_presence
+-- ----------------------------
+INSERT INTO `t_community_presence` VALUES ('2', '测试标题', '测试作者', '测试时间', '测试内容', '社团风采', '5', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('3', '测试标题', '测试作者', '测试时间', '测试内容', '社团风采', '0', '审核通过');
+INSERT INTO `t_community_presence` VALUES ('6', '111111111', '11', '11111111', '11', '社团动态', '5', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_community_show`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_community_show`;
+CREATE TABLE `t_community_show` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `campus` varchar(50) DEFAULT NULL COMMENT '校区',
+  `grade` varchar(5) DEFAULT NULL COMMENT '等级',
+  `community_type` varchar(20) DEFAULT NULL COMMENT '社团类型',
+  `logo` varchar(50) DEFAULT NULL COMMENT '社团logo',
+  `community_id` int(50) DEFAULT NULL COMMENT '社团id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='社团展示';
+
+-- ----------------------------
+-- Records of t_community_show
+-- ----------------------------
+INSERT INTO `t_community_show` VALUES ('19', '净月', 'D', '公益服务', '20160813222238648772.jpg', '5', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_datum_download`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_datum_download`;
+CREATE TABLE `t_datum_download` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) DEFAULT NULL COMMENT '标题',
+  `upload_name` varchar(20) DEFAULT NULL COMMENT '上传者姓名',
+  `path` varchar(50) DEFAULT NULL COMMENT '资料上传的路径',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='资料下载';
+
+-- ----------------------------
+-- Records of t_datum_download
+-- ----------------------------
+INSERT INTO `t_datum_download` VALUES ('1', '1111', '111', '20160818232211791903.rar');
+INSERT INTO `t_datum_download` VALUES ('2', '222', '222', '20160818232227800073.rar');
+
+-- ----------------------------
+-- Table structure for `t_leagues_introduce`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_leagues_introduce`;
+CREATE TABLE `t_leagues_introduce` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `content` text NOT NULL COMMENT '社联概况的内容',
+  `show_type` enum('首页不显示','首页显示') DEFAULT NULL,
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='社联概况';
+
+-- ----------------------------
+-- Records of t_leagues_introduce
+-- ----------------------------
+INSERT INTO `t_leagues_introduce` VALUES ('2', '修改过de校社联的简介', '首页显示', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_place_apply`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_place_apply`;
+CREATE TABLE `t_place_apply` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `campus` varchar(20) NOT NULL COMMENT '校区',
+  `day_time` varchar(20) NOT NULL COMMENT '日期（天）',
+  `hour_time` varchar(20) NOT NULL COMMENT '时间（小时如8:00-9:00）',
+  `place` varchar(20) NOT NULL COMMENT '地点',
+  `account_id` int(20) NOT NULL COMMENT '申请人的id',
+  `uses` varchar(20) DEFAULT NULL COMMENT '用途',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='场地审核';
+
+-- ----------------------------
+-- Records of t_place_apply
+-- ----------------------------
+INSERT INTO `t_place_apply` VALUES ('2', '1', '1', '1', '1', '2', '1', '未审核');
+
+-- ----------------------------
+-- Table structure for `t_resource_share`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_resource_share`;
+CREATE TABLE `t_resource_share` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `title` varchar(20) DEFAULT NULL COMMENT '标题',
+  `community_name` varchar(50) NOT NULL COMMENT '社团的名称',
+  `content` text COMMENT '共享内容',
+  `community_id` int(50) DEFAULT NULL COMMENT '社团Id',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='物资共享';
+
+-- ----------------------------
+-- Records of t_resource_share
+-- ----------------------------
+INSERT INTO `t_resource_share` VALUES ('2', '测试标题2', '测试社团2', '32323232', '5', '审核通过');
+
+-- ----------------------------
+-- Table structure for `t_social_programs`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_social_programs`;
+CREATE TABLE `t_social_programs` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) DEFAULT NULL COMMENT '项目名称',
+  `holder` varchar(20) DEFAULT NULL COMMENT '发起单位',
+  `activity_time` varchar(20) DEFAULT NULL COMMENT '活动时间',
+  `activity_content` text COMMENT '活动内容',
+  `support_content` text COMMENT '赞助内容',
+  `type` enum('未审核','审核通过','审核不通过') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='社会项目';
+
+-- ----------------------------
+-- Records of t_social_programs
+-- ----------------------------
+INSERT INTO `t_social_programs` VALUES ('1', '123211', '1', '1', '1', '1111111111', '审核通过');

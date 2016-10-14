@@ -1,0 +1,75 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+}
+.sidebar{
+	float: left;
+	width: 20%;
+	max-width: 228px;
+	color: #333;
+	font-size: 16px;
+	background-color: #fff;
+	margin-right: 30px;
+}
+.sidebar p{
+	height:68px;
+	line-height: 68px;
+	text-indent: 40px;
+	border-bottom: 1px solid #eee;
+}
+.sidebar p:hover{
+	cursor: pointer;
+}
+.select-select{
+	background-color: #4fc6aa;
+	color: #fff;
+}
+.main-content{
+	width: 75%;
+	float: left;
+	min-height: 388px;
+}
+/*表单*/
+.apply-from{
+	/*text-align: center;*/
+}
+.apply-from p{
+	position: relative;
+	font-size: 14px;
+	color: rgb(93,95,99);
+	height: 58px;
+	line-height: 57px;
+	border-bottom: 1px solid rgb(239,242,247);
+
+}
+.apply-from label{
+	display: inline-block;
+	width: 25%;
+	text-align: right;
+	margin-right: 22px;
+}
+.text{
+	background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none !important;
+    color: #717171;
+    display: inline-block;
+    font-size: 13px;
+    outline: 0 none;
+    padding: 6px 11px;
+    position: absolute;
+    top: 12px;
+    width: 42%;
+}
+.btn{
+	border: medium none;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 8px 14px;
+    background-color: #1abc9c;
+    color: #fff;
+    position: absolute;
+    top: 12px;
+    right: 48px;
+}

@@ -1,0 +1,6 @@
+$(document).ready(function(){
+	// 社团宝典
+	var href = $("#url"); 
+	console.log(href);
+	$(href).click();
+})

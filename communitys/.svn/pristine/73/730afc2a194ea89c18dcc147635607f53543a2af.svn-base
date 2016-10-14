@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.AccountDao">
+	<resultMap type="entity.Account" id="AccountMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="account" column="account"/>
+         <result property="password" column="password"/>
+         <result property="name" column="name"/>
+         <result property="academy" column="academy"/>
+         <result property="idNumber" column="id_number"/>
+         <result property="pnone" column="pnone"/>
+         <result property="role" column="role"/>
+         <result property="type" column="type"/>
+         <result property="placeRole" column="place_role"/>
+            
+     </resultMap>
+    
+    <insert id="addAccount" parameterType="Account">
+    	insert into t_account(id,account,password,name,academy,id_number,phone,role,type,place_role)
+    	values(#{id},#{account},#{password},#{name},#{academy},#{idNumber},#{phone},#{role},#{type},#{placeRole})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_account where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="AccountMap">
+ 		select * from t_account where id =#{id}
+	</select>  
+
+
+	<select id="queryByType" parameterType="String" resultMap="AccountMap">
+		select * from t_account where type = #{type}
+	</select> 
+	
+	
+	<update id="updateTypeById">
+		update t_account set type = #{type} where id = #{id}
+	</update> 
+	
+	<select id="queryByAccountAndPassword" resultMap="AccountMap">
+		select * from t_account where account = #{account} and password = #{password}
+	</select>
+</mapper>

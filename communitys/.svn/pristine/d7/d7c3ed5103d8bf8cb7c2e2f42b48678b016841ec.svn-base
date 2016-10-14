@@ -1,0 +1,147 @@
+package controller;
+import java.util.List;
+
+import service.CommunityPresenceService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
+
+
+import entity.Account;
+import entity.Community;
+import entity.CommunityPresence;
+import entity.ResourceShare;
+
+@WebServlet(name="CommunityPresenceController",urlPatterns={"/CommunityPresenceController"})
+public class CommunityPresenceController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	CommunityPresenceService copService = new CommunityPresenceService();
+	
+	/**
+	 * 添加一条社团风采或社团动态
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String addCommunityPresence(HttpServletRequest req, HttpServletResponse resp){
+		CommunityPresence communityPresence = CommonUtils.toBean(req.getParameterMap(),CommunityPresence.class);
+		HttpSession session = req.getSession();
+		Account account = (Account)session.getAttribute("account");
+		try{
+			copService.addCommunityPresence(communityPresence);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if("社团管理员".equals(account.getRole())){
+			return this.listCommunityPresence(req, resp);
+		}else{
+			// 超级管理员和社联管理员看全部的数据
+			return this.listCommunityPresence2(req, resp);	
+		}
+	}
+	
+	/**
+	 * 根据社团Id查找相应的社团风采和社团动态
+	 * 社团管理员
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listCommunityPresence(HttpServletRequest req, HttpServletResponse resp){
+		HttpSession session = req.getSession();
+		try{
+			int communityId = ((Community)session.getAttribute("community")).getId();
+			List<CommunityPresence> communityPresenceList = copService.queryByCommunityId(communityId);
+			req.setAttribute("communityPresenceList", communityPresenceList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/club_style/style.jsp";
+	}
+	
+	/**
+	 * 查找所有的社团风采和社团动态
+	 * 超级管理员，社联管理员
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listCommunityPresence2(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			List<CommunityPresence> communityPresenceList = copService.selectAll();
+			req.setAttribute("communityPresenceList", communityPresenceList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/club_style/style.jsp";
+	}
+	
+	/**
+	 * 根据Id删除该数据
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String deleteById(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		HttpSession session = req.getSession();
+		Account account = (Account)session.getAttribute("account");
+		try{
+			copService.deleteById(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if("社团管理员".equals(account.getRole())){
+			return this.listCommunityPresence(req, resp);
+		}else{
+			// 超级管理员和社联管理员看全部的数据
+			return this.listCommunityPresence2(req, resp);	
+		}
+	}
+	/**
+	 * 去修改的页面
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String toUpdate(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			CommunityPresence communityPresence =  copService.queryById(id);
+			req.setAttribute("communityPresence", communityPresence);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/club_style/change.jsp";
+	}
+	
+	/**
+	 * 修改一条社团风采或者社团动态
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String updateCommunityPresence(HttpServletRequest req, HttpServletResponse resp){
+		CommunityPresence communityPresence = CommonUtils.toBean(req.getParameterMap(),CommunityPresence.class);
+		HttpSession session = req.getSession();
+		Account account = (Account)session.getAttribute("account");
+		try{
+			copService.updateById(communityPresence);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if("社团管理员".equals(account.getRole())){
+			return this.listCommunityPresence(req, resp);
+		}else{
+			// 超级管理员和社联管理员看全部的数据
+			return this.listCommunityPresence2(req, resp);	
+		}
+	}
+}

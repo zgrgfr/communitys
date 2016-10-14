@@ -1,0 +1,54 @@
+package service;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import dao.ClassEnterDao;
+import entity.ClassEnter;
+import util.MybatisUtil;
+
+/**
+ * class_enter的Service
+ * @author shanjizhong
+ *
+ */
+public class ClassEnterService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	ClassEnterDao classEnterDao = sqlSession.getMapper(ClassEnterDao.class);
+	/**
+	 * 添加一条class_enter
+	 * @param classEnter
+	 * @throws Exception
+	 */
+	public void addClassEnter(ClassEnter classEnter) throws Exception{
+			classEnterDao.addClassEnter(classEnter);
+	}
+		
+	/**
+	 * 根据Id删除一条class_enter
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(int id) throws Exception{
+		classEnterDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据Id查找返回一个class_enter
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ClassEnter queryById(int id) throws Exception{
+		return classEnterDao.queryById(id);
+	}
+	
+	/**
+	 * 找到所有的class_enter
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ClassEnter> selsectAll() throws Exception{
+		return classEnterDao.selectAll();
+	}
+}

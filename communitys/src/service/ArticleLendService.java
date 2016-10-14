@@ -1,0 +1,89 @@
+package service;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
+
+import util.MybatisUtil;
+import dao.ArticleLendDao;
+import entity.ArticleLend;
+
+/**
+ * 物品借用的Service
+ * @author 我要睡觉了
+ *
+ */
+public class ArticleLendService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	ArticleLendDao artDao = sqlSession.getMapper(ArticleLendDao.class);
+	
+	/**
+	 * 添加一条物品借用申请
+	 * @param articleLend
+	 * @throws Exception
+	 */
+	public void addArticleLend(ArticleLend articleLend) throws Exception {
+		artDao.addArticleLend(articleLend);
+	}
+	
+	/**
+	 * 删除一条物品借用申请
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(int id) throws Exception {
+		artDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据id查找一条物品借用申请
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ArticleLend queryById(int id) throws Exception {
+		return artDao.queryById(id);
+	}
+	
+	/**
+	 * 根据审核类型找到相应的物品借用申请
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ArticleLend> queryByType(String type) throws Exception {
+		return artDao.queryByType(type);
+	}
+	
+	/**
+	 * 查找所有的信息
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ArticleLend> selectAll() throws Exception {
+		return artDao.selectAll();
+	}
+	
+	/**
+	 * 根据Id修改相应的审核状态
+	 * @param id
+	 * @param type
+	 * @throws Exception
+	 */
+	public void updateTypeById(int id, String type) throws Exception {
+		artDao.updateTypeById(id, type);
+	}
+	
+	/**
+	 * 根据id修改一条物品借用申请
+	 * @param id
+	 * @param articleLend
+	 * @throws Exception
+	 */
+	public void updateById(ArticleLend articleLend) throws Exception {
+		artDao.updateById(articleLend);
+	}
+	
+}

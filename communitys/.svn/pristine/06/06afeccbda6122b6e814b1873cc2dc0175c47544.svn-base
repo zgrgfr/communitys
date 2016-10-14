@@ -1,0 +1,44 @@
+package test;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import service.DatumDownloadService;
+import util.MybatisUtil;
+import entity.DatumDownload;
+
+
+public class DatumDownloadTest {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	DatumDownloadService datumDownloadService = new DatumDownloadService();
+	public void toAdd() throws Exception{
+		DatumDownload datumDownload = new DatumDownload();
+		datumDownload.setPath("admin/admin");
+		datumDownload.setTitle("资料1");
+		datumDownload.setUploadName("单继重");
+		datumDownloadService.addDatumDownload(datumDownload);
+	}
+	
+	public void deleteById() throws Exception{
+		datumDownloadService.deleteById(1);
+	}
+	
+	public DatumDownload queryById() throws Exception{
+		return datumDownloadService.queryById(2);
+	}
+	
+	public List<DatumDownload> selectAll() throws Exception{
+		return datumDownloadService.selsectAll();
+	}
+	
+	public static void main(String args[]) throws Exception{
+		DatumDownloadTest DDT = new DatumDownloadTest();
+		DDT.toAdd();
+		DDT.deleteById();
+		System.out.println(DDT.queryById());
+		for(DatumDownload datumDownload : DDT.selectAll()){
+			System.out.println(datumDownload);
+		}
+	}
+}

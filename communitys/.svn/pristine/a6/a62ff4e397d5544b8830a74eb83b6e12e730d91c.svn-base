@@ -1,0 +1,69 @@
+package controller;
+import java.util.List;
+
+import service.LeaguesIntroduceService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import entity.LeaguesIntroduce;;
+
+
+@WebServlet(name="LeaguesIntroduceController",urlPatterns={"/LeaguesIntroduceController"})
+public class LeaguesIntroduceController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	LeaguesIntroduceService leaService = new LeaguesIntroduceService();
+	
+	/**
+	 * 新增一条社联概况
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String newLeaguesIntroduce(HttpServletRequest req, HttpServletResponse resp){
+		LeaguesIntroduce leaguesIntroduce = CommonUtils.toBean(req.getParameterMap(),LeaguesIntroduce.class);
+		try{
+			leaService.addLeaguesIntroduce(leaguesIntroduce);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return this.listLeaguesIntroduce(req, resp);
+	}
+	
+	/**
+	 * 查询所有的社联概况
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listLeaguesIntroduce(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			List<LeaguesIntroduce> leaguesIntroduceList =  leaService.selsectAll();
+			req.setAttribute("leaguesIntroduceList", leaguesIntroduceList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/introduction/introduction.jsp";
+	}
+	
+	/**
+	 * 根据Id删除一条社联概况
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String deleteById(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			leaService.deleteById(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return this.listLeaguesIntroduce(req, resp);
+	}
+}

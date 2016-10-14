@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.DatumDownloadDao">
+	<resultMap type="entity.DatumDownload" id="DatumDownloadMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="title" column="title"/>
+         <result property="uploadName" column="upload_name"/>
+         <result property="path" column="path"/>
+            
+     </resultMap>
+    
+    <insert id="addDatumDownload" parameterType="DatumDownload">
+    	insert into t_datum_download(id,title,upload_name,path)
+    	values(#{id},#{title},#{uploadName},#{path})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_datum_download where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="DatumDownloadMap">
+ 		select * from t_datum_download where id =#{id}
+	</select>  
+	
+	
+	<select id="selectAll" resultMap="DatumDownloadMap">
+		select * from t_datum_download
+	</select>
+	
+	
+	<update id="updateById" parameterType="DatumDownload">
+		update t_datum_download set title=#{title},upload_name=#{uploadName},path=#{path} where id = #{id}
+	</update> 
+</mapper>

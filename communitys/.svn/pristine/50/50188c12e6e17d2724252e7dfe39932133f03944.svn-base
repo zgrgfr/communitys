@@ -1,0 +1,118 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>东北师范大学校社联</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="backpages/assets/img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="backpages/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Fonts from Font Awsome -->
+    <link rel="stylesheet" href="backpages/assets/css/font-awesome.min.css">
+    <!-- CSS Animate -->
+    <link rel="stylesheet" href="backpages/assets/css/animate.css">
+    <!-- Custom styles for this theme -->
+    <link rel="stylesheet" href="backpages/assets/css/main.css">
+    <!-- DataTables-->
+    <link rel="stylesheet" href="backpages/assets/plugins/icheck/css/_all.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/design/css/trumbowyg.css">
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/trumbowyg.js"></script>
+    <script src="assets/plugins/base64/trumbowyg.base64.js"></script>
+    <style type="text/css">
+        body{
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+        <!--main content start-->
+  
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--breadcrumbs start -->
+                        <ul class="breadcrumb">
+                            <li><a href="#">精品课程</a>
+                            </li>
+                            <li>添加内容</li>
+                        </ul>
+                        <!--breadcrumbs end -->
+                    </div>
+                </div>
+
+                <div class="row">
+                     <div class="col-md-12">
+                        <form class="form-horizontal form-border" id="form" action="/communitys/ClassController">
+                        	<input type="hidden" name="method" value="newClass">
+                        	<input type="hidden" name="type" value="未审核">
+                        	<input type="hidden" name="communityId" value="${community.id}">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">名称</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="name" id="input1" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">学校</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="school" id="input1" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">作者</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="author" id="input1" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">课程类型</label>
+                               <div class="col-sm-6">
+                                    <label class="radio-inline"><input class="icheck" type="radio" checked="" name="classType" value="文学艺术">文学艺术</label>
+                                    <label class="radio-inline"><input class="icheck" type="radio" name="classType" value="哲学历史">哲学历史</label>
+                                    <label class="radio-inline"><input class="icheck" type="radio" name="classType" value="经管法学">经管法学</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">时间</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="time" id="input1" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">简介</label>
+                                <div class="col-sm-6">
+                                	<input type="text" name="introduce" >
+                                    <div  onmousedown="show_element(event)" style="clear:both" id="customized-buttonpane1" class="editor"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">内容</label>
+                                <div class="col-sm-6">
+                                	<input type="text" name="content">
+                                    <div  onmousedown="show_element(event)" style="clear:both" id="customized-buttonpane2" class="editor"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-8 col-sm-10">
+                                    <input type="submit" class="btn btn-primary" value="提交" />
+                                </div>
+                             </div>
+                        </form>  
+                    </div>
+                </div>
+</body>
+
+</html>

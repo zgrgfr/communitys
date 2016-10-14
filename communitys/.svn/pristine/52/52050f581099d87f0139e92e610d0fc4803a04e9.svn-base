@@ -1,0 +1,129 @@
+package entity;
+
+/**
+ * 账号的实体类
+ * @author guofengrui
+ *
+ */
+public class Account {
+	// 主键
+	private int id;
+	
+	// 账号
+	private String account;
+	
+	// 密码
+	private String password;
+	
+	// 学生姓名
+	private	String name;
+	
+	// 学院名称
+	private String academy;
+	
+	// 学号
+	private String id_number;
+	
+	// 电话
+	private String phone;
+	
+	// 身份 “一般学生，社团管理员，社联管理员”
+	private String role;
+	
+	// 审核状态
+	private String type;
+	
+	// 场地申请的权限
+	private String placeRole;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAcademy() {
+		return academy;
+	}
+
+	public void setAcademy(String academy) {
+		this.academy = academy;
+	}
+
+	public String getId_number() {
+		return id_number;
+	}
+
+	public void setId_number(String id_number) {
+		this.id_number = id_number;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getPlaceRole() {
+		return placeRole;
+	}
+
+	public void setPlaceRole(String placeRole) {
+		this.placeRole = placeRole;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", account=" + account + ", password="
+				+ password + ", name=" + name + ", academy=" + academy
+				+ ", id_number=" + id_number + ", phone=" + phone + ", role="
+				+ role + ", type=" + type + ", placeRole=" + placeRole + "]";
+	}
+	
+	
+}

@@ -1,0 +1,300 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/index.css">
+	<script type="text/javascript" src="frontpages/recourse/js/jquery-1.8.3.min.js"></script>
+	<script charset="utf-8" language="javascript" type="text/javascript" src="frontpages/recourse/js/index.js"></script>
+</head>
+<body>
+	
+	<div class="headerbox">	
+		<div class="front-header">
+			<c:import url="common/header.jsp"></c:import>
+			<div class="front-banner-box">
+				<!-- 图片，文字-->
+				<ul class="front-banner">
+					<!-- <li> -->
+					<li class="li-first" id="0">
+						<div class="front-banner-img">
+							<img src="frontpages/recourse/img/index/banner/001.png">
+						</div>
+						<div class="front-banner-logowords">
+							<p class="word-prev">社彩缤纷a</p>
+							<p class="words-next">百团争鸣a</p>
+						</div>
+						<div class="front-banner-words">
+							<p class="quintessence">社彩缤纷dfcd，百团争鸣。a</p>
+							<p class="explain">——记东北师范大学大学2015-2016学年学生社团统一纳新活动a</p>
+						</div>
+					</li>
+					<li id="1">
+						<div class="front-banner-img">
+							<img src="frontpages/recourse/img/index/banner/003.png" alt="图片2">
+						</div>
+						<div class="front-banner-logowords">
+							<p class="word-prev">社彩缤纷b</p>
+							<p class="words-next">百团争鸣b</p>
+						</div>
+						<div class="front-banner-words">
+							<p class="quintessence">社彩缤纷，百团争鸣。b</p>
+							<p class="explain">——记东北师范大学大学2015-2016学年学生社团统一纳新活动b</p>
+						</div>
+					</li>
+				</ul>
+				<!-- 小图标 -->
+				<div class="number">
+					<i class="number-now" id="0"></i>
+				</div>
+				<!-- 前后页 -->
+				<div class="arrows">
+					<i class="prev-arrows"></i>
+					<i class="next-arrows"></i>
+				</div>
+			</div>	
+			<div class="news-banner">
+				<!-- 滚动新闻 -->
+				<ul class="clearfix">
+					<li class="footer-orange">
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+					<li class="footer-blue">
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+					<li  class="footer-green">
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+					<li  class="footer-red">
+						<h2><a href="javascript:;">东师吉大吉财三校跆拳道交流赛</a></h2>
+						<span>2015,04.12,2 p.m.-7 p.m</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 背景 -->
+		<div class="bg-header">		
+			<div class="filter"></div>
+			<div class="cover"></div>
+			<div class="bg-banner"></div>
+		</div>
+	</div>
+	<div class="page">
+		<div class="style-and-track clearfix">
+			<div class="style">
+				<h2 class="caption style-caption">社团<span>风采</span><i class="com">Community</i><i class="pre">presence</i></h2>
+				<div class="flash">
+					<ul class="flash-special">
+						<c:forEach items="${communityPresenceList1}" var="communityPresence">
+							<li>
+								<a href="javascript:;" class="special-pic"><img src="frontpages/recourse/img/index/top-tens/001.png"></a>
+								<a href="javascript:;" class="tit">${communityPresence.title}</a>
+							</li>
+							<li>
+								<a href="javascript:;"></a>
+								<span>${communityPresence.content}</span>
+							</li>
+						</c:forEach>
+						
+						<li>
+							<a href="javascript:;" class="special-pic"><img src="frontpages/recourse/img/index/top-tens/002.png"></a>
+							<a href="javascript:;" class="tit">“国2际山水诗之旅暨首届诗意山水展2”</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="special-pic"><img src="frontpages/recourse/img/index/top-tens/003.png"></a>
+							<a href="javascript:;" class="tit">“国3际山水诗之旅暨首届诗意山水展3”</a>
+						</li>
+					</ul>
+					<ul class="flash-list clearfix">
+						<li>
+							<a href="javascript:;" class="list-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+						</li>
+						<li>
+							<a href="javascript:;" class="list-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+						</li>
+						<li>
+							<a href="javascript:;" class="list-pic"><img src="frontpages/recourse/img/index/style/001.png"></a>
+						</li>
+					</ul>
+				</div>
+				<div class="news-list">
+					<ul>
+						<c:forEach items="${communityPresenceList1}" var="communityPresence">
+							<li>
+								<a href="/communitys/CommunityPresenceController?method=detailsView2&id=${communityPresence.id}">${communityPresence.title}</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+			<div class="track">
+				<h2 class="caption track-caption">社团<span>动态</span><a href="javascript:;" class="more">more>></a></h2>
+				
+				<div class="colorwrap clearfix">
+					<i class="footer-blue"></i><i class="footer-orange"></i><i class="footer-green"></i><i class="footer-red"></i>
+				</div>
+				<ul>
+					<c:forEach items="${communityPresenceList2}" var="communityPresence">
+						<li><a href="/communitys/CommunityPresenceController?method=detailsView2&id=${communityPresence.id}">${communityPresence.title}</a></li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div class="show">
+			<h2 class="caption show-caption">社团<span>展示</span><i class="com">Community</i><i class="pre">presence</i></h2>
+			<!--  <ul class="show-list clearfix">
+				<li>
+					<div class="showdiv">
+						<img src="frontpages/recourse/img/index/shows/001.png">
+						<p>第四届城市徒步活动</p>
+					</div>
+				</li>
+				<li>
+					<div class="showdiv">
+						<img src="frontpages/recourse/img/index/shows/002.png">
+						<p>心理协会</p>
+					</div>
+				</li>
+				<li>
+					<div class="showdiv">
+						<img src="frontpages/recourse/img/index/shows/003.png">
+						<p>走进实验室</p>
+					</div>
+				</li>
+				<li>
+					<div class="showdiv">
+						<img src="frontpages/recourse/img/index/shows/004.png">
+						<p>数学建模竞赛</p>
+					</div>
+				</li>
+				<li>
+					<div class="showdiv">
+						<img src="frontpages/recourse/img/index/shows/005.png">
+						<p>英语角</p>
+					</div>
+				</li>
+				<li>
+					<div class="showdiv">
+						<img src="frontpages/recourse/img/index/shows/006.png">
+						<p>英语打黑</p>
+					</div>
+				</li>
+			</ul>-->
+			<ul id="demo" class="show-list">
+				<c:forEach items="${communityShowDtoList}" var="communityShowDto">
+					<li>
+						<img src="backpages/image/${communityShowDto.communityShow.logo}" width="100%"  height="319" />
+						<div><a href="/communitys/CommunityShowController?method=toEnter&communityShowId=${communityShowDto.communityShow.id}">${communityShowDto.community.name}</a></div>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="top-ten">
+			<h2 class="caption top-caption"><span>十佳</span>社团<i class="com">Community</i><i class="pre">presence</i></h2>
+			<ul class="clearfix">
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/001.png"></a>
+					<a href="javascript:;" class="top-ten-tit">GIS新希望协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/002.png"></a>
+					<a href="javascript:;" class="top-ten-tit">IDEA爱电影协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/003.png"></a>
+					<a href="javascript:;" class="top-ten-tit">科研协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/004.png"></a>
+					<a href="javascript:;" class="top-ten-tit">免费师范生协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/005.png"></a>
+					<a href="javascript:;" class="top-ten-tit">口才与演讲协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/006.png"></a>
+					<a href="javascript:;" class="top-ten-tit">锅庄舞协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/007.png"></a>
+					<a href="javascript:;" class="top-ten-tit">千格刀笔油画协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/008.png"></a>
+					<a href="javascript:;" class="top-ten-tit">数学建模协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/009.png"></a>
+					<a href="javascript:;" class="top-ten-tit">模拟联合国协会</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="top-ten-img"><img src="frontpages/recourse/img/index/top-tens/010.png"></a>
+					<a href="javascript:;" class="top-ten-tit">夏青朗诵社</a>
+				</li>
+			</ul>
+		</div>
+		<div class="groups-and-basic clearfix">
+			<div class="groups">
+				<h2 class="caption group-caption">社团<span>类别</span></h2>
+				<ol class="group-list clearfix">
+					<li class="scientific"><a href="javascript:;">科研实践</a></li>
+					<li class="public-service"><a href="javascript:;">公益服务</a></li>
+					<li class="sports"><a href="javascript:;">文娱体育</a></li>
+					<li class="theory"><a href="javascript:;">思想理论</a></li>
+				</ol>
+			</div>
+			<div class="basic">
+				<h2 class="caption basic-caption">基本业务</h2>
+				<ul class="clearfix">
+					<li>
+						<a href="javascript:;" class="basic-img">
+							<img src="frontpages/recourse/img/index/basic/001.png" width="48%">
+						</a>
+						<a href="javascript:;" class="basic-tit">活动申请</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img">
+							<img src="frontpages/recourse/img/index/basic/004.png" width="57%">
+						</a>
+						<a href="javascript:;" class="basic-tit">社团宝典</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img">
+							<img src="frontpages/recourse/img/index/basic/005.png" width="72%">
+						</a>
+						<a href="javascript:;" class="basic-tit">场地借用</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img">
+							<img src="frontpages/recourse/img/index/basic/002.png" width="77%" class="basicimg">
+						</a>
+						<a href="javascript:;" class="basic-tit">社团注册</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="basic-img">
+							<img src="frontpages/recourse/img/index/basic/003.png" width="64%" class="basicimg">
+						</a>
+						<a href="javascript:;" class="basic-tit">物品借用</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<c:import url="common/footer.html"></c:import>
+	<c:import url="common/script.html"></c:import>
+	<script type="text/javascript" src="frontpages/recourse/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="frontpages/recourse/js/showlist.js"></script>
+</body>
+</html>

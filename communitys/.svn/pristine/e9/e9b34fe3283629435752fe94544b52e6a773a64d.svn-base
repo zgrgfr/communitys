@@ -1,0 +1,77 @@
+package test;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import entity.PlaceApply;
+
+import service.PlaceApplyService;
+import util.MybatisUtil;
+
+public class PlaceApplyTest {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	PlaceApplyService PAS = new PlaceApplyService();
+	public void toAdd() throws Exception{
+		PlaceApply placeApply = new PlaceApply();
+		placeApply.setCampus("净月");
+		placeApply.setPlace("图书馆");
+		placeApply.setAccountId(2015012030);
+		placeApply.setDayTime("5月12日");
+		placeApply.setHourTime("8:00-9:00");
+		placeApply.setUses("打篮球");
+		placeApply.setType("未审核");
+		PAS.addPlaceApply(placeApply);
+	}
+	
+	public void delete() throws Exception{
+		PAS.deleteById(1);
+	}
+	
+	public PlaceApply queryById() throws Exception{
+		return PAS.queryById(2);
+	}
+	
+	public List<PlaceApply> selectAll() throws Exception{
+		return PAS.selectAll();
+	}
+	
+	public List<PlaceApply> queryByType() throws Exception{
+		return PAS.queryByType("未审核");
+	}
+	
+	public void updateTypeById() throws Exception{
+		PAS.updateTypeById("审核通过", 2);
+	}
+	
+	public void updateById() throws Exception{
+		PlaceApply placeApply = new PlaceApply();
+		placeApply.setId(3);
+		placeApply.setCampus("本部");
+		placeApply.setPlace("教学楼");
+		placeApply.setAccountId(2015012030);
+		placeApply.setDayTime("10月10日");
+		placeApply.setHourTime("12:00-14:00");
+		placeApply.setUses("打篮球");
+		placeApply.setType("审核通过");
+		PAS.updateById(placeApply);
+	}
+	
+	public static void main(String args[]) throws Exception{
+		PlaceApplyService PAS = new PlaceApplyService();
+//		PlaceApplyTest PAT = new PlaceApplyTest();
+//		PAT.toAdd();
+//		PAT.delete();
+//		System.out.println(PAT.queryById());
+//		for(PlaceApply pa : PAT.selectAll()){
+//			System.out.println(pa);
+//		}
+//		PAT.updateById();
+//		PAT.updateTypeById();
+//		for(PlaceApply pa : PAT.queryByType()){
+//			System.out.println(pa);
+//		}
+		List<PlaceApply> list = PAS.queryByAllCondition("净月", "阶梯教室309", "2016-09-20");
+		System.out.println(list.get(0));
+	}
+}

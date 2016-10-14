@@ -1,0 +1,83 @@
+.content-left {
+	float: left;
+	width: 27%;
+	height: 446px;
+	background-color: #fff;
+}
+.content-right {
+	float: right;
+	width: 70%;
+}
+.title {
+	height: 40px;
+	padding-left: 13px;
+	padding-top: 10px;
+	background-color: #b33636;
+}
+.intro {
+	color: #fff;
+	font-size: 20px;
+}
+.detail {
+	position: relative;
+	padding-top: 20px;
+}
+.name {
+	margin-left: 74px;
+	font-size: 24px;
+}
+.pqcode {
+	position: absolute;
+	top: 24px;
+    left: 76px;
+    width: 30px;
+	height: 30px;
+    cursor: pointer;
+}
+.logo {
+	position: absolute;
+	top: 51px;
+	left: 70px;
+	width: 110px;
+	height: 110px;
+	border: 1px solid #999;
+}
+.pqcode-big {
+	display: none;
+	position: absolute;
+	top: 0;
+    left: 274px;
+    width: 160px;
+	height: 160px;
+}
+.campus {
+	position: absolute;
+	top: 200px;
+	left: 60px;
+}
+.location {
+	text-align: center;
+}
+.colon {
+	width: 30px;
+}
+.title2 {
+	height: 40px;
+	padding-left: 20px;
+	padding-top: 10px;
+	border-bottom: 1px dashed #999;
+}
+.join {
+	position: absolute;
+	display: inline-block;
+	top: 333px;
+	left: 86px;
+	width: 105px;
+	height: 28px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background-color: #b33636;
+	box-shadow: 2px 2px #ccc;
+	border-radius: 3px;
+}

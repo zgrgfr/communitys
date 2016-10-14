@@ -1,0 +1,129 @@
+package service;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import util.GetSqlSession;
+import util.MybatisUtil;
+import dao.CommunityDao;
+import dto.CommunityRegisterDto;
+import entity.Account;
+import entity.Community;
+/**
+ * 社团简介的Service
+ * @author guofengrui
+ *
+ */
+public class CommunityService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	CommunityDao communityDao = sqlSession.getMapper(CommunityDao.class);
+	private AccountService accountService = new AccountService();
+	
+	/**
+	 * 添加一条社团简介
+	 * @param community
+	 * @throws Exception
+	 */
+	public void addCommunity(Community community) throws Exception{
+			communityDao.addCommunity(community);
+	}
+		
+	/**
+	 * 根据Id删除一条社团简介
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(int id) throws Exception{
+		communityDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据Id查找返回一个社团简介
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Community queryById(int id) throws Exception{
+		return communityDao.queryById(id);
+	}
+	
+	/**
+	 * 根据Id查看社团注册的Dto
+	 * @param id
+	 * @return
+	 */
+	public CommunityRegisterDto viewById(int id) throws Exception{
+		Community community = this.queryById(id);
+		CommunityRegisterDto communityRegisterDto = new CommunityRegisterDto();
+		communityRegisterDto.setCommunity(community);
+		if(community.getApplyId() != 0){
+			Account account = accountService.queryById(community.getApplyId());
+			communityRegisterDto.setAccount(account);
+		}else{
+			Account account = new Account();
+			account.setName("无");
+			account.setAcademy("无");
+			account.setIdNumber("无");
+			account.setPhone("无");
+			communityRegisterDto.setAccount(account);
+		}
+		return communityRegisterDto ;
+	} 
+	/**
+	 * 找到所有的社团简介
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Community> selsectAll() throws Exception{
+		return communityDao.selectAll();
+
+	}
+	
+	/**
+	 * 根据社团注册的状态查找相应的社团简介和社团注册信息
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Community> queryByType(String type) throws Exception{
+		return communityDao.queryByType(type);
+	}
+	
+	/**
+	 * 根据id修改社团简介
+	 * @param community
+	 * @throws Exception
+	 */
+	public void updateById(Community community) throws Exception{
+		communityDao.updateById(community);
+	}
+	
+	/**
+	 * 根据id更改社团注册的状态
+	 * @param type
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateTypeById(String type , int id) throws Exception{
+		communityDao.updateTypeById(type, id);
+	}
+	
+	/**
+	 * 判断这个账号是不是某社团负责人
+	 * 返回true是
+	 * 返回false不是
+	 * @param accountId
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean judgeIsLeader(int accountId) throws Exception{
+		List<Community> communityList = communityDao.selectAll();
+		for(Community community : communityList){
+			if(community.getApplyId() == accountId){
+				return true;
+			}
+		}
+		return false;
+	}
+}

@@ -1,0 +1,58 @@
+package dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import entity.CommunityShow;
+
+public interface CommunityShowDao {
+	
+	/**
+	 * 增添一个社团展示
+	 * @param communityShow
+	 * @throws Exception
+	 */
+	public void addCommunityShow(CommunityShow communityShow) throws Exception;
+	
+	/**
+	 * 删除一个社团展示
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据id查找一条社团展示
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public CommunityShow queryById(@Param("id") int id) throws Exception;
+	
+	/**
+	 * 根据审核情况查找对应的社团展示
+	 * @param type
+	 * @return
+	 * @throws Exception
+	 */
+	public List<CommunityShow> queryByType(@Param("type") String type) throws Exception;
+	
+	/**
+	 * 根据id修改一个社团展示的审核情况
+	 * @param id
+	 * @param type
+	 * @throws Exception
+	 */
+	public void updateTypeById(@Param("id") int id, @Param("type") String type) throws Exception;
+	
+	/**
+	 * 根据id修改一条社团展示
+	 * @param communityShow
+	 * @throws Exception
+	 */
+	public void updateById(CommunityShow communityShow) throws Exception;
+	
+
+	
+}

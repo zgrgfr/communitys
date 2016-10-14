@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="../common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/services/services.css">
+</head>
+<body>
+	<c:import url="../common/header.html"></c:import>
+	<div class="page clearfix">
+		<div class="sidebar">
+			<a href="frontpages/pages/services/apply.jsp"><p class="select-select">活动申请</p></a>
+			<a href="/communitys/CommunityBookController?method=listCommunityBook2"><p>社团宝典</p></a>
+			<a href="frontpages/pages/services/place.jsp"><p>场地借用</p></a>
+			<a href="frontpages/pages/services/register.jsp"><p>社团注册</p></a>
+			<a href="frontpages/pages/services/borrow.jsp"><p>物品借用</p></a>	
+		</div>
+		<div class="main-content">
+		${msg }
+			<form class="apply-from" action="/communitys/ActivityApplyController">
+				<input type="hidden" name="type" value="未审核">
+				<input type="hidden" name="method" value="newActivityApply">
+				<!-- 账户Id -->
+				<input type="hidden" name="accountId" value=1>
+				<p>
+					<label>活动名称</label>
+					<input type="text" class="text" name="name">
+				</p>
+				<p>
+					<label>活动发起者</label>
+					<input type="text" class="text" name="holder">
+				</p>
+				<p>
+					<label>活动日期</label>
+					<input type="text" class="text" name="time">
+				</p>
+				<p>
+					<label>活动开始时间</label>
+					<input type="text" class="text" name="timeStart">
+				</p>
+				<p>
+					<label>活动内容</label>
+					<input type="text" class="text" name="content">
+				</p>
+				<p>
+					<input type="submit" class="btn" value="提交" />
+				</p>
+			</form>
+		</div>
+	</div>
+	<c:import url="../common/footer.html"></c:import>
+	<c:import url="../common/script.html"></c:import>
+</body>
+</html>

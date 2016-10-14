@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="../common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/content.css">
+</head>
+<body>
+	<c:import url="../common/header.jsp"></c:import>
+	<div class="page">
+		${msg}
+		<h3 class="content-title">${classDto.cla.name}</h3>
+		<div class="info">
+			<span><i>${classDto.number }</i>人参加</span>
+			<span>${classDto.cla.school}</span>
+			<span>${classDto.cla.author}</span>
+			<span>${classDto.cla.startTime}-${classDto.cla.endTime}</span>
+		</div>
+		<div class="content">
+			<div style="border-bottom: 1px solid #eee;">${classDto.cla.introduce}</div>
+			<div>${course.content }</div>
+			<div style="width: 100%;text-align: center;">
+				<a href="/communitys/ClassEnterController?method=enterClass&classId=${classDto.cla.id}&accountId=${sessionScope.accountFront.id}" class="u-btn">立即参加</a>
+			</div>
+		</div>
+		
+	</div>
+	<c:import url="../common/footer.html"></c:import>
+	<c:import url="../common/script.html"></c:import>
+</body>
+</html>

@@ -1,0 +1,219 @@
+package controller;
+import java.util.ArrayList;
+import java.util.List;
+
+import service.AccountService;
+import service.CommunityAdminService;
+import service.CommunityService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dto.CommunityRegisterDto;
+import entity.Community;
+import entity.Account;
+
+@WebServlet(name="CommunityController",urlPatterns={"/CommunityController"})
+public class CommunityController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	private CommunityService comService = new CommunityService();
+	private CommunityAdminService comAdminService = new CommunityAdminService();
+	private CommunityAdminService communityAdminService = new CommunityAdminService();
+	private AccountService accountService = new AccountService();
+	/**
+	 * 注册社团
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String newCommunity(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			if(req.getParameter("applyId") != null && !"".equals(req.getParameter("applyId"))){
+				int accountId = Integer.parseInt(req.getParameter("applyId"));
+				// 一般学生才可进行社团注册的申请
+				if(!"一般学生".equals(accountService.queryById(accountId).getRole())){
+					req.setAttribute("msg", "一般学生才可进行社团注册的申请！");
+					
+				// 判断这个账号是不是其他社团的负责人，不是的话才能申请新社团
+				}else if(comService.judgeIsLeader(accountId)){
+					req.setAttribute("msg", "一个账号不能同时为两个社团负责人！");
+				}else{
+					Community community = CommonUtils.toBean(req.getParameterMap(), Community.class);
+					comService.addCommunity(community);
+					req.setAttribute("msg", "提交成功，等待审核！");
+				}
+			}else{
+				req.setAttribute("msg", "未登录，不能申请注册社团！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 转到等待审核的页面
+		return "f:frontpages/pages/services/register.jsp";
+	}
+	
+	/**
+	 * 查询所有的数据
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listCommunity(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			List<Community> communityList = comService.selsectAll();
+			req.setAttribute("communityList", communityList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/new_register/register.jsp";
+	}
+	
+	/**
+	 * 根据审核状态查找相应的数据
+	 * 超级管理员
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String listByType(HttpServletRequest req, HttpServletResponse resp){
+		try{
+			List<Community> communityList = new ArrayList<Community>();
+			List<Community> communityList1 = comService.queryByType("审核未审批");
+			List<Community> communityList2 = comService.queryByType("审核已审批");
+			communityList.addAll(communityList1);
+			communityList.addAll(communityList2);
+			req.setAttribute("communityList", communityList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/new_register/register.jsp";
+	}
+	
+	/**
+	 * 改变审核状态
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String passOrNotPass(HttpServletRequest req, HttpServletResponse resp){
+		String type = req.getParameter("type");
+		int communityId = Integer.parseInt(req.getParameter("communityId"));
+		int accountId = Integer.parseInt(req.getParameter("accountId"));
+		HttpSession session = req.getSession();
+		try{
+			if("审核已审批".equals(type)){
+				communityAdminService.addCommunityAdmin(communityId, accountId);
+				accountService.updateRoleById("社团管理员",accountId);
+			}
+			comService.updateTypeById(type, communityId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if("社联管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listCommunity(req, resp);
+		}else{
+			return this.listByType(req, resp);
+		}
+	}
+	
+	/**
+	 * 添加社团/社联（0-communityId）负责人
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String newCommunityAdmin(HttpServletRequest req, HttpServletResponse resp){
+		int communityId = Integer.parseInt(req.getParameter("communityId"));
+		int accountId = Integer.parseInt(req.getParameter("accountId"));
+		try{
+			comAdminService.addCommunityAdmin(communityId, accountId);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	/**
+	 * 查看详情Dto
+	 * 后台
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String detailsView(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			CommunityRegisterDto communityRegisterDto = comService.viewById(id);
+			req.setAttribute("communityRegisterDto", communityRegisterDto);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/new_register/view.jsp";
+	}
+	
+	/**
+	 * 根据Id删除一条数据
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String deleteById(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		HttpSession session = req.getSession();
+		try{
+			comService.deleteById(id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if("社联管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listCommunity(req, resp);
+		}else{
+			return this.listByType(req, resp);
+		}
+	}
+	
+	/**
+	 * 去修改的页面
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String toUpdate(HttpServletRequest req, HttpServletResponse resp){
+		int id = Integer.parseInt(req.getParameter("id"));
+		try{
+			Community community = comService.queryById(id);
+			req.setAttribute("community", community);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "f:backpages/new_register/change.jsp";
+	}
+	
+	/**
+	 * 修改一条数据
+	 * 超级管理员，社联管理员
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	public String updateCommunity(HttpServletRequest req, HttpServletResponse resp){
+		Community community = CommonUtils.toBean(req.getParameterMap(), Community.class);
+		HttpSession session = req.getSession();
+		try{
+			comService.updateById(community);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if("社联管理员".equals(((Account)session.getAttribute("account")).getRole())){
+			return this.listCommunity(req, resp);
+		}else{
+			return this.listByType(req, resp);
+		}
+	}
+}

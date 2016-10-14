@@ -1,0 +1,15 @@
+.page{
+	width: 75%;
+	margin: 60px auto 0;
+	min-height: 666px;
+}
+.content-title{
+	text-align: center;
+	margin-bottom: 14px;
+}
+.content{
+	width: 80%;
+	margin: 0 auto;
+	text-indent: 24px;
+	line-height: 26px;
+}

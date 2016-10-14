@@ -1,0 +1,116 @@
+package service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import dao.PlaceApplyDao;
+import dto.PlaceApplyDto;
+import entity.Account;
+import entity.PlaceApply;
+import util.MybatisUtil;
+
+/**
+ * 场地申请的Service
+ * @author shanjizhong
+ *
+ */ 
+public class PlaceApplyService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	PlaceApplyDao placeApplyDao = sqlSession.getMapper(PlaceApplyDao.class);
+	AccountService accountService = new AccountService();
+	
+	/**
+	 * 添加一个申请
+	 * @param placeApply
+	 * @throws Exception
+	 */
+	public void addPlaceApply(PlaceApply placeApply) throws Exception{
+		placeApplyDao.addPlaceApply(placeApply);
+	}
+	
+	/**
+	 * 根据Id删除申请
+	 * @param id
+	 * @throws Exception
+	 */
+	public void deleteById(int id) throws Exception{
+		placeApplyDao.deleteById(id);
+	}
+	
+	/**
+	 * 根据Id查找课程
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public PlaceApply queryById(int id) throws Exception{
+		sqlSession.clearCache();
+		return placeApplyDao.queryById(id);
+	}
+	
+	/**
+	 * 查找所有场地申请
+	 * @return list
+	 * @throws Exception
+	 */
+	public List<PlaceApply> selectAll() throws Exception{
+		sqlSession.clearCache();
+		return placeApplyDao.selectAll();
+	}
+	
+	/**
+	 * 根据type找到相应的课程
+	 * @param type
+	 * @return list
+	 * @throws Exception
+	 */
+	public List<PlaceApply> queryByType(String type) throws Exception{
+		sqlSession.clearCache();
+		return placeApplyDao.queryByType(type);
+	}
+	
+	/**
+	 * 根据Id改变某个申请的审核状态
+	 * @param type
+	 * @param id
+	 * @throws Exception
+	 */
+	public void updateTypeById(String type, int id) throws Exception{
+		placeApplyDao.updateTypeById(id, type);
+	}
+	
+	/**
+	 * 根据ID修改申请
+	 * @param id
+	 * @param PlaceApply
+	 * @throws Exception
+	 */
+	public void updateById(PlaceApply placeApply)throws Exception{
+		placeApplyDao.updateById(placeApply);
+	}
+	
+	/**
+	 * 查找所有的场地申请的Dto
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PlaceApplyDto> selectAllPlaceApplyDto()throws Exception{
+		sqlSession.clearCache();
+		// 找到所有的场地申请信息
+		List<PlaceApply> placeApplyList = this.selectAll();
+		List<PlaceApplyDto> placeApplyDtoList = new ArrayList<PlaceApplyDto>();
+		
+		for(PlaceApply placeApply : placeApplyList){
+			PlaceApplyDto placeApplyDto = new PlaceApplyDto();
+			placeApplyDto.setPlaceApply(placeApply);
+			int accountId = placeApply.getAccountId();
+			Account account = accountService.queryById(accountId);
+			placeApplyDto.setAccount(account);
+			placeApplyDtoList.add(placeApplyDto);
+		}
+		return placeApplyDtoList;
+	}
+}

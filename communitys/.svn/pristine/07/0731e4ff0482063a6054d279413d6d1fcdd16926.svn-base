@@ -1,0 +1,15 @@
+$(document).ready(function(){
+	// 社团宝典
+	var href = $("#url"); 
+	$(href).click();
+
+	// 场地申请
+	$(".td-body").click(function(){
+		$(".apply").show();
+	});
+
+	$(".close").click(function(){
+		$(".apply").hide();
+	});
+
+});

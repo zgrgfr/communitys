@@ -1,0 +1,49 @@
+package controller;
+import service.AccountService;
+import entity.Account;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import entity.Community;
+
+/**
+ * 登陆Controller
+ * @author 郭丰瑞
+ *
+ */
+@WebServlet(name="LoginController",urlPatterns={"/LoginController"})
+public class LoginController extends BaseServlet{
+	AccountService accSerrvice = new AccountService();
+	private static final long serialVersionUID = 1L;
+	public String backpageLogin(HttpServletRequest req, HttpServletResponse resp){
+		try {
+			String account = req.getParameter("account");
+			String password = req.getParameter("password");
+			if("1035954631@qq.com".equals(account)&&"root".equals(password)){
+				return "/backpages/index1.html";
+			}else{
+				Account acc = accSerrvice.queryByAccountAndPassword(account,password);
+				if(acc != null){
+					String role = acc.getRole();
+					switch(role){
+						case "社联管理员":
+							return "/backpages/index2.html";
+						case "社团管理员":
+							return "/backpages/index3.html";
+						case "场地管理员":
+							return "/backpages/index4.html";
+						default :
+							return "/backpages/login.html";      
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

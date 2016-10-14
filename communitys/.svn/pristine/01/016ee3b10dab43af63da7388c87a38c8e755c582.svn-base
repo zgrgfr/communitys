@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.PlaceApplyDao">
+	<resultMap type="entity.PlaceApply" id="PlaceApplyMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="campus" column="campus"/>
+         <result property="dayTime" column="day_tIme"/>
+         <result property="hourTime" column="hour_time"/>
+         <result property="place" column="place"/>
+         <result property="accountId" column="account_id"/>
+         <result property="uses" column="uses"/>
+         <result property="type" column="type"/>
+            
+     </resultMap>
+    
+    <insert id="addPlaceApply" parameterType="PlaceApply">
+    	insert into t_place_apply(id,campus,day_time,hour_time,place,account_id,uses,type)
+    	values(#{id},#{campus},#{dayTime},#{hourTime},#{place},#{accountId},#{uses},#{type})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_place_apply where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="PlaceApplyMap">
+ 		select * from t_place_apply where id =#{id}
+	</select>  
+
+
+	<select id="selectAll" resultMap="PlaceApplyMap">
+		select * from t_place_apply
+	</select>
+	
+	
+	<select id="queryByType" parameterType="String" resultMap="PlaceApplyMap">
+		select * from t_place_apply where type = #{type}
+	</select> 
+	
+	
+	<update id="updateTypeById">
+		update t_place_apply set type = #{type} where id = #{id}
+	</update> 
+	
+	
+	<update id="updateById" parameterType="PlaceApply">
+		update t_place_apply set campus=#{campus},day_time=#{dayTime},hour_time=#{hourTime},place=#{place},account_id=#{accountId},uses=#{uses},type =#{type} where id = #{id}
+	</update> 
+	
+	<select id="queryByAllCondition" resultMap="PlaceApplyMap">
+		select * from t_place_apply
+		<where>
+			<if test=" campus != '' and campus != null ">
+				and campus = #{campus}			
+			</if>
+			<if test=" place != '' and place != null ">
+				and place = #{place}			
+			</if>
+			
+			<!-- 
+					XML文件中需要对大于小于号更改
+					< 用 &lt; 代替
+					> 用 &gt; 代替
+			 -->
+			<if test=" monday != '' and monday != null and sunday != '' and sunday != null ">
+				and day_time &gt;= #{monday} and day_time  &lt;= #{sunday}
+			</if>
+		</where>
+	</select>
+</mapper>

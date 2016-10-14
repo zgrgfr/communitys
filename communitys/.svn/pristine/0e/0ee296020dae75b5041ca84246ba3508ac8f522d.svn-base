@@ -1,0 +1,42 @@
+// 选择条件
+$(".school a").click(function(){
+	var num0 = $(this).text();
+	$(".option-show").append("<span><i>校区：</i>"+ num0 +"<em></em></span>");
+	$(".school").addClass("none");
+	$.ajax({
+		type:"get",
+		url:"/communitys/CommunityShowController?method=test",
+		dataType:"json", 
+		data:'grade=num1&type=num2&campus=num0',
+		success: function(data){
+			alert("提交数据");
+		}
+	})
+});
+
+$(".grade a").click(function(){
+	var num1 = $(this).text();
+	$(".option-show").append("<span><i>等级：</i>"+ num1 +"<em></em></span>");
+	$(".grade").addClass("none");
+});
+
+$(".type a").click(function(){
+	var num2 = $(this).text();
+	$(".option-show").append("<span><i>类型：</i>"+ num2 +"<em></em></span>");
+	$(".type").addClass("none");
+});
+//清除条件
+$(".option-show span").live("click",function(){
+	$(this).addClass("none");
+	var ttr = $(this).find("i").text();
+
+	if (ttr == "校区：") {
+		$("dt.school").removeClass("none");
+	};
+	if (ttr == "等级：") {
+		$("dt.grade").removeClass("none");
+	};
+	if (ttr == "类型：") {
+		$("dt.type").removeClass("none");
+	};
+});

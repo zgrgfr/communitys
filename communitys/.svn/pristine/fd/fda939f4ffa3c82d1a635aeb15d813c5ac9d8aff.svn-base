@@ -1,0 +1,24 @@
+package service;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import util.MybatisUtil;
+import dao.CommunityAdminDao;
+import entity.CommunityAdmin;
+/**
+ * 账号的Service
+ * @author guofengrui
+ *
+ */
+public class CommunityAdminService {
+	SqlSession sqlSession = MybatisUtil.getSqlSession(true);
+	CommunityAdminDao coaDao = sqlSession.getMapper(CommunityAdminDao.class);
+	
+	public int queryCommunityIdByAccountId(int accountId) throws Exception{
+		return coaDao.queryCommunityIdByAccountId(accountId);
+	}
+	
+	
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.CommunityAdminDao">
+	<resultMap type="entity.CommunityAdmin" id="CommunityAdminMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="communityId" column="community_id"/>
+         <result property="accountId" column="account_id"/>
+     </resultMap>
+    
+    <select id="queryCommunityIdByAccountId" parameterType="int" resultType="int">
+		select community_id from t_community_admin where account_id = #{accountId}
+    </select>
+</mapper>

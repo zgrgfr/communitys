@@ -1,0 +1,29 @@
+package controller;
+import service.ClassService;
+import cn.itcast.servlet.BaseServlet;
+import cn.itcast.commons.CommonUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import entity.Class;
+
+@WebServlet(name="ClassController",urlPatterns={"/ClassController"})
+public class ClassController extends BaseServlet{
+	
+	private static final long serialVersionUID = 1L;
+	ClassService claService = new ClassService();
+	
+	public String newClass(HttpServletRequest req, HttpServletResponse resp){
+		Class cla = CommonUtils.toBean(req.getParameterMap(),Class.class);
+		System.out.println(cla.toString());
+		try{
+			claService.addClass(cla);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+}

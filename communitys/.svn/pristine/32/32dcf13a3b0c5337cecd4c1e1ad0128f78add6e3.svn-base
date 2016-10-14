@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="dao.ClassDao">
+	<resultMap type="entity.Class" id="ClassMap">
+         <!-- 用id属性来映射主键字段 -->
+         <id property="id" column="id"/>
+         <!-- 用result属性来映射非主键字段 -->
+         <result property="name" column="name"/>
+         <result property="school" column="school"/>
+         <result property="author" column="author"/>
+         <result property="classType" column="class_type"/>
+         <result property="introduce" column="introduce"/>
+         <result property="content" column="content"/>
+         <result property="startTime" column="start_time"/>
+         <result property="endTime" column="end_time"/>
+         <result property="communityId" column="community_id"/>
+         <result property="type" column="type"/>
+            
+     </resultMap>
+    
+    <insert id="addClass" parameterType="Class">
+    	insert into t_class(name,school,author,class_type,introduce,content,start_time,end_time,community_id,type)
+    	values(#{name},#{school},#{author},#{classType},#{introduce},#{content},#{startTime},#{endTime},#{communityId},#{type})
+    </insert>
+    
+ 	<delete id="deleteById" parameterType="int">
+ 		delete from t_class where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="queryById" parameterType="int" resultMap="ClassMap">
+ 		select * from t_class where id =#{id}
+	</select>  
+
+
+	<select id="queryByTypeAndclassType"  resultMap="ClassMap">
+		select * from t_class where type = #{type} 
+		<if  test="classType != '全部课程' ">
+			and class_type = #{classType}
+		</if>
+	</select> 
+	
+	
+	<update id="updateTypeById">
+		update t_class set type = #{type} where id = #{id}
+	</update> 
+	
+	
+	<update id="updateById" parameterType="Class">
+		update t_class set name=#{name},school=#{school},author=#{author},class_type=#{classType},introduce=#{introduce},content=#{content},start_time=#{startTime},end_time=#{endTime},community_id=#{communityId},type =#{type} where id = #{id}
+	</update> 
+	
+	<select id="queryByCommunityId" parameterType="int" resultMap="ClassMap">
+		select * from t_class where community_id = #{communityId}
+	</select>
+	
+	<select id="selectAll" resultMap="ClassMap">
+		select * from t_class
+	</select>
+</mapper>

@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html class="no-js">
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<c:import url="../common/link.html"></c:import>
+	<link rel="stylesheet" type="text/css" href="frontpages/recourse/css/pages/course/course.css">
+</head>
+<body>
+	<c:import url="../common/header.jsp"></c:import>
+	<div class="page clearfix">
+		<div class="sidebar">
+			<a href="javascript:void(0);"><p>全部课程</p></a>
+			<a href="javascript:void(0);"><p>文学艺术</p></a>
+			<a href="javascript:void(0);"><p>哲学历史</p></a>
+			<a href="javascript:void(0);"><p>经管法学</p></a>
+		</div>
+			<div class="select">
+				<span class="position" id="type">${classType}</span>
+				<span style="display:none;" id="time">${classTime}</span>
+				<span style="display:none;" id="select">${select}</span>
+				<div class="select-btn">
+					<a href="javascript:void(0);" class="select-select" >全部</a>
+					<a href="javascript:void(0);" >正在进行</a>
+					<a href="javascript:void(0);" >即将开始</a>
+					<a href="javascript:void(0);" >已结束</a>
+				</div>
+				<div class="select-sort">
+					<span>排序：</span>
+					<select id="selectOption">  
+						<option>默认</option>
+						<option>按热门</option>
+						<option>按最新</option>
+					</select>
+				</div>
+			</div>
+		<div class="main-content">
+			
+			<div class="content-list" >
+				<ul id="datalist">
+				<c:forEach items="${classDtoList}" var="classDto">
+					<li class="clearfix">
+							<div class="con-list-img"><img src="frontpages/recourse/img/course/001.png"></div>
+							<div class="con-list-content">
+								<div>
+									<h6 class="list-cap"><a href="/communitys/ClassController?method=detailsView2&id=${classDto.cla.id}">${classDto.cla.name}</a></h6>
+									<span class="list-time">${classDto.cla.startTime} - ${classDto.cla.endTime}</span>
+								</div>
+								<p class="list-info">
+									<span>
+									<i>
+										${classDto.number }
+									</i>人参加</span>
+									<span>${classDto.cla.school}</span>
+									<span>${classDto.cla.author}</span>
+								</p>
+								<div class="list-describe">
+									${classDto.cla.introduce}
+								</div>
+							</div>
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
+
+			<div class="databtn">
+                <a href="javascript:;" pageNum="pre" class="pre">上一页</a><span id="pageIt"></span><a href="javascript:;" pageNum="next" class="next">下一页</a>
+            </div>
+		</div>
+	</div>
+	<c:import url="../common/footer.html"></c:import>
+	<c:import url="../common/script.html"></c:import>
+	<script type="text/javascript" src="frontpages/recourse/js/course/course.js"></script>
+	<script type="text/javascript" src="frontpages/recourse/js/common/data.js"></script>
+</body>
+</html>

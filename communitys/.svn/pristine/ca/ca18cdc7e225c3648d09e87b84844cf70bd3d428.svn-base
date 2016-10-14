@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>东北师范大学学生社团联合会</title>
+	<meta charset="utf-8" />
+	<!--#include file="/page/pages/common/link.html"  -->
+	<link rel="stylesheet" type="text/css" href="/page/recourse/css/pages/content.css">
+</head>
+<body>
+	<!--#include file="/page/pages/common/header.html"  -->
+	<div class="page">
+		<h3 class="content-title">内容标题</h3>
+		<div class="content">
+			近日，社区卫生中心来了好多准妈妈，志愿者带来的自然分娩和剖宫产知识讲座深受她们的欢迎。 　　志愿者给孕妇们详细讲近日，社区卫生中心来了好多准妈妈，志愿者带来的自然分娩和剖宫产知识讲座深受她们的欢迎。近日，社区卫生中心来了好多准妈妈，志愿者带来的自然分娩和剖宫产知识讲座深受她们的欢迎。近日，社区卫生中心来了好多准妈妈，志愿者带来的自然分娩和剖宫产知识讲座深受她们的欢迎。
+		</div>
+	</div>
+	<!--#include file="/page/pages/common/footer.html"  -->
+	<!--#include file="/page/pages/common/script.html"  -->
+</body>
+</html>

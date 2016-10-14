@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Mobiscroll 2.13.2</title>
+
+
+    <script src="script/jquery-1.9.1.js"></script>
+    <script src="script/mobiscroll.2.13.2.js"></script>
+    <link href="style/mobiscroll.2.13.2.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            var curr = new Date().getFullYear();
+            var opt={};
+			opt.date = {preset : 'date'};
+			opt.datetime = {preset : 'datetime'};
+			opt.time = {preset : 'time'};
+
+          opt.default = {
+				theme: 'android-holo light', //皮肤样式
+		        display: 'modal', //显示方式 
+		        mode: 'scroller', //日期选择模式
+				dateFormat: 'yyyy-mm-dd',
+				lang: 'zh',
+				showNow: true,
+				nowText: "今天",
+				stepMinute: 5,
+		        startYear: curr - 0, //开始年份
+		        endYear: curr + 0 //结束年份
+			};
+            $('.settings').bind('change', function() {
+                var demo = 'datetime';
+                if (!demo.match(/select/i)) {
+                    $('.demo-test-' + demo).val('');
+                }
+                $('.demo-test-' + demo).scroller('destroy').scroller($.extend(opt['datetime'], opt['default']));
+                $('.demo').hide();
+                $('.demo-' + demo).show();
+            });
+            $('#demo').trigger('change');
+        });
+    </script>
+
+</head>
+<body>
+
+
+    <div class="content">
+
+        <div class="settings" style="display:none;">
+          <select name="demo" id="demo">
+              <option value="date">日期</option>
+          </select>
+        </div>
+        <input name="test" id="tests" class="demo-test-date demo-test-datetime demo-test-time demo-test-credit" />
+        <input name="test" id="test" class="demo-test-date demo-test-datetime demo-test-time demo-test-credit" />
+       
+    </div> 
+</body>
+</html>
